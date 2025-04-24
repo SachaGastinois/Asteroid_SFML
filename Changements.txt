@@ -1,0 +1,7 @@
+BeginPlay de chaque AActor ne se fait plus à chaque load
+d'un Level mais plutôt à chaque fois qu'on l'ajoute a
+l'ActorManager
+
+BeginPlay de chaque UComponent ne se fait plus à chaque 
+load d'un Level mais plutôt à chaque fois qu'on l'ajoute 
+a l'AActor
