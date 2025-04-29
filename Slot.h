@@ -24,7 +24,7 @@ namespace UI
 		{
 			return content;
 		}
-		FORCEINLINE Vector2f GetPosition() const
+		FORCEINLINE Vector2f GetLocation() const
 		{
 			return position;
 		}

@@ -64,30 +64,30 @@ void UI::ImageWidget::UpdateGradient()
 {
 	if (slot)
 	{
-		gradient[0].position = slot->GetPosition();
+		gradient[0].position = slot->GetLocation();
 		gradient[0].color = colorGradient.topLeft;
 
-		gradient[1].position = { slot->GetPosition().x + slot->GetSize().x, slot->GetPosition().y };
+		gradient[1].position = { slot->GetLocation().x + slot->GetSize().x, slot->GetLocation().y };
 		gradient[1].color = colorGradient.topRight;
 
-		gradient[2].position = { slot->GetPosition().x, slot->GetPosition().y + slot->GetSize().y };
+		gradient[2].position = { slot->GetLocation().x, slot->GetLocation().y + slot->GetSize().y };
 		gradient[2].color = colorGradient.bottomLeft;
 
-		gradient[3].position = slot->GetPosition() + slot->GetSize();
+		gradient[3].position = slot->GetLocation() + slot->GetSize();
 		gradient[3].color = colorGradient.bottomRight;
 	}
 	else
 	{
-		gradient[0].position = GetPosition();
+		gradient[0].position = GetLocation();
 		gradient[0].color = colorGradient.topLeft;
 
-		gradient[1].position = { GetPosition().x + GetSize().x, GetPosition().y };
+		gradient[1].position = { GetLocation().x + GetSize().x, GetLocation().y };
 		gradient[1].color = colorGradient.topRight;
 
-		gradient[2].position = { GetPosition().x, GetPosition().y + GetSize().y };
+		gradient[2].position = { GetLocation().x, GetLocation().y + GetSize().y };
 		gradient[2].color = colorGradient.bottomLeft;
 
-		gradient[3].position = GetPosition() + GetSize();
+		gradient[3].position = GetLocation() + GetSize();
 		gradient[3].color = colorGradient.bottomRight;
 	}
 	
@@ -98,7 +98,7 @@ void UI::ImageWidget::UpdatePosition(const Vector2f& _position)
 	if (slot)
 	{
 		slot->SetLocation(_position);
-		Super::SetLocation(slot->GetPosition());
+		Super::SetLocation(slot->GetLocation());
 		image->GetShape()->SetLocation(_position);
 	}
 
@@ -114,7 +114,7 @@ void UI::ImageWidget::UpdateMove(const Vector2f& _offset)
 {
 	if (slot)
 	{
-		slot->SetLocation(GetPosition());
+		slot->SetLocation(GetLocation());
 		Super::Move(_offset);
 		image->GetShape()->Move(_offset);
 	}

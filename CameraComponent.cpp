@@ -45,5 +45,5 @@ void Camera::UCameraComponent::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 
 	if (!attachmentComponent || !attachmentComponent->GetOwner()) return;
-	SetCenter(attachmentComponent->GetOwner()->GetPosition());
+	SetCenter(attachmentComponent->GetOwner()->GetLocation());
 }

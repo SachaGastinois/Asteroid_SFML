@@ -10,7 +10,7 @@ struct BoundsData
 
 	BoundsData();
 	BoundsData(const Vector2f& _position);
-	virtual Vector2f GetPosition() const = 0;
+	virtual Vector2f GetLocation() const = 0;
 };
 
 struct RectangleBoundsData : public BoundsData
@@ -22,7 +22,7 @@ struct RectangleBoundsData : public BoundsData
 	RectangleBoundsData(const Vector2f& _position, const Vector2f& _size, const Angle& _rotation);
 	RectangleBoundsData(const FloatRect& _rect, const Angle& _rotation);
 
-	virtual Vector2f GetPosition() const override
+	virtual Vector2f GetLocation() const override
 	{
 		return position;
 	}
@@ -36,7 +36,7 @@ struct CircleBoundsData : public BoundsData
 	CircleBoundsData();
 	CircleBoundsData(const float _radius, const Vector2f& _position, const int _pointsCount = 30);
 
-	virtual Vector2f GetPosition() const override
+	virtual Vector2f GetLocation() const override
 	{
 		return position;
 	}

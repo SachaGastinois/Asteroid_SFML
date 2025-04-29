@@ -16,7 +16,7 @@ namespace UI
 		}
 
 		//Gets the position of the slot
-		FORCEINLINE Vector2f GetPosition() const
+		FORCEINLINE Vector2f GetLocation() const
 		{
 			return position;
 		}

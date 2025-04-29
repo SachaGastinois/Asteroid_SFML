@@ -112,11 +112,11 @@ private:
 		const vector<function<Vector2f()>>& _computePosition =
 		{
 			// Keep the child’s relative position to the parent.
-			[&]() { return _child->GetPosition() + GetPosition() - oldTransform.position; },
+			[&]() { return _child->GetLocation() + GetLocation() - oldTransform.position; },
 			// Keep the child’s world position.
-			[&]() { return _child->GetPosition(); },
+			[&]() { return _child->GetLocation(); },
 			// Snap the child to the parent's position.
-			[&]() { return GetPosition(); },
+			[&]() { return GetLocation(); },
 		};
 
 		const AttachmentType& _type = _child->GetAttachmentType();
@@ -219,9 +219,9 @@ public:
 	{
 		return root->GetOrigin();
 	}
-	FORCEINLINE virtual Vector2f GetPosition() const override
+	FORCEINLINE virtual Vector2f GetLocation() const override
 	{
-		return root->GetPosition();
+		return root->GetLocation();
 	}
 	FORCEINLINE virtual Angle GetRotation() const override
 	{
@@ -272,7 +272,7 @@ public:
 
 	FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 	{
-		oldTransform.position = GetPosition();
+		oldTransform.position = GetLocation();
 		root->SetLocation(_position);
 
 		for (AActor* _child : children)

@@ -49,7 +49,7 @@ void UStaticMeshComponent::Tick(const float _deltaTime)
 
 	if (!attachmentComponent || !attachmentComponent->GetOwner()) return;
 
-	shape->SetLocation(attachmentComponent->GetOwner()->GetPosition());
+	shape->SetLocation(attachmentComponent->GetOwner()->GetLocation());
 }
 
 

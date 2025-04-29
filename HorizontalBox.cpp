@@ -32,7 +32,7 @@ void UI::HorizontalBox::Update()
 	for (Widget* _widget : widgets)
 	{
 		const float _computeSizeX = _widget->GetSize().x * _widget->GetScale().x;
-		_widget->SetLocation(Vector2f(_currentX, _widget->GetPosition().y));
+		_widget->SetLocation(Vector2f(_currentX, _widget->GetLocation().y));
 		_currentX += _computeSizeX + data.spaceBetween;
 	}
 }

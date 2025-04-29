@@ -281,7 +281,7 @@ void Bounds::UpdateBounds(AActor* _actor)
 {
 	if (UStaticMeshComponent* _meshComponent = _actor->GetComponent<UStaticMeshComponent>())
 	{
-		const Vector2f& _pos = _meshComponent->GetOwner()->GetPosition();
+		const Vector2f& _pos = _meshComponent->GetOwner()->GetLocation();
 		if (_meshComponent->GetShape()->GetData().type == SOT_CIRCLE)
 		{
 			const float _radius = _meshComponent->GetShape()->GetData().data.circleData->radius;
