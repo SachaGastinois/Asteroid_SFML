@@ -60,5 +60,9 @@ namespace Camera
 		UCameraComponent(AActor* _owner, const FloatRect& _rect);
 		UCameraComponent(AActor* _owner, const UCameraComponent& _other);
 		~UCameraComponent();
+
+	public:
+		virtual void BeginPlay() override;
+		virtual void Tick(const float _deltaTime) override;
 	};
 }

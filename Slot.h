@@ -42,7 +42,7 @@ namespace UI
 				UpdateDebugFrame();
 			}
 		}
-		FORCEINLINE void SetPosition(const Vector2f& _position)
+		FORCEINLINE void SetLocation(const Vector2f& _position)
 		{
 			position = _position;
 			if (debugMode)

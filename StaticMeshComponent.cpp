@@ -43,6 +43,15 @@ void UStaticMeshComponent::Deconstruct()
 	owner->GetLevel()->GetCameraManager().UnbindOnRenderWindow(renderMeshToken);
 }
 
+void UStaticMeshComponent::Tick(const float _deltaTime)
+{
+	Super::Tick(_deltaTime);
+
+	if (!attachmentComponent || !attachmentComponent->GetOwner()) return;
+
+	shape->SetLocation(attachmentComponent->GetOwner()->GetPosition());
+}
+
 
 void UStaticMeshComponent::SetOriginAtMiddle()
 {

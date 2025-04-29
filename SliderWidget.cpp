@@ -41,7 +41,7 @@ void UI::SliderWidget::UpdateCursorPosition()
 	// Normalise la value
 	const float _normaliseValue = (value - minValue) / (maxValue - minValue);
 	const Vector2f& _offset = Vector2f(sliderBar->GetSize().x * _normaliseValue, sliderBar->GetSize().y / 2.0f);
-	sliderButton->SetPosition(_position + _offset);
+	sliderButton->SetLocation(_position + _offset);
 }
 
 

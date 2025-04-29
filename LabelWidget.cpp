@@ -34,14 +34,14 @@ void UI::LabelWidget::UpdatePosition(const Vector2f _position)
 {
 	if (slot)
 	{
-		slot->SetPosition(_position);
-		Super::SetPosition(slot->GetPosition());
-		text->SetPosition(_position);
+		slot->SetLocation(_position);
+		Super::SetLocation(slot->GetPosition());
+		text->SetLocation(_position);
 	}
 	else
 	{
-		Super::SetPosition(_position);
-		text->SetPosition(_position);
+		Super::SetLocation(_position);
+		text->SetLocation(_position);
 	}
 }
 
@@ -49,7 +49,7 @@ void UI::LabelWidget::UpdateMove(const Vector2f& _offset)
 {
 	if (slot)
 	{
-		slot->SetPosition(GetPosition());
+		slot->SetLocation(GetPosition());
 		Super::Move(_offset);
 		text->Move(_offset);
 	}

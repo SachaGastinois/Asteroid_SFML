@@ -5,13 +5,13 @@
 class ITransformableModifier
 {
 public:
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position) = 0;
+	FORCEINLINE virtual void SetLocation(const Vector2f& _position) = 0;
 	FORCEINLINE virtual void SetRotation(const Angle& _rotation) = 0;
 	FORCEINLINE virtual void SetScale(const Vector2f& _scale) = 0;
 	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin) = 0;
 	FORCEINLINE virtual void SetTransform(const TransformData& _transformData)
 	{
-		SetPosition(_transformData.position);
+		SetLocation(_transformData.position);
 		SetRotation(_transformData.rotation);
 		SetScale(_transformData.scale);
 		SetOrigin(_transformData.origin);

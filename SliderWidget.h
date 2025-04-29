@@ -16,12 +16,12 @@ namespace UI
 
 	public:
 		#pragma region Modifier
-		FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+		FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 		{
-			Super::SetPosition(_position);
+			Super::SetLocation(_position);
 			const Vector2f& _origin = GetOrigin();
-			sliderBar->SetPosition(_position - _origin);
-			sliderButton->SetPosition(_position - _origin);
+			sliderBar->SetLocation(_position - _origin);
+			sliderButton->SetLocation(_position - _origin);
 			UpdateCursorPosition();
 		}
 		FORCEINLINE virtual void SetRotation(const Angle& _rotation) override

@@ -1,6 +1,8 @@
 #pragma once
 #include "Level.h"
 
+class CanvasWidget;
+
 class TESTLevel : public Level
 {
 

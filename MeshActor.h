@@ -27,10 +27,10 @@ public:
 	}
 
 	#pragma region Modifier
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+	FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 	{
-		Super::SetPosition(_position);
-		mesh->GetShape()->SetPosition(_position);
+		Super::SetLocation(_position);
+		mesh->GetShape()->SetLocation(_position);
 	}
 	FORCEINLINE virtual void SetRotation(const Angle& _rotation) override
 	{

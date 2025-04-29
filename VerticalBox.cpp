@@ -32,7 +32,7 @@ void UI::VerticalBox::Update()
 	for (Widget* _widget : widgets)
 	{
 		const float _computeSizeY = _widget->GetSize().y * _widget->GetScale().y;
-		_widget->SetPosition(Vector2f(_widget->GetPosition().x, _currentY));
+		_widget->SetLocation(Vector2f(_widget->GetPosition().x, _currentY));
 		_currentY += _computeSizeY + data.spaceBetween;
 	}
 }

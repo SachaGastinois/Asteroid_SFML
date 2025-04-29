@@ -40,7 +40,7 @@ namespace UI
 		}
 
 		//Sets the position of the slot
-		FORCEINLINE void SetPosition(const Vector2f& _position)
+		FORCEINLINE void SetLocation(const Vector2f& _position)
 		{
 			position = _position;
 		}

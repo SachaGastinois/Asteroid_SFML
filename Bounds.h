@@ -54,7 +54,7 @@ public:
 		data = _data;
 	}
 
-	FORCEINLINE void SetPosition(const Vector2f& _position)
+	FORCEINLINE void SetLocation(const Vector2f& _position)
 	{
 		data->position = _position;
 	}

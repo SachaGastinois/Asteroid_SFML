@@ -97,15 +97,15 @@ void UI::ImageWidget::UpdatePosition(const Vector2f& _position)
 {
 	if (slot)
 	{
-		slot->SetPosition(_position);
-		Super::SetPosition(slot->GetPosition());
-		image->GetShape()->SetPosition(_position);
+		slot->SetLocation(_position);
+		Super::SetLocation(slot->GetPosition());
+		image->GetShape()->SetLocation(_position);
 	}
 
 	else
 	{
-		Super::SetPosition(_position);
-		image->GetShape()->SetPosition(_position);
+		Super::SetLocation(_position);
+		image->GetShape()->SetLocation(_position);
 	}
 	UpdateGradient();
 }
@@ -114,7 +114,7 @@ void UI::ImageWidget::UpdateMove(const Vector2f& _offset)
 {
 	if (slot)
 	{
-		slot->SetPosition(GetPosition());
+		slot->SetLocation(GetPosition());
 		Super::Move(_offset);
 		image->GetShape()->Move(_offset);
 	}

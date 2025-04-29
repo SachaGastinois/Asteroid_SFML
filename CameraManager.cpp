@@ -17,7 +17,7 @@ void Camera::CameraManager::Render(RenderWindow& _window, const bool _isSplitScr
 		if (_element.first == _index) continue;
 
 		_index = _element.first;
-		const AllCameras& _allCameras = _isSplitScreen ? AllCameras({ make_pair(current->GetOwner()->GetDisplayName(), current) }) : allCameras;
+		const AllCameras& _allCameras = !_isSplitScreen ? AllCameras({ make_pair(current->GetOwner()->GetDisplayName(), current) }) : allCameras;
 		RenderAllCameras(_window, _index, _allCameras);
 	}
 }

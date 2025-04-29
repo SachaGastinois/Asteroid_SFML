@@ -5,10 +5,13 @@ class UComponent : public UCore
 {
 protected:
 	class AActor* owner;
+	UComponent* attachmentComponent;
 
 public:
 	FORCEINLINE AActor* GetOwner() const
 	{
+		if (!owner) return nullptr;
+
 		return owner;
 	}
 
@@ -23,6 +26,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float _deltaTime) override {};
 	virtual void BeginDestroy() override {};
+	void SetupAttachment(UComponent* _component);
 
 	virtual UComponent* Clone(AActor* _owner) const = 0;
 };

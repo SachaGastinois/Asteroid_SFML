@@ -36,6 +36,8 @@ public:
 	virtual void Construct() override;
 	virtual void Deconstruct() override;
 
+	virtual void Tick(const float _deltaTime) override;
+
 	void SetOriginAtMiddle();
 	void RenderMesh(RenderWindow& _window);
 };

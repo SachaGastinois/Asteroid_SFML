@@ -25,7 +25,7 @@ void CUSTOMMesh::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 	if (canMove)
 	{
-		SetPosition(CAST(Vector2f, Mouse::getPosition()));
+		SetLocation(CAST(Vector2f, Mouse::getPosition()));
 	}
 }
 

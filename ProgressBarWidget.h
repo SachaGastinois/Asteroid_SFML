@@ -23,9 +23,9 @@ namespace UI
 		ImageWidget* foreground;
 
 	public:
-		FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+		FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 		{
-			Super::SetPosition(_position);
+			Super::SetLocation(_position);
 			UpdateOriginAndPosition(size);
 		}
 		FORCEINLINE virtual void SetRotation(const Angle& _rotation) override

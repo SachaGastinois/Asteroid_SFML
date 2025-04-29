@@ -25,7 +25,7 @@ public:
 	{
 		text->setOrigin(_origin);
 	}
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+	FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 	{
 		text->setPosition(_position);
 	}

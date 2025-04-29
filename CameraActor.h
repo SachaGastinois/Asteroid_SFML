@@ -17,9 +17,9 @@ namespace Camera
 		{
 			camera->SetViewport(_rect);
 		}
-		FORCEINLINE virtual void SetPosition(const Vector2f& _center) override
+		FORCEINLINE virtual void SetLocation(const Vector2f& _center) override
 		{
-			Super::SetPosition(_center);
+			Super::SetLocation(_center);
 			camera->SetCenter(_center);
 		}
 		FORCEINLINE virtual void SetRotation(const Angle& _angle) override
@@ -52,7 +52,7 @@ namespace Camera
 		}
 
 	public:
-		ACameraActor(Level* _level, const string& _name);
+		ACameraActor(Level* _level, const string& _name = "CameraActor");
 		ACameraActor(Level* _level, const Vector2f& _center, const Vector2f& _size, const string& _name);
 		ACameraActor(Level* _level, const Vector2f& _size, const string& _name);
 		ACameraActor(Level* _level, const FloatRect& _rect, const string& _name);

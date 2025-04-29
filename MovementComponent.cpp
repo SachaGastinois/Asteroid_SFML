@@ -18,5 +18,29 @@ void UMovementComponent::Tick(const float _deltaTime)
 {
 	Super::Tick(_deltaTime);
 
-	const Vector2f& _newLoc = owner->GetPosition() + Vector2f(1.0f, -1.0f) * moveSpeed * _deltaTime;
+	deltaTime = _deltaTime;
+}
+
+void UMovementComponent::MoveForward()
+{
+	const Vector2f& _newLoc = owner->GetPosition() + Vector2f(0.0f, -1.0f) * moveSpeed * speedFactor * deltaTime;
+	owner->SetLocation(_newLoc);
+}
+
+void UMovementComponent::MoveBackward()
+{
+	const Vector2f& _newLoc = owner->GetPosition() + Vector2f(0.0f, 1.0f) * moveSpeed * speedFactor * deltaTime;
+	owner->SetLocation(_newLoc);
+}
+
+void UMovementComponent::MoveLeft()
+{
+	const Vector2f& _newLoc = owner->GetPosition() + Vector2f(-1.0f, 0.0f) * moveSpeed * speedFactor * deltaTime;
+	owner->SetLocation(_newLoc);
+}
+
+void UMovementComponent::MoveRight()
+{
+	const Vector2f& _newLoc = owner->GetPosition() + Vector2f(1.0f, 0.0f) * moveSpeed * speedFactor * deltaTime;
+	owner->SetLocation(_newLoc);
 }

@@ -73,7 +73,7 @@ void CUSTOMLevel::InitLevel()
 
 	label = _hud->SpawnWidget<LabelWidget>("Demo");
 	canvas->AddChild(label);
-	label->SetPosition({ 350.0f, 200.0f });
+	label->SetLocation({ 350.0f, 200.0f });
 	label->SetFont("Minecrafter", TTF);
 	label->SetZOrder(10);
 

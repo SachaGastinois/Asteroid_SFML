@@ -10,10 +10,10 @@ namespace UI
 
 	public:
 		#pragma region Modifier
-		FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+		FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
 		{
-			Super::SetPosition(_position);
-			checkImage->SetPosition(_position);
+			Super::SetLocation(_position);
+			checkImage->SetLocation(_position);
 		}
 		FORCEINLINE virtual void SetRotation(const Angle& _rotation) override
 		{
