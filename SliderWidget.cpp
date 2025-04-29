@@ -24,7 +24,7 @@ void UI::SliderWidget::Init()
 	//Bind
 	sliderButton->BindOnDragAction([&] (const Vector2f& _mousePosition) 
 	{
-		const Vector2f& _position = sliderBar->GetPosition();
+		const Vector2f& _position = sliderBar->GetLocation();
 		const Vector2f& _size = sliderBar->GetSize();
 		const float _normaliseValue = (_mousePosition.x - _position.x) / _size.x;
 		const float _value = minValue + (_normaliseValue * (maxValue - minValue));
@@ -37,7 +37,7 @@ void UI::SliderWidget::Init()
 
 void UI::SliderWidget::UpdateCursorPosition()
 {
-	const Vector2f& _position = sliderBar->GetPosition();
+	const Vector2f& _position = sliderBar->GetLocation();
 	// Normalise la value
 	const float _normaliseValue = (value - minValue) / (maxValue - minValue);
 	const Vector2f& _offset = Vector2f(sliderBar->GetSize().x * _normaliseValue, sliderBar->GetSize().y / 2.0f);

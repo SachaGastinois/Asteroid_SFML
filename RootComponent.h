@@ -22,7 +22,7 @@ public:
 	{
 		return transform.origin;
 	}
-	FORCEINLINE virtual Vector2f GetPosition() const override
+	FORCEINLINE virtual Vector2f GetLocation() const override
 	{
 		return transform.position;
 	}

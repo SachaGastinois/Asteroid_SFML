@@ -27,7 +27,7 @@ void ParticleActor::Tick(const float _deltaTime)
 		if (_particle.lifeTime <= 0.0f)
 		{
 			Reset(_particle);
-			_vertex.position = GetPosition();
+			_vertex.position = GetLocation();
 		}
 
 		_vertex.position += _particle.velocity * _deltaTime;

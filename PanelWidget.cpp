@@ -18,10 +18,10 @@ UI::PanelWidget::PanelWidget(Level* _level, const string& _name, const RenderTyp
 
 void UI::PanelWidget::UpdateDebugFrame()
 {
-	debugFrame[0].position = Vector2f(GetPosition());
-	debugFrame[1].position = Vector2f(size.x, GetPosition().y);
+	debugFrame[0].position = Vector2f(GetLocation());
+	debugFrame[1].position = Vector2f(size.x, GetLocation().y);
 	debugFrame[2].position = Vector2f(size.x, size.y);
-	debugFrame[3].position = Vector2f(GetPosition().x, size.y);
+	debugFrame[3].position = Vector2f(GetLocation().x, size.y);
 	debugFrame[4].position = debugFrame[0].position;
 }
 

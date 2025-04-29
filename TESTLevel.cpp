@@ -16,19 +16,23 @@ void TESTLevel::InitLevel()
 {
 	Super::InitLevel();
 
-	HUD* _hud = GetGameMode()->GetHUD();
+	GetCameraManager().GetCurrent()->SetCenter(GetWindowSize());
+
+	/*HUD* _hud = GetGameMode()->GetHUD();
 
 	UI::CanvasWidget* canvas = _hud->SpawnWidget<UI::CanvasWidget>();
 	canvas->SetSize(CAST(Vector2f, GetWindowSize()));
 
 	ImageWidget* _image = _hud->SpawnWidget<ImageWidget>(CircleShapeData(50.0f));
-	canvas->AddChild(_image);
+	canvas->AddChild(_image);*/
 
 	AActor* _actor = SpawnActor<APlayerPawn>();
-	ACircleActor* _circle = SpawnActor<ACircleActor>(50.0f);
-	_circle->SetLocation(Vector2f(100.0f, 100.0f));
-	_actor->SetLocation(GetWindowSize() / 2.0f);
+	//ACircleActor* _circle = SpawnActor<ACircleActor>(50.0f);
+	//_circle->SetLocation(Vector2f(100.0f, 100.0f));
+	//_actor->SetLocation(GetWindowSize() / 2.0f);
+	LOG(Warning, _actor->GetLocation());
+	
 
-	GetGameMode()->GetHUD()->AddToViewport(canvas);
+	//GetGameMode()->GetHUD()->AddToViewport(canvas);
 
 }

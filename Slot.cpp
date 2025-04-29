@@ -5,7 +5,7 @@ UI::Slot::Slot(PanelWidget* _parent, Widget* _content)
 {
 	parent = _parent;
 	content = _content;
-	position = _content->GetPosition();
+	position = _content->GetLocation();
 	size = _content->GetSize();
 	debugMode = false;
 	debugFrame = VertexArray(PrimitiveType::LineStrip, 5);

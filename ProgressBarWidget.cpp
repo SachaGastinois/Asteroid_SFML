@@ -39,7 +39,7 @@ void UI::ProgressBarWidget::Update()
 void UI::ProgressBarWidget::UpdateOriginAndPosition(const Vector2f& _size)
 {
     Shape* _fgShape = foreground->GetComponent<UStaticMeshComponent>()->GetShape()->GetDrawable();
-    const Vector2f& _barPosition = GetPosition();
+    const Vector2f& _barPosition = GetLocation();
     const Vector2f& _originOffset = _fgShape->getOrigin() - GetOrigin();
 
     if (type == PT_LEFT)
