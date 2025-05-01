@@ -4,14 +4,14 @@
 #include "CameraManager.h"
 
 class Level;
-class CameraManager;
+class UCameraManager;
 class APawn;
 
 class PlayerController : public AActor
 {
 	Input::InputManager inputManager;
 	RenderWindow* window;
-	Camera::CameraManager* cameraManager;
+	Camera::UCameraManager* cameraManager;
 	APawn* pawn;
 
 public:

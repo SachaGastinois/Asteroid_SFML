@@ -11,7 +11,7 @@ Level::Level(const string& _name)
 	isLoaded = false;
 	name = _name;
 	actorManager = ActorManager();
-	cameraManager = Camera::CameraManager();
+	cameraManager = Camera::UCameraManager();
 	collisionManager = CollisionManager();
 	audioManager = AudioManager();
 	gameMode = nullptr;

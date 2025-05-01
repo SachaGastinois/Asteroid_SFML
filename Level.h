@@ -14,7 +14,7 @@ class Level
 	bool isLoaded;
 	string name;
 	ActorManager actorManager;
-	Camera::CameraManager cameraManager;
+	Camera::UCameraManager cameraManager;
 	CollisionManager collisionManager;
 	AudioManager audioManager;
 
@@ -48,7 +48,7 @@ public:
 	{
 		return actorManager;
 	}
-	FORCEINLINE Camera::CameraManager& GetCameraManager()
+	FORCEINLINE Camera::UCameraManager& GetCameraManager()
 	{
 		return cameraManager;
 	}
