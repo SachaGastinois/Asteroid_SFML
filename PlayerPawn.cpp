@@ -30,7 +30,7 @@ void APlayerPawn::BeginPlay()
 void APlayerPawn::Tick(const float _deltaTime)
 {
 	Super::Tick(_deltaTime);
-	//ComputeNewLocation();
+	ComputeNewLocation();
 }
 
 void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
@@ -51,7 +51,6 @@ void APlayerPawn::ComputeNewLocation()
 {
 	const Vector2f& _windowSize = CAST(Vector2f, GetLevel()->GetWindowSize());
 	const Vector2f& _playerPosition = GetLocation();
-	LOG(Warning, _windowSize);
 	const Vector2f& _playerScale = GetScale();
 	const Vector2f& _playerSize = Vector2f(_playerScale.x, _playerScale.y) / 2.0f;
 	if ((_playerPosition.x + _playerSize.x) < 0.0f)

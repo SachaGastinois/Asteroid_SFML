@@ -16,7 +16,7 @@ void TESTLevel::InitLevel()
 {
 	Super::InitLevel();
 
-	GetCameraManager().GetCurrent()->SetCenter(GetWindowSize());
+	GetCameraManager().GetCurrent()->SetLocation(GetWindowSize() / 2.0f);
 
 	/*HUD* _hud = GetGameMode()->GetHUD();
 
@@ -29,9 +29,8 @@ void TESTLevel::InitLevel()
 	AActor* _actor = SpawnActor<APlayerPawn>();
 	//ACircleActor* _circle = SpawnActor<ACircleActor>(50.0f);
 	//_circle->SetLocation(Vector2f(100.0f, 100.0f));
-	//_actor->SetLocation(GetWindowSize() / 2.0f);
-	LOG(Warning, _actor->GetLocation());
-	
+	_actor->SetLocation(GetWindowSize() / 2.0f);
+
 
 	//GetGameMode()->GetHUD()->AddToViewport(canvas);
 

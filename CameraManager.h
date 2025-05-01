@@ -93,9 +93,9 @@ namespace Camera
 			allElements.insert({ _zOrder, _id });
 			return _id;
 		}
-		FORCEINLINE UCameraComponent* GetCurrent() const
+		FORCEINLINE ACameraActor* GetCurrent() const
 		{
-			return current;
+			return Cast<ACameraActor>(current->GetOwner());
 		}
 		FORCEINLINE UCameraComponent* GetCameraByName(const string& _name) const
 		{

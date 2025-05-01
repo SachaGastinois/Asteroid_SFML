@@ -49,7 +49,7 @@ void PlayerController::Disable()
 Vector2f PlayerController::GetPixelToCoords() const
 {
 	const Vector2i& _pixelPos = Mouse::getPosition(*window);
-	const Vector2f& _pixelToCoords = window->mapPixelToCoords(_pixelPos, *cameraManager->GetCurrent()->GetView());
+	const Vector2f& _pixelToCoords = window->mapPixelToCoords(_pixelPos, *cameraManager->GetCurrent()->GetCamera()->GetView());
 	return _pixelToCoords;
 }
 
