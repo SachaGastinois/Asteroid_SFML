@@ -39,7 +39,7 @@ void UI::Widget::BindViewport()
 			_widget->BindViewport();
 		}
 	}
-	const RenderData& _data = RenderData(bind(&Widget::Render, this, _1), type);
+	const FRenderData& _data = FRenderData(bind(&Widget::Render, this, _1), type);
 	renderToken = level->GetCameraManager().BindOnRenderWindow(_data, zOrder);
 }
 

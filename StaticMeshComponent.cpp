@@ -31,7 +31,7 @@ void UStaticMeshComponent::Construct()
 	Super::Construct();
 
 	if (Cast<Widget>(owner)) return;
-	const RenderData& _data = RenderData(bind(&UStaticMeshComponent::RenderMesh, this, _1));
+	const FRenderData& _data = FRenderData(bind(&UStaticMeshComponent::RenderMesh, this, _1));
 	renderMeshToken = owner->GetLevel()->GetCameraManager().BindOnRenderWindow(_data);
 }
 
@@ -49,7 +49,7 @@ void UStaticMeshComponent::Tick(const float _deltaTime)
 
 	if (!attachmentComponent || !attachmentComponent->GetOwner()) return;
 
-	shape->SetLocation(attachmentComponent->GetOwner()->GetLocation());
+	shape->SetTransform(attachmentComponent->GetOwner()->GetTransform());
 }
 
 

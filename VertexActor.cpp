@@ -19,7 +19,7 @@ void AVertexActor::Construct()
 {
 	Super::Construct();
 
-	const RenderData& _data = RenderData(bind(&AVertexActor::RenderVertices, this, _1));
+	const FRenderData& _data = FRenderData(bind(&AVertexActor::RenderVertices, this, _1));
 	renderMeshToken = level->GetCameraManager().BindOnRenderWindow(_data);
 }
 
