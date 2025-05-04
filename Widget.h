@@ -17,7 +17,7 @@ namespace UI
 
 	class HUD;
 
-	class Widget : public AActor
+	class AWidget : public AActor
 	{
 		u_int renderToken;
 		RenderType type;
@@ -50,13 +50,21 @@ namespace UI
 		FORCEINLINE virtual void SetVisibility(const VisibilityType& _visibility)
 		{
 			visibility = _visibility;
+			set<AActor*> _children = GetChildren();
+			for (AActor* _child : _children)
+			{
+				if (AWidget* _widget = Cast<AWidget>(_child))
+				{
+					_widget->SetVisibility(_visibility);
+				}
+			}
 		}
 		FORCEINLINE virtual void SetZOrder(const int _zOrder) override;
 		FORCEINLINE virtual Vector2f GetSize() const = 0;
 
 	public:
-		Widget(Level* _level, const string& _name = "Widget", const RenderType& _type = Screen);
-		~Widget();
+		AWidget(Level* _level, const string& _name = "AWidget", const RenderType& _type = Screen);
+		~AWidget();
 
 		virtual void Construct() override;
 		virtual void Render(RenderWindow& _window) = 0;

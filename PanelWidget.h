@@ -3,7 +3,7 @@
 
 namespace UI
 {
-	class PanelWidget : public Widget
+	class PanelWidget : public AWidget
 	{
 		VertexArray debugFrame;
 	protected:
@@ -12,7 +12,7 @@ namespace UI
 		Vector2f size;
 
 	protected:
-		FORCEINLINE bool RegisterSlot(Widget* _widget)
+		FORCEINLINE bool RegisterSlot(AWidget* _widget)
 		{
 			if (!CanAddMoreChildren()) return false;
 
@@ -22,7 +22,7 @@ namespace UI
 
 	public:
 		//Adds a new child widget to the container.
-		FORCEINLINE virtual bool AddChild(Widget* _widget)
+		FORCEINLINE virtual bool AddChild(AWidget* _widget)
 		{
 			if (!RegisterSlot(_widget)) return false;
 
@@ -43,12 +43,12 @@ namespace UI
 		}
 
 		//Gets the index of a specific child widget (-1 if not)
-		FORCEINLINE int GetChildIndex(Widget* _Widget) const
+		FORCEINLINE int GetChildIndex(AWidget* _Widget) const
 		{
 			int _index = 0;
 			for (AActor* _actor : GetChildren())
 			{
-				if (Widget* _widget = Cast<Widget>(_actor))
+				if (AWidget* _widget = Cast<AWidget>(_actor))
 				{
 					return _index;
 				}
@@ -63,13 +63,13 @@ namespace UI
 			return CAST(int, GetChildren().size());
 		}
 
-		//Get all Widget Children
-		FORCEINLINE set<Widget*> GetChildren() const
+		//Get all AWidget Children
+		FORCEINLINE set<AWidget*> GetChildren() const
 		{
-			set<Widget*> _widgets;
+			set<AWidget*> _widgets;
 			for (AActor* _actor : AActor::GetChildren())
 			{
-				if (Widget* _widget = Cast<Widget>(_actor))
+				if (AWidget* _widget = Cast<AWidget>(_actor))
 				{
 					_widgets.insert(_widget);
 				}
@@ -83,7 +83,7 @@ namespace UI
 			set<Slot*> _slots;
 			for (AActor* _actor : GetChildren())
 			{
-				if (Widget* _widget = Cast<Widget>(_actor))
+				if (AWidget* _widget = Cast<AWidget>(_actor))
 				{
 					_slots.insert(_widget->GetSlot());
 				}
@@ -102,7 +102,7 @@ namespace UI
 		{
 			for (AActor* _actor : GetChildren())
 			{
-				if (Widget* _widget = Cast<Widget>(_actor))
+				if (AWidget* _widget = Cast<AWidget>(_actor))
 				{
 					RemoveChild(_widget);
 				}
@@ -116,13 +116,13 @@ namespace UI
 		}
 
 		//Returns true if panel contains this widget
-		FORCEINLINE bool HasChild(Widget* _widget)
+		FORCEINLINE bool HasChild(AWidget* _widget)
 		{
 			return GetChildren().contains(_widget);
 		}
 
 		//Removes a specific widget from the container.
-		template <typename Type, typename ...Args, IS_BASE_OF(Widget, Type)>
+		template <typename Type, typename ...Args, IS_BASE_OF(AWidget, Type)>
 		FORCEINLINE void RemoveChild(Type* _widget)
 		{
 			_widget->RemoveSlot();
@@ -134,7 +134,7 @@ namespace UI
 		{
 			set<AActor*>::const_iterator _it = AActor::GetChildren().begin();
 			advance(_it, _index);
-			RemoveChild(Cast<Widget>(*_it));
+			RemoveChild(Cast<AWidget>(*_it));
 		}
 
 		//Display a Gradient Box to see the panel

@@ -28,7 +28,7 @@ namespace UI
 		}
 	};
 
-	class ImageWidget : public Widget
+	class ImageWidget : public AWidget
 	{
 		bool sizeToContent;
 		Vector2f initialSize;

@@ -16,7 +16,7 @@ void UI::VerticalBox::Update()
 	const float _spaceY = (_totalSize.y - data.spaceBetween * (_totalElement - 1)) / _totalElement;
 	float _allElementsSize = 0.0f;
 
-	for (Widget* _widget : widgets)
+	for (AWidget* _widget : widgets)
 	{
 		const Vector2f& _size = _widget->GetSize();
 		const float _newScaleX = _totalSize.x / _size.x;
@@ -29,7 +29,7 @@ void UI::VerticalBox::Update()
 	_allElementsSize += data.spaceBetween * (_totalElement - 1);
 	float _currentY = (_totalSize.y - _allElementsSize) / 2.0f;
 
-	for (Widget* _widget : widgets)
+	for (AWidget* _widget : widgets)
 	{
 		const float _computeSizeY = _widget->GetSize().y * _widget->GetScale().y;
 		_widget->SetLocation(Vector2f(_widget->GetLocation().x, _currentY));

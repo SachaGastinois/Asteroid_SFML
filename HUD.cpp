@@ -7,13 +7,13 @@ using namespace Camera;
 
 UI::HUD::HUD(Level* _level) : AActor(_level)
 {
-	allWidgets = set<Widget*>();
+	allWidgets = set<AWidget*>();
 	currentWidget = nullptr;
 }
 
 UI::HUD::HUD(const HUD& _other) : AActor(_other)
 {
-	for (Widget* _widget : _other.allWidgets)
+	for (AWidget* _widget : _other.allWidgets)
 	{
 		allWidgets.insert(_widget);
 	}
@@ -22,9 +22,9 @@ UI::HUD::HUD(const HUD& _other) : AActor(_other)
 }
 
 
-void UI::HUD::AddToViewport(Widget* _widget)
+void UI::HUD::AddToViewport(AWidget* _widget)
 {
-	for (Widget* _selectedWidget : allWidgets)
+	for (AWidget* _selectedWidget : allWidgets)
 	{
 		RemoveFromViewport(_selectedWidget);
 	}
@@ -32,11 +32,11 @@ void UI::HUD::AddToViewport(Widget* _widget)
 	currentWidget->BindViewport();
 }
 
-void UI::HUD::RemoveFromViewport(Widget* _widget)
+void UI::HUD::RemoveFromViewport(AWidget* _widget)
 {
 	for (AActor* _actor : _widget->GetChildren())
 	{
-		if (Widget* _selectedWidget = Cast<Widget>(_actor))
+		if (AWidget* _selectedWidget = Cast<AWidget>(_actor))
 		{
 			RemoveFromViewport(_selectedWidget);
 		}

@@ -5,7 +5,7 @@
 #include "PanelWidget.h"
 
 UI::ImageWidget::ImageWidget(Level* _level, const RectangleShapeData& _data, const string& _name, const RenderType& _type)
-						   : Widget(_level, _name, _type)
+						   : AWidget(_level, _name, _type)
 {
 	sizeToContent = false;
 	image = CreateDefaultSubobject<UStaticMeshComponent>(_data);
@@ -16,7 +16,7 @@ UI::ImageWidget::ImageWidget(Level* _level, const RectangleShapeData& _data, con
 }
 
 UI::ImageWidget::ImageWidget(Level* _level, const CircleShapeData& _data, const string& _name, const RenderType& _type)
-						   : Widget(_level, _name, _type)
+						   : AWidget(_level, _name, _type)
 {
 	sizeToContent = false;
 	image = CreateDefaultSubobject<UStaticMeshComponent>(_data);
@@ -26,7 +26,7 @@ UI::ImageWidget::ImageWidget(Level* _level, const CircleShapeData& _data, const 
 	useGradient = false;
 }
 
-UI::ImageWidget::ImageWidget(const ImageWidget& _other) : Widget(_other)
+UI::ImageWidget::ImageWidget(const ImageWidget& _other) : AWidget(_other)
 {
 	sizeToContent = _other.sizeToContent;
 	initialSize = _other.initialSize;

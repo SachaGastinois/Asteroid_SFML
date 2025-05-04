@@ -5,7 +5,7 @@
 
 namespace UI
 {
-	class LabelWidget : public Widget
+	class ALabelWidget : public AWidget
 	{
 		TextObject* text;
 		u_int score;
@@ -93,8 +93,8 @@ namespace UI
 
 
 	public:
-		LabelWidget(Level* _level, const string& _text = "Unknown", const string& _name = "Label", const RenderType& _type = Screen);
-		~LabelWidget();
+		ALabelWidget(Level* _level, const string& _text = "Unknown", const string& _name = "Label", const RenderType& _type = Screen);
+		~ALabelWidget();
 
 	private:
 		string ComputeScoreText();

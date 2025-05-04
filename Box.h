@@ -20,10 +20,10 @@ namespace UI
 		}
 	};
 
-	class Box : public Widget
+	class Box : public AWidget
 	{
 	protected:
-		vector<Widget*> widgets;
+		vector<AWidget*> widgets;
 		BoxData data;
 
 	protected:
@@ -44,7 +44,7 @@ namespace UI
 		virtual void Update() = 0;
 
 	public:
-		void AddWidget(Widget* _widget);
-		void RemoveWidget(Widget* _widget);
+		void AddWidget(AWidget* _widget);
+		void RemoveWidget(AWidget* _widget);
 	};
 }

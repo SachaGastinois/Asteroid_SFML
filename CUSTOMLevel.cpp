@@ -71,7 +71,7 @@ void CUSTOMLevel::InitLevel()
 
 	_loopAnim->AddLinkedAnimation([]() {return true; }, _duckAnim);
 
-	label = _hud->SpawnWidget<LabelWidget>("Demo");
+	label = _hud->SpawnWidget<ALabelWidget>("Demo");
 	canvas->AddChild(label);
 	label->SetLocation({ 350.0f, 200.0f });
 	label->SetFont("Minecrafter", TTF);
@@ -79,7 +79,7 @@ void CUSTOMLevel::InitLevel()
 
 	for (Slot* _slot : canvas->GetSlots())
 	{
-		Widget* _content = _slot->GetContent();
+		AWidget* _content = _slot->GetContent();
 		_slot->SetDebugMode(true);
 	}
 

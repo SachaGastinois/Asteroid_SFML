@@ -1,17 +1,17 @@
 #include "LabelWidget.h"
 
-UI::LabelWidget::LabelWidget(Level* _level, const string& _text, const string& _name, const RenderType& _type) : Widget(_level, _name, _type)
+UI::ALabelWidget::ALabelWidget(Level* _level, const string& _text, const string& _name, const RenderType& _type) : AWidget(_level, _name, _type)
 {
 	text = new TextObject(_text, "Default", OTF);
 }
 
-UI::LabelWidget::~LabelWidget()
+UI::ALabelWidget::~ALabelWidget()
 {
 	delete text;
 }
 
 
-string UI::LabelWidget::ComputeScoreText()
+string UI::ALabelWidget::ComputeScoreText()
 {
 	stringstream _ss;
 	_ss << setw(scoreMaxDigit) << setfill('0') << score;
@@ -20,7 +20,7 @@ string UI::LabelWidget::ComputeScoreText()
 }
 
 
-void UI::LabelWidget::Render(RenderWindow& _window)
+void UI::ALabelWidget::Render(RenderWindow& _window)
 {
 	if (visibility == Hidden) return;
 	_window.draw(*text->GetDrawable());
@@ -30,7 +30,7 @@ void UI::LabelWidget::Render(RenderWindow& _window)
 	}
 }
 
-void UI::LabelWidget::UpdatePosition(const Vector2f _position)
+void UI::ALabelWidget::UpdatePosition(const Vector2f _position)
 {
 	if (slot)
 	{
@@ -45,7 +45,7 @@ void UI::LabelWidget::UpdatePosition(const Vector2f _position)
 	}
 }
 
-void UI::LabelWidget::UpdateMove(const Vector2f& _offset)
+void UI::ALabelWidget::UpdateMove(const Vector2f& _offset)
 {
 	if (slot)
 	{
