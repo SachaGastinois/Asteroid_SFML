@@ -30,7 +30,7 @@ void UStaticMeshComponent::Construct()
 {
 	Super::Construct();
 
-	if (Cast<Widget>(owner)) return;
+	if (Cast<AWidget>(owner)) return;
 	const FRenderData& _data = FRenderData(bind(&UStaticMeshComponent::RenderMesh, this, _1));
 	renderMeshToken = owner->GetLevel()->GetCameraManager().BindOnRenderWindow(_data);
 }
@@ -39,7 +39,7 @@ void UStaticMeshComponent::Deconstruct()
 {
 	Super::Deconstruct();
 
-	if (Cast<Widget>(owner)) return;
+	if (Cast<AWidget>(owner)) return;
 	owner->GetLevel()->GetCameraManager().UnbindOnRenderWindow(renderMeshToken);
 }
 

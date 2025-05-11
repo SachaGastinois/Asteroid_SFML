@@ -5,7 +5,7 @@
 
 namespace UI
 {
-	class LabelWidget : public Widget
+	class LabelWidget : public AWidget
 	{
 		TextObject* text;
 		u_int score;

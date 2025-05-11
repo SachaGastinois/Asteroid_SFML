@@ -4,22 +4,35 @@
 
 class UPlayerMovementComponent : public UComponent
 {
-	float deltaTime = 0.0f;
-	float moveSpeed = 200.0f;
-	float rotateSpeed = 30.0f;
+	bool canMove;
 
-	float currentAngle = 270.0f;
-	float friction = 0.9f;
+	float deltaTime;
+	float rotateSpeed;
 
-	Vector2f maxVelocity = Vector2f(0.5f, 0.5f);
-	Vector2f acceleration = Vector2f();
+	float currentAngle;
+	float friction;
+
+	Vector2f maxVelocity;
+	Vector2f acceleration;
 	Vector2f velocity;
-	Vector2f direction = Vector2f(1.0f, 1.0f);
+	Vector2f direction;
 
 public:
+	FORCEINLINE void SetCanMove(const bool _canMove)
+	{
+		canMove = _canMove;
+	}
 	FORCEINLINE virtual UComponent* Clone(AActor* _owner) const override
 	{
 		return new UPlayerMovementComponent(_owner, *this);
+	}
+	FORCEINLINE void ApplyFriction()
+	{
+		velocity *= friction;
+	}
+	FORCEINLINE float GetCurrentAngle() const
+	{
+		return currentAngle;
 	}
 public:
 	UPlayerMovementComponent(AActor* _owner);
@@ -31,8 +44,6 @@ private:
 
 public:
 	void Move(const float _deltaTime);
-	void MoveLeft();
-	void MoveRight();
 	void Rotate(const float _degree);
 	void UpdateDirection();
 	void ComputeAcceleration();

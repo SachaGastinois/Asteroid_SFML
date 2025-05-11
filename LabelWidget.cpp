@@ -1,6 +1,6 @@
 #include "LabelWidget.h"
 
-UI::LabelWidget::LabelWidget(Level* _level, const string& _text, const string& _name, const RenderType& _type) : Widget(_level, _name, _type)
+UI::LabelWidget::LabelWidget(Level* _level, const string& _text, const string& _name, const RenderType& _type) : AWidget(_level, _name, _type)
 {
 	text = new TextObject(_text, "Default", OTF);
 }

@@ -11,4 +11,9 @@ public:
 
 protected:
 	virtual void InitLevel() override;
+	virtual void Update(const float _deltaTime) override;
+
+	virtual void Load() override;
+	virtual void Unload() override;
+	void SetLocationIfOutOfBoundes(AActor* _actor);
 };

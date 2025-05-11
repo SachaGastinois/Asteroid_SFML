@@ -79,7 +79,7 @@ void CUSTOMLevel::InitLevel()
 
 	for (Slot* _slot : canvas->GetSlots())
 	{
-		Widget* _content = _slot->GetContent();
+		AWidget* _content = _slot->GetContent();
 		_slot->SetDebugMode(true);
 	}
 

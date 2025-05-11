@@ -5,7 +5,7 @@
 using namespace Camera;
 using namespace Input;
 
-UI::Widget::Widget(Level* _level, const string& _name, const RenderType& _type) : AActor(_level, _name)
+UI::AWidget::AWidget(Level* _level, const string& _name, const RenderType& _type) : AActor(_level, _name)
 {
 	type = _type;
 	visibility = Visible;
@@ -14,12 +14,12 @@ UI::Widget::Widget(Level* _level, const string& _name, const RenderType& _type) 
 	hud = _level->GetGameMode()->GetHUD();
 }
 
-UI::Widget::~Widget()
+UI::AWidget::~AWidget()
 {
 	delete slot;
 }
 
-void UI::Widget::Construct()
+void UI::AWidget::Construct()
 {
 	Super::Construct();
 
@@ -30,25 +30,25 @@ void UI::Widget::Construct()
 	}
 }
 
-void UI::Widget::BindViewport()
+void UI::AWidget::BindViewport()
 {
 	for (AActor* _actor : GetChildren())
 	{
-		if (Widget* _widget = Cast<Widget>(_actor))
+		if (AWidget* _widget = Cast<AWidget>(_actor))
 		{
 			_widget->BindViewport();
 		}
 	}
-	const FRenderData& _data = FRenderData(bind(&Widget::Render, this, _1), type);
+	const FRenderData& _data = FRenderData(bind(&AWidget::Render, this, _1), type);
 	renderToken = level->GetCameraManager().BindOnRenderWindow(_data, zOrder);
 }
 
-void UI::Widget::UnbindViewport()
+void UI::AWidget::UnbindViewport()
 {
 	level->GetCameraManager().UnbindOnRenderWindow(renderToken);
 }
 
-void UI::Widget::SetZOrder(const int _zOrder)
+void UI::AWidget::SetZOrder(const int _zOrder)
 {
 	Super::SetZOrder(_zOrder);
 

@@ -73,6 +73,7 @@ public:
 
 public:
 	UCollisionComponent(AActor* _owner, const string& _channelName = "NONE", const int _status = IS_NONE, const CollisionType& _type = CT_NONE);
+	UCollisionComponent(AActor* _owner, UStaticMeshComponent* _meshComponent, const string& _channelName = "NONE", const int _status = IS_NONE, const CollisionType& _type = CT_NONE);
 	UCollisionComponent(AActor* _owner, const UCollisionComponent& _other);
 	~UCollisionComponent();
 

@@ -1,21 +1,45 @@
 #include "PlayerMovementComponent.h"
 #include "Actor.h"
 #include "PlayerPawn.h"
+#include "TimerManager.h"
 
 UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(_owner)
 {
+	canMove = true;
 
+	deltaTime = 0.0f;
+	rotateSpeed = 30.0f;
+
+	currentAngle = 270.0f;
+	friction = 0.95f;
+
+	maxVelocity = Vector2f(0.5f, 0.5f);
+	acceleration = Vector2f();
+	velocity = Vector2f();
+	direction = Vector2f(1.0f, 1.0f);
 }
 
 UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner, 
 	const UPlayerMovementComponent& _other) : UComponent(_owner, _other)
 {
-
+	canMove = _other.canMove;
+	velocity = _other.velocity;
+	deltaTime = _other.deltaTime;
+	friction = _other.friction;
+	currentAngle = _other.currentAngle;
+	maxVelocity = _other.maxVelocity;
+	acceleration = _other.acceleration;
+	direction = _other.direction;
 }
 
 void UPlayerMovementComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	new Timer([&]()
+	{
+		ApplyFriction();
+	}, seconds(0.25f), true, true);
 }
 
 void UPlayerMovementComponent::Tick(const float _deltaTime)
@@ -27,7 +51,7 @@ void UPlayerMovementComponent::Tick(const float _deltaTime)
 
 void UPlayerMovementComponent::Move(const float _deltaTime)
 {
-	if (!owner) return;
+	if (!owner || !canMove) return;
 
 	deltaTime = _deltaTime;
 
@@ -37,20 +61,7 @@ void UPlayerMovementComponent::Move(const float _deltaTime)
 	if (velocity.y > maxVelocity.y) velocity.y = maxVelocity.y;
 	else if (velocity.y < -maxVelocity.y) velocity.y = -maxVelocity.y;
 
-	owner->Move(velocity);
-	//LOG(Warning, "Move Forward");
-}
-
-void UPlayerMovementComponent::MoveLeft()
-{
-	Rotate(-10.0f);
-	//LOG(Warning, "Rotate Left");
-}
-
-void UPlayerMovementComponent::MoveRight()
-{
-	Rotate(10.0f);
-	//LOG(Warning, "Rotate Right");
+	owner->SetLocation(owner->GetLocation() + velocity);
 }
 
 void UPlayerMovementComponent::Rotate(const float _degree)

@@ -3,6 +3,7 @@
 
 
 class AActor;
+class UStaticMeshComponent;
 
 struct BoundsData
 {
@@ -45,8 +46,13 @@ struct CircleBoundsData : public BoundsData
 class Bounds
 {
 	BoundsData* data;
+	UStaticMeshComponent* mesh;
 
 public:
+	FORCEINLINE void SetMesh(UStaticMeshComponent* _mesh)
+	{
+		mesh = _mesh;
+	}
 	FORCEINLINE void SetBoundsData(BoundsData* _data)
 	{
 		delete data;
@@ -95,6 +101,7 @@ public:
 public:
 	Bounds() = default;
 	Bounds(BoundsData* _data);
+	Bounds(UStaticMeshComponent* _mesh);
 	Bounds(const Bounds& _bounds);
 
 private:

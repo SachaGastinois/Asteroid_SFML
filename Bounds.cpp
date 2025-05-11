@@ -50,11 +50,19 @@ CircleBoundsData::CircleBoundsData(const float _radius, const Vector2f& _positio
 Bounds::Bounds(BoundsData* _data)
 {
 	data = _data;
+	mesh = nullptr;
+}
+
+Bounds::Bounds(UStaticMeshComponent* _mesh)
+{
+	data = nullptr;
+	mesh = _mesh;
 }
 
 Bounds::Bounds(const Bounds& _bounds)
 {
 	data = _bounds.data;
+	mesh = nullptr;
 }
 
 
@@ -279,22 +287,32 @@ bool Bounds::CheckIfInAboveTheTopLeftTangent(const Vector2f& _point, const Vecto
 
 void Bounds::UpdateBounds(AActor* _actor)
 {
-	if (UStaticMeshComponent* _meshComponent = _actor->GetComponent<UStaticMeshComponent>())
+	if (!mesh)
 	{
-		const Vector2f& _pos = _meshComponent->GetOwner()->GetLocation();
-		if (_meshComponent->GetShape()->GetData().type == SOT_CIRCLE)
+		LOG(Warning, "Mesh is Nullptr");
+		if (UStaticMeshComponent* _mesh = _actor->GetComponent<UStaticMeshComponent>())
 		{
-			const float _radius = _meshComponent->GetShape()->GetData().data.circleData->radius;
-			const u_int& _pointCount = CAST(u_int, _meshComponent->GetShape()->GetData().data.circleData->pointCount);
-			SetBoundsData(new CircleBoundsData(_radius, _pos, _pointCount));
+			mesh = _mesh;
 		}
-		if (_meshComponent->GetShape()->GetData().type == SOT_RECTANGLE)
+		else
 		{
-
-			const Vector2f& _size = _meshComponent->GetShape()->GetData().data.rectangleData->size;
-			const Angle& _rotation = _meshComponent->GetOwner()->GetRotation();
-			SetBoundsData(new RectangleBoundsData({ _pos, _size }, _rotation));
+			LOG(Warning, "Actor has no Mesh");
+			return;
 		}
+	}
+	
+	const Vector2f& _pos = mesh->GetOwner()->GetLocation();
+	if (mesh->GetShape()->GetData().type == SOT_CIRCLE)
+	{
+		const float _radius = mesh->GetShape()->GetData().data.circleData->radius;
+		const u_int& _pointCount = CAST(u_int, mesh->GetShape()->GetData().data.circleData->pointCount);
+		SetBoundsData(new CircleBoundsData(_radius, _pos, _pointCount));
+	}
+	if (mesh->GetShape()->GetData().type == SOT_RECTANGLE)
+	{
+		const Vector2f& _size = mesh->GetShape()->GetData().data.rectangleData->size;
+		const Angle& _rotation = mesh->GetOwner()->GetRotation();
+		SetBoundsData(new RectangleBoundsData({ _pos, _size }, _rotation));
 	}
 }
 

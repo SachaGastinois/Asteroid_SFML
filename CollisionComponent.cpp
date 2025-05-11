@@ -12,6 +12,14 @@ UCollisionComponent::UCollisionComponent(AActor* _owner, const string& _channelN
 	bounds = new Bounds();
 }
 
+UCollisionComponent::UCollisionComponent(AActor* _owner, UStaticMeshComponent* _meshComponent, const string& _channelName, const int _status, const CollisionType& _type) : UComponent(_owner)
+{
+	channelName = _channelName;
+	type = _type;
+	status = _status;
+	bounds = new Bounds(_meshComponent);
+}
+
 UCollisionComponent::UCollisionComponent(AActor* _owner, const UCollisionComponent& _other) : UComponent(_owner)
 {
 	channelName = _other.channelName;

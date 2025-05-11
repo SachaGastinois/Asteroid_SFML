@@ -13,6 +13,7 @@ enum ShapeObjectType
 {
 	SOT_CIRCLE,
 	SOT_RECTANGLE,
+	SOT_CONVEX,
 	SOT_VERTEX,
 
 	SOT_COUNT,
@@ -65,10 +66,29 @@ struct RectangleShapeData
 	}
 };
 
+struct ConvexShapeData
+{
+	vector<Vector2f> point;
+	string path;
+	IntRect rect;
+	TextureExtensionType textureType;
+	bool isRepeated;
+	ConvexShapeData(const vector<Vector2f> _point, const string& _path, const TextureExtensionType& _textureType
+		, const IntRect& _rect = IntRect(), bool _isRepeated = false)
+	{
+		point = _point;
+		path = _path;
+		rect = _rect;
+		textureType = _textureType;
+		isRepeated = _isRepeated;
+	}
+};
+
 union ObjectData
 {
 	CircleShapeData* circleData;
 	RectangleShapeData* rectangleData;
+	ConvexShapeData* convexData;
 
 	ObjectData() {}
 	~ObjectData() {}
@@ -93,6 +113,11 @@ struct ShapeObjectData
 		type = _type;
 		data.rectangleData = new RectangleShapeData(_rectangleData);
 	}
+	ShapeObjectData(const ShapeObjectType& _type, const ConvexShapeData& _convexData)
+	{
+		type = _type;
+		data.convexData = new ConvexShapeData(_convexData);
+	}
 	~ShapeObjectData()
 	{
 		if (type == SOT_CIRCLE)
@@ -103,6 +128,11 @@ struct ShapeObjectData
 		else if (type == SOT_RECTANGLE)
 		{
 			delete data.rectangleData;
+		}
+
+		else if (type == SOT_CONVEX)
+		{
+			delete data.convexData;
 		}
 	}
 
@@ -118,6 +148,11 @@ struct ShapeObjectData
 		else if (type == SOT_RECTANGLE)
 		{
 			data.rectangleData = new RectangleShapeData(*_other.data.rectangleData);
+		}
+
+		else if (type == SOT_CONVEX)
+		{
+			data.convexData = new ConvexShapeData(*_other.data.convexData);
 		}
 
 		return *this;
@@ -182,10 +217,12 @@ public:
 public:
 	ShapeObject(const CircleShapeData& _data);
 	ShapeObject(const RectangleShapeData& _data);
+	ShapeObject(const ConvexShapeData& _data);
 	ShapeObject(const ShapeObject& _other);
 	~ShapeObject();
 
 private:
 	void InitCircle(const CircleShapeData& _data);
 	void InitRectangle(const RectangleShapeData& _data);
+	void InitConvex(const ConvexShapeData& _data);
 };

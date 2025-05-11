@@ -58,7 +58,7 @@ namespace UI
 		}
 
 	public:
-		CanvasSlot(PanelWidget* _parent, Widget* _content);
+		CanvasSlot(PanelWidget* _parent, AWidget* _content);
 
 	private:
 		void UpdateContent();

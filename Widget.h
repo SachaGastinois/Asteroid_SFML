@@ -17,7 +17,7 @@ namespace UI
 
 	class HUD;
 
-	class Widget : public AActor
+	class AWidget : public AActor
 	{
 		u_int renderToken;
 		RenderType type;
@@ -55,8 +55,8 @@ namespace UI
 		FORCEINLINE virtual Vector2f GetSize() const = 0;
 
 	public:
-		Widget(Level* _level, const string& _name = "Widget", const RenderType& _type = Screen);
-		~Widget();
+		AWidget(Level* _level, const string& _name = "AWidget", const RenderType& _type = Screen);
+		~AWidget();
 
 		virtual void Construct() override;
 		virtual void Render(RenderWindow& _window) = 0;

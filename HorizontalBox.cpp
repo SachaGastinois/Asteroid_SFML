@@ -16,7 +16,7 @@ void UI::HorizontalBox::Update()
 	const float _spaceX = (_totalSize.x - data.spaceBetween * (_totalElement - 1)) / _totalElement;
 	float _allElementsSize = 0.0f;
 
-	for (Widget* _widget : widgets)
+	for (AWidget* _widget : widgets)
 	{
 		const Vector2f& _size = _widget->GetSize();
 		const float _newScaleX = _spaceX / _size.x;
@@ -29,7 +29,7 @@ void UI::HorizontalBox::Update()
 	_allElementsSize += data.spaceBetween * (_totalElement - 1);
 	float _currentX = (_totalSize.x - _allElementsSize) / 2.0f;
 
-	for (Widget* _widget : widgets)
+	for (AWidget* _widget : widgets)
 	{
 		const float _computeSizeX = _widget->GetSize().x * _widget->GetScale().x;
 		_widget->SetLocation(Vector2f(_currentX, _widget->GetLocation().y));
