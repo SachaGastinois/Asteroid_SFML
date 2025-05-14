@@ -30,7 +30,6 @@ struct CollisionData
 	CollisionType response;
 	Bounds impact;
 	CollisionStep step;
-	string channelName;
 };
 
 class UCollisionComponent : public UComponent
@@ -38,6 +37,7 @@ class UCollisionComponent : public UComponent
 	int status;
 	string channelName;
 	CollisionType type;						 
+	UStaticMeshComponent* meshComponent;						 
 	map<string, CollisionType> responses;	
 	map<AActor*, CollisionStep> othersStep;
 	Bounds* bounds;
@@ -60,6 +60,10 @@ public:
 	{
 		return channelName;
 	}
+	FORCEINLINE void SetMeshComponent(UStaticMeshComponent* _meshComponent)
+	{
+		meshComponent = _meshComponent;
+	}
 
 	FORCEINLINE Bounds* GetBounds() const
 	{
@@ -73,7 +77,6 @@ public:
 
 public:
 	UCollisionComponent(AActor* _owner, const string& _channelName = "NONE", const int _status = IS_NONE, const CollisionType& _type = CT_NONE);
-	UCollisionComponent(AActor* _owner, UStaticMeshComponent* _meshComponent, const string& _channelName = "NONE", const int _status = IS_NONE, const CollisionType& _type = CT_NONE);
 	UCollisionComponent(AActor* _owner, const UCollisionComponent& _other);
 	~UCollisionComponent();
 

@@ -11,7 +11,7 @@ struct BoundsData
 
 	BoundsData();
 	BoundsData(const Vector2f& _position);
-	virtual Vector2f GetLocation() const = 0;
+	virtual Vector2f GetPosition() const = 0;
 };
 
 struct RectangleBoundsData : public BoundsData
@@ -20,10 +20,11 @@ struct RectangleBoundsData : public BoundsData
 	Angle rotation;
 
 	RectangleBoundsData();
+	/*RectangleBoundsData(MeshActor* _actor);*/
 	RectangleBoundsData(const Vector2f& _position, const Vector2f& _size, const Angle& _rotation);
 	RectangleBoundsData(const FloatRect& _rect, const Angle& _rotation);
 
-	virtual Vector2f GetLocation() const override
+	virtual Vector2f GetPosition() const override
 	{
 		return position;
 	}
@@ -35,9 +36,10 @@ struct CircleBoundsData : public BoundsData
 	int pointsCount;
 
 	CircleBoundsData();
+	/*CircleBoundsData(MeshActor* _actor);*/
 	CircleBoundsData(const float _radius, const Vector2f& _position, const int _pointsCount = 30);
 
-	virtual Vector2f GetLocation() const override
+	virtual Vector2f GetPosition() const override
 	{
 		return position;
 	}
@@ -46,21 +48,15 @@ struct CircleBoundsData : public BoundsData
 class Bounds
 {
 	BoundsData* data;
-	UStaticMeshComponent* mesh;
 
 public:
-	FORCEINLINE void SetMesh(UStaticMeshComponent* _mesh)
-	{
-		mesh = _mesh;
-	}
 	FORCEINLINE void SetBoundsData(BoundsData* _data)
 	{
 		delete data;
-		data = nullptr;
 		data = _data;
 	}
 
-	FORCEINLINE void SetLocation(const Vector2f& _position)
+	FORCEINLINE void SetPosition(const Vector2f& _position)
 	{
 		data->position = _position;
 	}
@@ -93,22 +89,15 @@ public:
 	{
 		if (RectangleBoundsData* _data = Cast<RectangleBoundsData>(data)) _data->rotation = _rotation;
 	}
-	FORCEINLINE BoundsData* GetData() const
-	{
-		return data;
-	}
 
 public:
 	Bounds() = default;
 	Bounds(BoundsData* _data);
-	Bounds(UStaticMeshComponent* _mesh);
 	Bounds(const Bounds& _bounds);
 
 private:
 	bool Contains(const Vector2f& _point, RectangleBoundsData* _data) const;
 	bool Contains(const Vector2f& _point, CircleBoundsData* _data) const;
-
-	#pragma region Utilities
 
 	vector<Vector2f> GetPoints() const;
 	vector<Vector2f> GetPoints(RectangleBoundsData* _data) const;
@@ -117,20 +106,18 @@ private:
 	Vector2f Around(Vector2f _point, RectangleBoundsData* _data) const;
 	Vector2f Around(Vector2f _point, const float _degrees, CircleBoundsData* _data) const;
 
+	#pragma region Utilities
+
 	Vector2f GetMinX(const vector<Vector2f>& _points) const;
 	Vector2f GetMinY(const vector<Vector2f>& _points) const;
 	Vector2f GetMaxX(const vector<Vector2f>& _points) const;
 	Vector2f GetMaxY(const vector<Vector2f>& _points) const;
 
-	#pragma endregion
-
-	#pragma region Checks
-
 	bool CheckIfInTheDownLeftCorner(const Vector2f& _point, const float _bottomX, const float _leftY) const;
 	bool CheckIfInTheDownRightCorner(const Vector2f& _point, const float _bottomX, const float _rightY) const;
 	bool CheckIfInTheTopRightCorner(const Vector2f& _point, const float _topX, const float _rightY) const;
 	bool CheckIfInTheTopLeftCorner(const Vector2f& _point, const float _topX, const float _leftY) const;
-
+	
 	bool CheckIfInUnderTheDownLeftTangent(const Vector2f& _point, const Vector2f& _bottom, const Vector2f& _left) const;
 	bool CheckIfInUnderTheDownRightTangent(const Vector2f& _point, const Vector2f& _bottom, const Vector2f& _right) const;
 	bool CheckIfInAboveTheTopRightTangent(const Vector2f& _point, const Vector2f& _top, const Vector2f& _right) const;
@@ -139,7 +126,8 @@ private:
 	#pragma endregion
 
 public:
-	void UpdateBounds(AActor* _actor);
+	void UpdateBounds(AActor* _actor, UStaticMeshComponent* _meshComponent);
+
 	bool Contains(const Vector2f& _point) const;
 	Bounds* FindIntersections(Bounds* _other) const;
 };

@@ -16,4 +16,5 @@ protected:
 	virtual void Load() override;
 	virtual void Unload() override;
 	void SetLocationIfOutOfBoundes(AActor* _actor);
+	void KismetMousePos();
 };

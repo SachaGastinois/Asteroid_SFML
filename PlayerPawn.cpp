@@ -20,7 +20,7 @@ APlayerPawn::APlayerPawn(Level* _level, const string& _name) : APawn(_level, _na
 	hitBoxMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
 			Vector2f(50.0f, 50.0f)));
 	animationComponent = CreateDefaultSubobject<UAnimationComponent>();
-	collisionComponent = CreateDefaultSubobject<UCollisionComponent>(hitBoxMeshComponent, "Player", IS_ALL, CT_BLOCK);
+	collisionComponent = CreateDefaultSubobject<UCollisionComponent>("Player", IS_ALL, CT_BLOCK);
 
 	meshComponent->SetupAttachment(root);
 	hitBoxMeshComponent->SetupAttachment(root);
@@ -150,12 +150,12 @@ void APlayerPawn::SetupCollisions()
 {
 	const vector<pair<string, CollisionType>>& _responses
 	{
-		{"Player", CT_NONE},
-		{"Asteroid", CT_OVERLAP},
 		{"UFO", CT_BLOCK},
-		{"Projectile", CT_OVERLAP},
 	};
+	collisionComponent->SetMeshComponent(hitBoxMeshComponent);
+	collisionComponent->SetInformation("Player", IS_ALL, CT_BLOCK);
 	collisionComponent->AddResponses(_responses);
+	collisionComponent->GetBounds()->SetBoundsData(new RectangleBoundsData(GetLocation(), {50.0f, 50.0f}, degrees(0.0f)));
 }
 
 void APlayerPawn::CollisionEnter(const CollisionData& _data)
@@ -163,16 +163,17 @@ void APlayerPawn::CollisionEnter(const CollisionData& _data)
 	if (!movementComponent) return;
 
 	LOG(Warning, "CollisionEnter");
-	if (RectangleBoundsData* _data = Cast<RectangleBoundsData>(collisionComponent->GetBounds()->GetData()))
+	/*if (RectangleBoundsData* _data = Cast<RectangleBoundsData>(collisionComponent->GetBounds()->GetData()))
 	{
 		LOG(Error, _data->size);
 		LOG(Error, _data->position);
 		LOG(Error, to_string(_data->rotation.asDegrees()));
-	}
-	if (_data.response == CT_BLOCK)
+	}*/
+	/*if (_data.response == CT_BLOCK)
 	{
 		movementComponent->SetCanMove(false);
-	}
+	}*/
+	system("pause");
 }
 
 void APlayerPawn::CollisionExit(const CollisionData& _data)
@@ -180,8 +181,8 @@ void APlayerPawn::CollisionExit(const CollisionData& _data)
 	if (!movementComponent) return;
 
 	LOG(Error, "CollisionExit");
-	if (_data.response == CT_BLOCK)
-	{
-		movementComponent->SetCanMove(true);
-	}
+	//if (_data.response == CT_BLOCK)
+	//{
+	//	movementComponent->SetCanMove(true);
+	//}
 }

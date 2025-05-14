@@ -1,8 +1,8 @@
 #pragma once
-#include "Actor.h"
+#include "MeshActor.h"
 #include "CollisionComponent.h"
 
-class CustomActor : public AActor
+class CustomActor : public AMeshActor
 {
 	UCollisionComponent* collision;
 

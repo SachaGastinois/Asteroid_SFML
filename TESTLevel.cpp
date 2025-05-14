@@ -6,6 +6,8 @@
 #include "CanvasWidget.h"
 #include "ImageWidget.h"
 #include "Actor.h"
+#include "CustomActor.h"
+#include "TimerManager.h"
 
 using namespace UI;
 
@@ -20,8 +22,11 @@ void TESTLevel::InitLevel()
 
 	GetCameraManager().GetCurrent()->SetLocation(GetWindowSize() / 2.0f);
 
-	APlayerPawn* _actor = SpawnActor<APlayerPawn>();
-	_actor->SetLocation(GetWindowSize() / 2.0f);
+	APlayerPawn* _player = SpawnActor<APlayerPawn>();
+	_player->SetLocation(GetWindowSize() / 2.0f);
+
+	CustomActor* _actor = SpawnActor<CustomActor>();
+	_actor->SetLocation(GetWindowSize() / 1.5f);
 
 	/*HUD* _hud = GetGameMode()->GetHUD();
 
@@ -31,26 +36,10 @@ void TESTLevel::InitLevel()
 	ImageWidget* _image = _hud->SpawnWidget<ImageWidget>(CircleShapeData(50.0f));
 	canvas->AddChild(_image);*/
 
-	ARectangleActor* _rectangle = SpawnActor<ARectangleActor>(Vector2f(50.0f, 50.0f));
-	_rectangle->SetLocation(Vector2f(100.0f, 100.0f));
-	_rectangle->AddComponent(new UCollisionComponent(_rectangle, "Caca", IS_ALL, CT_BLOCK));
-
-	ACircleActor* _circle = SpawnActor<ACircleActor>(50.0f);
-	_circle->SetLocation(Vector2f(100.0f, 200.0f));
-	_circle->AddComponent(new UCollisionComponent(_circle, "Caca", IS_ALL, CT_BLOCK));
-
-
-	const vector<pair<string, CollisionType>>& _responses
-	{
-		{"Player", CT_BLOCK},
-		{"Asteroid", CT_OVERLAP},
-		{"UFO", CT_BLOCK},
-		{"Projectile", CT_OVERLAP},
-	};
-	_circle->GetComponent<UCollisionComponent>()->AddResponses(_responses);
-	_rectangle->GetComponent<UCollisionComponent>()->AddResponses(_responses);
-
 	//GetGameMode()->GetHUD()->AddToViewport(canvas);
+
+	new Timer(bind(&TESTLevel::KismetMousePos, this), seconds(0.5f), true, true);
+
 }
 
 void TESTLevel::Update(const float _deltaTime)
@@ -101,4 +90,11 @@ void TESTLevel::SetLocationIfOutOfBoundes(AActor* _actor)
 	{
 		_actor->SetLocation({ _playerPosition.x, 0.0f - _playerSize.y });
 	}
+}
+
+void TESTLevel::KismetMousePos()
+{
+	Vector2i _mousePos = Mouse::getPosition();
+	LOG(Display, to_string(_mousePos.x));
+	LOG(Display, to_string(_mousePos.y));
 }
