@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Bounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Bounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:TESTLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Actor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Bounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Bounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\CollisionComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -113,11 +113,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 207,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Actor.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.cpp",
               "RelativeDocumentMoniker": "Actor.cpp",
@@ -125,8 +125,7 @@
               "RelativeToolTip": "Actor.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-14T19:51:16.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T19:51:16.253Z"
             },
             {
               "$type": "Document",
@@ -138,8 +137,7 @@
               "RelativeToolTip": "CustomActor.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-14T19:18:52.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T19:18:52.18Z"
             },
             {
               "$type": "Document",
@@ -151,8 +149,7 @@
               "RelativeToolTip": "CollisionManager.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-11T15:17:54.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T15:17:54.661Z"
             },
             {
               "$type": "Document",
@@ -168,13 +165,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TESTLevel.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.cpp",
               "RelativeDocumentMoniker": "TESTLevel.cpp",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.cpp",
               "RelativeToolTip": "TESTLevel.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACYAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-29T19:20:04.019Z",
               "EditorCaption": ""
@@ -189,18 +186,17 @@
               "RelativeToolTip": "PlayerPawn.cpp",
               "ViewState": "AgIAAJkAAAAAAAAAAAAAAKsAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-09T17:26:52.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T17:26:52.695Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Bounds.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Bounds.cpp",
               "RelativeDocumentMoniker": "Bounds.cpp",
-              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Bounds.cpp",
-              "RelativeToolTip": "Bounds.cpp",
-              "ViewState": "AgIAACkBAAAAAAAAAAAQwDsBAABFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Bounds.cpp*",
+              "RelativeToolTip": "Bounds.cpp*",
+              "ViewState": "AgIAAIUAAAAAAAAAAAApwKYAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-11T13:16:05.632Z",
               "EditorCaption": ""
@@ -215,8 +211,7 @@
               "RelativeToolTip": "CollisionComponent.cpp",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAAFAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-11T13:16:19.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T13:16:19.176Z"
             }
           ]
         },
@@ -234,8 +229,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\map",
               "ViewState": "AgIAAEwBAAAAAAAAAADgv18BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-14T19:25:37.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T19:25:37.489Z"
             },
             {
               "$type": "Document",
@@ -247,12 +241,11 @@
               "RelativeToolTip": "CollisionManager.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-14T18:44:00.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T18:44:00.81Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CUSTOMMesh.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\CUSTOMMesh.cpp",
               "RelativeDocumentMoniker": "CUSTOMMesh.cpp",
@@ -273,8 +266,7 @@
               "RelativeToolTip": "Actor.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8BAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T14:13:18.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T14:13:18.608Z"
             },
             {
               "$type": "Document",
@@ -286,8 +278,7 @@
               "RelativeToolTip": "CustomActor.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-14T19:18:55.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T19:18:55.895Z"
             },
             {
               "$type": "Document",
@@ -299,8 +290,7 @@
               "RelativeToolTip": "Bounds.h",
               "ViewState": "AgIAADkAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T12:41:15.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T12:41:15.828Z"
             },
             {
               "$type": "Document",
@@ -312,8 +302,7 @@
               "RelativeToolTip": "MeshActor.h",
               "ViewState": "AgIAADkAAAAAAAAAAAAAAEYAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-14T19:33:11.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T19:33:11.45Z"
             },
             {
               "$type": "Document",
@@ -377,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TESTLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.h",
               "RelativeDocumentMoniker": "TESTLevel.h",
@@ -385,8 +374,7 @@
               "RelativeToolTip": "TESTLevel.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-29T19:20:04.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T19:20:04.847Z"
             },
             {
               "$type": "Document",
@@ -398,8 +386,7 @@
               "RelativeToolTip": "PlayerPawn.h",
               "ViewState": "AgIAABYAAAAAAAAAAAAIwCgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-29T18:28:42.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T18:28:42.556Z"
             },
             {
               "$type": "Document",
@@ -411,8 +398,7 @@
               "RelativeToolTip": "StaticMeshComponent.h",
               "ViewState": "AgIAAAYAAAAAAAAAAAAvwBgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-10T17:55:19.149Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T17:55:19.149Z"
             },
             {
               "$type": "Document",
@@ -448,8 +434,7 @@
               "RelativeToolTip": "CollisionComponent.h",
               "ViewState": "AgIAABcAAAAAAAAAAAAYwCUAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T12:45:18.991Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T12:45:18.991Z"
             }
           ]
         }

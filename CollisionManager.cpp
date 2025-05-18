@@ -7,6 +7,7 @@ void CollisionManager::Collide(const CollisionData& _ownerData, const CollisionD
 	{
 		_ownerData.other->CollisionEnter(_otherData);
 		_otherData.other->CollisionEnter(_ownerData);
+		AddCollisionPair(_ownerData.other, _otherData.other);
 	}
 	else if (_otherData.step == CS_UPDATE)
 	{
@@ -17,7 +18,6 @@ void CollisionManager::Collide(const CollisionData& _ownerData, const CollisionD
 	{
 		_ownerData.other->CollisionExit(_otherData);
 		_otherData.other->CollisionExit(_ownerData);
+		RemoveCollisionpair(_ownerData.other, _otherData.other);
 	}
-
-	AddCollisionPair(_ownerData.other, _otherData.other);
 }

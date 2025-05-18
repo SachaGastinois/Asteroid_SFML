@@ -18,8 +18,13 @@ public:
 	}
 	FORCEINLINE void AddCollisionPair(AActor* _owner, AActor* _other)
 	{
-		if (!ContainsPair(_owner, _other)) return;
+		if (ContainsPair(_owner, _other)) return;
 		hasCollision.insert({ _owner , _other });
+	}
+	FORCEINLINE void RemoveCollisionpair(AActor* _owner, AActor* _other)
+	{
+		if (!ContainsPair(_owner, _other)) return;
+		hasCollision.erase({ _owner, _other });
 	}
 	FORCEINLINE void ResetCollisionPair()
 	{
@@ -27,7 +32,7 @@ public:
 	}
 	FORCEINLINE bool ContainsPair(AActor* _owner, AActor* _other)
 	{
-		if (hasCollision.contains({ _owner ,_other }) || hasCollision.contains({ _other ,_owner }))
+		if (/*hasCollision.contains({ _owner, _other }) ||*/ hasCollision.contains({ _other ,_owner }))
 		{
 			return true;
 		}

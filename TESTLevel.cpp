@@ -6,8 +6,6 @@
 #include "CanvasWidget.h"
 #include "ImageWidget.h"
 #include "Actor.h"
-#include "CustomActor.h"
-#include "TimerManager.h"
 
 using namespace UI;
 
@@ -22,11 +20,8 @@ void TESTLevel::InitLevel()
 
 	GetCameraManager().GetCurrent()->SetLocation(GetWindowSize() / 2.0f);
 
-	APlayerPawn* _player = SpawnActor<APlayerPawn>();
-	_player->SetLocation(GetWindowSize() / 2.0f);
-
-	CustomActor* _actor = SpawnActor<CustomActor>();
-	_actor->SetLocation(GetWindowSize() / 1.5f);
+	APlayerPawn* _actor = SpawnActor<APlayerPawn>();
+	_actor->SetLocation(GetWindowSize() / 2.0f);
 
 	/*HUD* _hud = GetGameMode()->GetHUD();
 
@@ -36,10 +31,24 @@ void TESTLevel::InitLevel()
 	ImageWidget* _image = _hud->SpawnWidget<ImageWidget>(CircleShapeData(50.0f));
 	canvas->AddChild(_image);*/
 
+	ARectangleActor* _rectangle = SpawnActor<ARectangleActor>(Vector2f(25.0f, 25.0f));
+	_rectangle->SetLocation(Vector2f(100.0f, 100.0f));
+	UCollisionComponent* _rectCollision = new UCollisionComponent(_rectangle, "UFO", IS_ALL, CT_BLOCK);
+	_rectCollision->SetInformation("UFO", IS_ALL, CT_BLOCK);
+	_rectCollision->AddResponses({ {"Player", CT_BLOCK} });
+	_rectCollision->GetBounds()->SetBoundsData(new RectangleBoundsData(_rectangle->GetLocation(), {50.0f,50.0f}, degrees(0.0f)));
+	_rectangle->AddComponent(_rectCollision);
+
+	ACircleActor* _circle = SpawnActor<ACircleActor>(15.0f);
+	_circle->SetLocation(Vector2f(100.0f, 200.0f));
+	UCollisionComponent* _circleCollision = new UCollisionComponent(_circle, "UFO", IS_ALL, CT_BLOCK);
+	_circleCollision->SetInformation("UFO", IS_ALL, CT_BLOCK);
+	_circleCollision->AddResponses({ {"Player", CT_BLOCK} });
+	_circleCollision->GetBounds()->SetBoundsData(new CircleBoundsData(15.0f, _circle->GetLocation()));
+	_circle->AddComponent(_circleCollision);
+
+
 	//GetGameMode()->GetHUD()->AddToViewport(canvas);
-
-	new Timer(bind(&TESTLevel::KismetMousePos, this), seconds(0.5f), true, true);
-
 }
 
 void TESTLevel::Update(const float _deltaTime)
@@ -90,11 +99,4 @@ void TESTLevel::SetLocationIfOutOfBoundes(AActor* _actor)
 	{
 		_actor->SetLocation({ _playerPosition.x, 0.0f - _playerSize.y });
 	}
-}
-
-void TESTLevel::KismetMousePos()
-{
-	Vector2i _mousePos = Mouse::getPosition();
-	LOG(Display, to_string(_mousePos.x));
-	LOG(Display, to_string(_mousePos.y));
 }
