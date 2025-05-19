@@ -435,7 +435,7 @@
     <ClCompile Include="Singleton.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="TESTLevel.cpp">
+    <ClCompile Include="MainMenuLevel.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPawn.cpp">
@@ -689,7 +689,7 @@
     <ClInclude Include="SizeType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TESTLevel.h">
+    <ClInclude Include="MainMenuLevel.h">
       <Filter>Asteroid</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPawn.h">
