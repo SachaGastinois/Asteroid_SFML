@@ -4,7 +4,7 @@
 using namespace Input;
 
 UI::ButtonWidget::ButtonWidget(Level* _level, const RectangleShapeData& _data, const string _name, const RenderType& _renderType)
-							 : ImageWidget(_level, _data, _name, _renderType)
+							 : AImageWidget(_level, _data, _name, _renderType)
 {
 	isPressed = false;
 	isHovered = false;

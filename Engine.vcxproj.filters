@@ -444,6 +444,12 @@
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClassicModeLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreMinimal.h">
@@ -697,6 +703,12 @@
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassicModeLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityLevel.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

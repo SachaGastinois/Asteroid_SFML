@@ -10,7 +10,7 @@ class CUSTOMLevel : public Level
 {
 	CanvasWidget* canvas;
 	ALabelWidget* label;
-	ImageWidget* image;
+	AImageWidget* image;
 
 public:
 	FORCEINLINE virtual CUSTOMGameMode* GetGameModeRef() override

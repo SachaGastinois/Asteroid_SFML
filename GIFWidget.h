@@ -4,7 +4,7 @@
 
 namespace UI
 {
-	class GIFWidget : public ImageWidget
+	class GIFWidget : public AImageWidget
 	{
 		UAnimationComponent* animation;
 

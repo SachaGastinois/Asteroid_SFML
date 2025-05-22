@@ -14,7 +14,7 @@ namespace UI
 		vector<function<void(const Vector2f&)>> onDragActions;
 	};
 
-	class ButtonWidget : public ImageWidget
+	class ButtonWidget : public AImageWidget
 	{
 		bool isPressed;
 		bool isHovered;

@@ -4,7 +4,7 @@
 
 #include "PanelWidget.h"
 
-UI::ImageWidget::ImageWidget(Level* _level, const RectangleShapeData& _data, const string& _name, const RenderType& _type)
+UI::AImageWidget::AImageWidget(Level* _level, const RectangleShapeData& _data, const string& _name, const RenderType& _type)
 						   : AWidget(_level, _name, _type)
 {
 	sizeToContent = false;
@@ -15,7 +15,7 @@ UI::ImageWidget::ImageWidget(Level* _level, const RectangleShapeData& _data, con
 	useGradient = false;
 }
 
-UI::ImageWidget::ImageWidget(Level* _level, const CircleShapeData& _data, const string& _name, const RenderType& _type)
+UI::AImageWidget::AImageWidget(Level* _level, const CircleShapeData& _data, const string& _name, const RenderType& _type)
 						   : AWidget(_level, _name, _type)
 {
 	sizeToContent = false;
@@ -26,7 +26,7 @@ UI::ImageWidget::ImageWidget(Level* _level, const CircleShapeData& _data, const 
 	useGradient = false;
 }
 
-UI::ImageWidget::ImageWidget(const ImageWidget& _other) : AWidget(_other)
+UI::AImageWidget::AImageWidget(const AImageWidget& _other) : AWidget(_other)
 {
 	sizeToContent = _other.sizeToContent;
 	initialSize = _other.initialSize;
@@ -60,7 +60,7 @@ UI::ImageWidget::ImageWidget(const ImageWidget& _other) : AWidget(_other)
 }
 
 
-void UI::ImageWidget::UpdateGradient()
+void UI::AImageWidget::UpdateGradient()
 {
 	if (slot)
 	{
@@ -93,7 +93,7 @@ void UI::ImageWidget::UpdateGradient()
 	
 }
 
-void UI::ImageWidget::UpdatePosition(const Vector2f& _position)
+void UI::AImageWidget::UpdatePosition(const Vector2f& _position)
 {
 	if (slot)
 	{
@@ -110,7 +110,7 @@ void UI::ImageWidget::UpdatePosition(const Vector2f& _position)
 	UpdateGradient();
 }
 
-void UI::ImageWidget::UpdateMove(const Vector2f& _offset)
+void UI::AImageWidget::UpdateMove(const Vector2f& _offset)
 {
 	if (slot)
 	{
@@ -127,7 +127,7 @@ void UI::ImageWidget::UpdateMove(const Vector2f& _offset)
 	UpdateGradient();
 }
 
-void UI::ImageWidget::UpdateSize(const Vector2f& _size)
+void UI::AImageWidget::UpdateSize(const Vector2f& _size)
 {
 	if (slot)
 	{
@@ -143,7 +143,7 @@ void UI::ImageWidget::UpdateSize(const Vector2f& _size)
 }
 
 
-void UI::ImageWidget::SetSizeToContent(const bool _fillToContent)
+void UI::AImageWidget::SetSizeToContent(const bool _fillToContent)
 {
 	if (_fillToContent)
 	{
@@ -157,19 +157,19 @@ void UI::ImageWidget::SetSizeToContent(const bool _fillToContent)
 	UpdateGradient();
 }
 
-void UI::ImageWidget::SetGradient(const ImageGradient& _gradient)
+void UI::AImageWidget::SetGradient(const ImageGradient& _gradient)
 {
 	colorGradient = _gradient;
 	useGradient = true;
 	UpdateGradient();
 }
 
-void UI::ImageWidget::SetGradient(const bool _useGradient)
+void UI::AImageWidget::SetGradient(const bool _useGradient)
 {
 	useGradient = _useGradient;
 }
 
-void UI::ImageWidget::Render(RenderWindow& _window)
+void UI::AImageWidget::Render(RenderWindow& _window)
 {
 	if (visibility == Hidden) return;
 

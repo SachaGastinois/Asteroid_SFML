@@ -6,7 +6,7 @@ namespace UI
 	class CheckBoxWidget : public ButtonWidget
 	{
 		bool isChecked;
-		ImageWidget* checkImage;
+		AImageWidget* checkImage;
 
 	public:
 		#pragma region Modifier
@@ -64,7 +64,7 @@ namespace UI
 			Super::SetZOrder(_zOrder);
 			checkImage->SetZOrder(_zOrder+1);
 		}
-		FORCEINLINE virtual ImageWidget* GetCheckImage() const
+		FORCEINLINE virtual AImageWidget* GetCheckImage() const
 		{
 			return checkImage;
 		}

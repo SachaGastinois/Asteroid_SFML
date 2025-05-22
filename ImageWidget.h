@@ -28,7 +28,7 @@ namespace UI
 		}
 	};
 
-	class ImageWidget : public AWidget
+	class AImageWidget : public AWidget
 	{
 		bool sizeToContent;
 		Vector2f initialSize;
@@ -100,9 +100,9 @@ namespace UI
 		}
 
 	public:
-		ImageWidget(Level* _level, const RectangleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
-		ImageWidget(Level* _level, const CircleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
-		ImageWidget(const ImageWidget& _other);
+		AImageWidget(Level* _level, const RectangleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
+		AImageWidget(Level* _level, const CircleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
+		AImageWidget(const AImageWidget& _other);
 
 	private:
 		void UpdateGradient();
