@@ -10,7 +10,7 @@ Animation::Animation(const string& _name, ShapeObject* _shape, const AnimationDa
 	timer = new Timer(
 		[&]() { Update(); },
 		seconds(ComputeDuration()),
-		false,
+		data.canLoop,
 		true
 	);
 }
@@ -42,7 +42,7 @@ void Animation::Update()
 		}
 
 		//TODO remove
-		onAnimationEnded();
+		//onAnimationEnded();
 		Reset();
 	}
 

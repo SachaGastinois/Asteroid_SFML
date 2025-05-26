@@ -7,7 +7,7 @@
 
 class UClassicModeLevel : public UUtilityLevel
 {
-	UI::CanvasWidget* pauseMenu;
+	UI::ACanvasWidget* pauseMenu;
 
 public:
 	UClassicModeLevel(const string& _levelName);

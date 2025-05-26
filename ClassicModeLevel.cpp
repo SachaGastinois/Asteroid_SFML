@@ -8,6 +8,7 @@
 #include "ButtonWidget.h"
 #include "LevelManager.h"
 #include "MainMenuLevel.h"
+#include "LeaderBoardManager.h"
 
 using namespace UI;
 
@@ -24,9 +25,12 @@ void UClassicModeLevel::InitLevel()
 
 	HUD* _hud = GetGameMode()->GetHUD();
 
-	pauseMenu = _hud->SpawnWidget<UI::CanvasWidget>("PauseMenu");
+	pauseMenu = _hud->SpawnWidget<UI::ACanvasWidget>("PauseMenu");
 
 	InitPauseMenu(_hud);
+
+	FPlayerData _playerData = FPlayerData("Albert", 99989);
+	ULeaderBoardManager::GetInstance().AddPlayerData(_playerData);
 
 	OpenMenu(pauseMenu, pauseMenu);
 }
@@ -68,7 +72,7 @@ void UClassicModeLevel::InitPauseMenu(HUD* _hud)
 		"", _pauseMainMenuLocation, { 350.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _pauseMainMenuButton = InitButtonAndLabelData(_hud, pauseMenu, _pauseMainMenuData);
-	_pauseMainMenuButton->BindOnClickAction([&]() {M_LEVEL.SetLevel(new UMainMenuLevel("MainMenulevel")); });
+	_pauseMainMenuButton->BindOnClickAction([&]() { M_LEVEL.SetLevel("MainMenuLevel"); });
 
 	//////////////////////////
 	///		Quit
@@ -80,5 +84,5 @@ void UClassicModeLevel::InitPauseMenu(HUD* _hud)
 		"", _pauseQuitLocation, { 350.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _pauseQuitButton = InitButtonAndLabelData(_hud, pauseMenu, _pauseQuitData);
-	_pauseQuitButton->BindOnClickAction([&]() { Unload(); });
+	_pauseQuitButton->BindOnClickAction([&]() { window.close(); });
 }

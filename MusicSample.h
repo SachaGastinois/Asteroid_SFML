@@ -49,7 +49,7 @@ public:
 
 public:
 	MusicSample(Level* _level, const string& _path);
-	~MusicSample();
+	virtual ~MusicSample();
 
 	virtual void Play(const Time& _time = Time(), const Time& _duration = Time()) override;
 	virtual void Pause() override;

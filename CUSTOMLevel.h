@@ -8,7 +8,7 @@
 
 class CUSTOMLevel : public Level
 {
-	CanvasWidget* canvas;
+	ACanvasWidget* canvas;
 	ALabelWidget* label;
 	AImageWidget* image;
 

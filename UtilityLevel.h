@@ -42,7 +42,7 @@ public:
 protected:
 	virtual void InitLevel() override;
 
-	ButtonWidget* InitButtonAndLabelData(HUD* _hud, UI::CanvasWidget* _canva, const FButtonAndLabelData& _data);
-	void OpenMenu(UI::CanvasWidget* _canvaToOpen, UI::CanvasWidget* _canvaToClose);
+	ButtonWidget* InitButtonAndLabelData(HUD* _hud, UI::ACanvasWidget* _canva, const FButtonAndLabelData& _data);
+	void OpenMenu(UI::ACanvasWidget* _canvaToOpen, UI::ACanvasWidget* _canvaToClose);
 };
 

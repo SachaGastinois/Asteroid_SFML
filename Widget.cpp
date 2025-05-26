@@ -16,7 +16,7 @@ UI::AWidget::AWidget(Level* _level, const string& _name, const RenderType& _type
 
 UI::AWidget::~AWidget()
 {
-	delete slot;
+	RemoveSlot();
 }
 
 void UI::AWidget::Construct()

@@ -180,6 +180,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Kismet.cpp" />
     <ClCompile Include="LabelWidget.cpp" />
+    <ClCompile Include="LeaderBoardManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -261,6 +262,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="Kismet.h" />
     <ClInclude Include="LabelWidget.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="LeaderBoardManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Logger.h" />

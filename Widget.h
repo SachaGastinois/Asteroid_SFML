@@ -41,6 +41,8 @@ namespace UI
 		}
 		FORCEINLINE virtual void RemoveSlot()
 		{
+			if (!slot) return;
+
 			delete slot;
 		}
 		FORCEINLINE virtual Slot* GetSlot() const
@@ -64,7 +66,7 @@ namespace UI
 
 	public:
 		AWidget(Level* _level, const string& _name = "AWidget", const RenderType& _type = Screen);
-		~AWidget();
+		virtual ~AWidget();
 
 		virtual void Construct() override;
 		virtual void Render(RenderWindow& _window) = 0;

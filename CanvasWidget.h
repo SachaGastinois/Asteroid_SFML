@@ -4,14 +4,15 @@
 
 namespace UI
 {
-	class CanvasWidget : public PanelWidget
+	class ACanvasWidget : public PanelWidget
 	{
 	public:
 		FORCEINLINE virtual bool AddChild(AWidget* _widget) override
 		{
 			if (!RegisterSlot(_widget)) return false;
 
-			_widget->AddSlot(new CanvasSlot(this, _widget));
+			// TODO Crée des Fuites Mémoires
+			//_widget->AddSlot(new CanvasSlot(this, _widget));
 			return true;
 		}
 		FORCEINLINE CanvasSlot* GetSlotByWidget(AWidget* _widget)
@@ -24,7 +25,8 @@ namespace UI
 		}
 
 	public:
-		CanvasWidget(Level* _level, const string& _name = "Canvas", const RenderType& _type = Screen);
+		ACanvasWidget(Level* _level, const string& _name = "Canvas", const RenderType& _type = Screen);
+		~ACanvasWidget();
 
 	public:
 		virtual void Construct() override;
@@ -33,7 +35,7 @@ namespace UI
 }
 
 ///////////////////////////////////////
-///			CanvasWidget TUTO		///
+///			ACanvasWidget TUTO		///
 ///////////////////////////////////////
 //
 // Step 1	: Create AWidget you want to add to the Canvas (Image, Label, ect...)

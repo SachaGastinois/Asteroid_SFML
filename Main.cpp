@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "LevelManager.h"
 #include "MainMenuLevel.h"
+#include "ClassicModeLevel.h"
 
 void InitConfig()
 {
@@ -13,8 +14,13 @@ int main()
 {
 	InitConfig();
 
-	UMainMenuLevel* _level = new UMainMenuLevel("MainMenuLevel");
-	M_LEVEL.SetLevel(_level);
+	UMainMenuLevel* _mainMenuLevel = new UMainMenuLevel("MainMenuLevel");
+	M_LEVEL.RegisterLevel(_mainMenuLevel->GetName(), _mainMenuLevel);
+
+	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
+	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
+
+	M_LEVEL.SetLevel("MainMenuLevel");
 
 	Engine _engine;
 	_engine.Start();

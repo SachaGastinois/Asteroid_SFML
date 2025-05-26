@@ -450,6 +450,9 @@
     <ClCompile Include="UtilityLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LeaderBoardManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreMinimal.h">
@@ -708,6 +711,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UtilityLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderBoardManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

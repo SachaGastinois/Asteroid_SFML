@@ -8,16 +8,23 @@
 #include "ButtonWidget.h"
 #include "LevelManager.h"
 #include "ClassicModeLevel.h"
+#include "GIFWidget.h"
+#include "LeaderBoardManager.h"
+#include "MusicSample.h"
 
 using namespace UI;
 
 UMainMenuLevel::UMainMenuLevel(const string& _levelName) : UUtilityLevel(_levelName)
 {
+	backgroundGIF = nullptr;
+
 	mainMenuCanvas = nullptr;
 	optionCanvas = nullptr;
 	leaderBoardCanvas = nullptr;
 	startCanvas = nullptr;
 	creditCanvas = nullptr;
+
+	windowSize = Vector2f();
 }
 
 void UMainMenuLevel::InitLevel()
@@ -28,24 +35,32 @@ void UMainMenuLevel::InitLevel()
 
 	HUD* _hud = GetGameMode()->GetHUD();
 	
-	mainMenuCanvas = _hud->SpawnWidget<UI::CanvasWidget>("MainMenuCanvas");
-	optionCanvas = _hud->SpawnWidget<UI::CanvasWidget>("OptionCanvas");
-	leaderBoardCanvas = _hud->SpawnWidget<UI::CanvasWidget>("LeaderBoardCanvas");
-	startCanvas = _hud->SpawnWidget<UI::CanvasWidget>("StartCanvas");
-	creditCanvas = _hud->SpawnWidget<UI::CanvasWidget>("CreditCanvas");
+	mainMenuCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("MainMenuCanvas");
+	optionCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("OptionCanvas");
+	leaderBoardCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("LeaderBoardCanvas");
+	startCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("StartCanvas");
+	creditCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("CreditCanvas");
+
+	InitBackgroundGIF(_hud);
 
 	InitMainMenu(_hud);
 	InitOptionMenu(_hud);
 	InitLeaderBoardMenu(_hud);
 	InitStartMenu(_hud);
 	InitCreditMenu(_hud);
-	
+
 	OpenMenu(mainMenuCanvas, mainMenuCanvas);
+
+	InitMainMenuTheme();
 }
 
 void UMainMenuLevel::InitMainMenu(HUD* _hud)
 {
-	mainMenuCanvas->SetSize(CAST(Vector2f, windowSize));
+	if (!mainMenuCanvas) return;
+
+	mainMenuCanvas->AddChild(backgroundGIF);
+
+	mainMenuCanvas->SetSize(windowSize);
 
 	ALabelWidget* _title = _hud->SpawnWidget<ALabelWidget>("ASTEROID", "MainMenuLabel", Screen);
 	_title->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.2f));
@@ -117,12 +132,17 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 		"", _quitLocation, _size, _fontData, 25, 2);
 
 	ButtonWidget* _quitButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _quitData);
-	_quitButton->BindOnClickAction([&]() { Unload(); });
+	_quitButton->BindOnClickAction([&]() { window.close(); });
+
+	mainMenuCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 {
 	if (!optionCanvas || !mainMenuCanvas) return;
+
+	optionCanvas->AddChild(backgroundGIF);
+
 	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
 
 	optionCanvas->SetSize(windowSize);
@@ -148,11 +168,16 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, optionCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, optionCanvas); });
+
+	optionCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UMainMenuLevel::InitLeaderBoardMenu(HUD* _hud)
 {
 	if (!leaderBoardCanvas || !mainMenuCanvas) return;
+
+	leaderBoardCanvas->AddChild(backgroundGIF);
+
 	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
 
 	leaderBoardCanvas->SetSize(windowSize);
@@ -168,6 +193,33 @@ void UMainMenuLevel::InitLeaderBoardMenu(HUD* _hud)
 	leaderBoardCanvas->AddChild(_title);
 
 	//////////////////////////
+	///		Players Data
+	//////////////////////////
+
+	const int _maxPlayersCounts = ULeaderBoardManager::GetInstance().GetMaxPosition();
+
+	vector<ALabelWidget*> _playersLabel = vector<ALabelWidget*>();
+	for (int _index = 0; _index < _maxPlayersCounts; _index++)
+	{
+		ALabelWidget* _playerLabel = _hud->SpawnWidget<ALabelWidget>("", "LeaderBoardPlayerData_" + to_string(_index + 1), Screen);
+		_playerLabel->SetCharacterSize(15);
+		_playerLabel->SetFont(_fontData.first, _fontData.second);
+		_playerLabel->SetZOrder(1);
+
+		leaderBoardCanvas->AddChild(_playerLabel);
+		_playersLabel.push_back(_playerLabel);
+	}
+	ULeaderBoardManager::GetInstance().SetPlayersLabel(_playersLabel);
+
+
+	//FPlayerData _playerData = FPlayerData("Francis", 1200);
+	//ULeaderBoardManager::GetInstance().AddPlayerData(_playerData);
+	//_playerData = FPlayerData("Stephanie", 400);
+	//ULeaderBoardManager::GetInstance().AddPlayerData(_playerData);
+	//_playerData = FPlayerData("Caca", 700);
+	//ULeaderBoardManager::GetInstance().AddPlayerData(_playerData);
+
+	//////////////////////////
 	///		Back
 	//////////////////////////
 
@@ -178,11 +230,16 @@ void UMainMenuLevel::InitLeaderBoardMenu(HUD* _hud)
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, leaderBoardCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, leaderBoardCanvas); });
+
+	leaderBoardCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UMainMenuLevel::InitStartMenu(HUD* _hud)
 {
 	if (!startCanvas || !mainMenuCanvas) return;
+
+	startCanvas->AddChild(backgroundGIF);
+
 	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
 
 	startCanvas->SetSize(windowSize);
@@ -364,12 +421,17 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"", _playLocation, { 200.0f, 100.0f }, _fontData, 40, 2);
 
 	ButtonWidget* _playButton = InitButtonAndLabelData(_hud, startCanvas, _playData);
-	_playButton->BindOnClickAction([&]() { M_LEVEL.SetLevel(new UClassicModeLevel("ClassicModeLevel")); });
+	_playButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ClassicModeLevel"); });
+
+	startCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 {
 	if (!creditCanvas || !mainMenuCanvas) return;
+
+	creditCanvas->AddChild(backgroundGIF);
+
 	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
 
 	creditCanvas->SetSize(windowSize);
@@ -381,8 +443,60 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 	_title->SetLocation(Vector2f(windowSize.x / 2.0f, windowSize.y * 0.1f));
 	_title->SetZOrder(1);
 
-
 	creditCanvas->AddChild(_title);
+
+	//////////////////////////
+	///		Labels
+	//////////////////////////
+
+	ALabelWidget* _oldEngineLabel = _hud->SpawnWidget<ALabelWidget>("Old Engine", "CreditTitleLabel", Screen);
+	_oldEngineLabel->SetCharacterSize(30);
+	_oldEngineLabel->SetFont(_fontData.first, _fontData.second);
+	_oldEngineLabel->SetOriginAtMiddle();
+	_oldEngineLabel->SetLocation(Vector2f(windowSize.x / 2.0f, windowSize.y * 0.3f));
+	_oldEngineLabel->SetZOrder(1);
+
+	creditCanvas->AddChild(_oldEngineLabel);
+
+	vector<string> _labelsString =
+	{
+		"Sacha - Lead",
+		"Alexandre - Pre Prod",
+		"Yoan - Shape & Convex",
+		"Sev - Asteroids & Animations",
+		"Romain - UFO",
+		"Quentin - Menus"
+	};
+	const int _labelsStringCount = static_cast<int>(_labelsString.size());
+	for (int _index = 0; _index < _labelsStringCount; _index++)
+	{
+		ALabelWidget* _label = _hud->SpawnWidget<ALabelWidget>(_labelsString[_index], "CreditTitleLabel", Screen);
+		_label->SetCharacterSize(15);
+		_label->SetFont(_fontData.first, _fontData.second);
+		_label->SetOriginAtMiddle();
+		_label->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.4f + windowSize.y * _index / 20 });
+		_label->SetZOrder(1);
+
+		creditCanvas->AddChild(_label);
+	}
+
+	ALabelWidget* _newEngineLabel = _hud->SpawnWidget<ALabelWidget>("New Engine", "CreditTitleLabel", Screen);
+	_newEngineLabel->SetCharacterSize(30);
+	_newEngineLabel->SetFont(_fontData.first, _fontData.second);
+	_newEngineLabel->SetOriginAtMiddle();
+	_newEngineLabel->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.8f });
+	_newEngineLabel->SetZOrder(1);
+
+	creditCanvas->AddChild(_newEngineLabel);
+
+	ALabelWidget* _lead = _hud->SpawnWidget<ALabelWidget>("Sacha - Lead", "CreditTitleLabel", Screen);
+	_lead->SetCharacterSize(15);
+	_lead->SetFont(_fontData.first, _fontData.second);
+	_lead->SetOriginAtMiddle();
+	_lead->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.9f });
+	_lead->SetZOrder(1);
+
+	creditCanvas->AddChild(_lead);
 
 	//////////////////////////
 	///		Back
@@ -395,6 +509,34 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, creditCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, creditCanvas); });
+
+	creditCanvas->SetVisibility(VisibilityType::Hidden);
+}
+
+void UMainMenuLevel::InitBackgroundGIF(HUD* _hud)
+{
+	backgroundGIF = _hud->SpawnWidget<AGIFWidget>(RectangleShapeData(windowSize, "Widgets/MainMenu/caca"));
+	backgroundGIF->SetZOrder(0);
+
+	vector<SpriteData> _spriteMainMenuLoop;
+	for (int _i = 0; _i < 12; _i++)
+	{
+		for (int _j = 0; _j < 8; _j++)
+		{
+			if (_i == 12 && _j < 8) continue;
+			_spriteMainMenuLoop.push_back(SpriteData(Vector2i(_j * 914, _i * 570), Vector2i(914, 570)));
+		}
+	}
+	Animation* _loopAnim = new Animation("MainMenu BackgroundLoop", backgroundGIF->GetComponent<UStaticMeshComponent>()->GetShape(), AnimationData(20.0f, _spriteMainMenuLoop, true, true));
+	backgroundGIF->AddAnimation(_loopAnim);
+}
+
+void UMainMenuLevel::InitMainMenuTheme()
+{
+	MusicSample* _sample = SpawnActor<MusicSample>("MainMenuTheme.mp3");
+	//_sample->SetLoop(true);
+	////GetAudioManager().RegisterSample(_sample);
+	//GetAudioManager().PlaySample(_sample);
 }
 
 

@@ -3,14 +3,17 @@
 #include "CanvasWidget.h"
 #include "ButtonWidget.h"
 #include "TextObject.h"
+#include "GIFWidget.h"
 
 class UMainMenuLevel : public UUtilityLevel
 {
-	UI::CanvasWidget* mainMenuCanvas;
-	UI::CanvasWidget* optionCanvas;
-	UI::CanvasWidget* leaderBoardCanvas;
-	UI::CanvasWidget* startCanvas;
-	UI::CanvasWidget* creditCanvas;
+	UI::AGIFWidget* backgroundGIF;
+
+	UI::ACanvasWidget* mainMenuCanvas;
+	UI::ACanvasWidget* optionCanvas;
+	UI::ACanvasWidget* leaderBoardCanvas;
+	UI::ACanvasWidget* startCanvas;
+	UI::ACanvasWidget* creditCanvas;
 
 	Vector2f windowSize;
 
@@ -25,4 +28,7 @@ protected:
 	void InitLeaderBoardMenu(HUD* _hud);
 	void InitStartMenu(HUD* _hud);
 	void InitCreditMenu(HUD* _hud);
+
+	void InitBackgroundGIF(HUD* _hud);
+	void InitMainMenuTheme();
 };

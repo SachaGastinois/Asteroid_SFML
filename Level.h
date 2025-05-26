@@ -56,6 +56,10 @@ public:
 	{
 		return collisionManager;
 	}
+	FORCEINLINE AudioManager& GetAudioManager()
+	{
+		return audioManager;
+	}
 
 	#pragma region GameMode
 

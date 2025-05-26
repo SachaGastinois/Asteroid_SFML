@@ -19,7 +19,7 @@ void UUtilityLevel::InitLevel()
 	Super::InitLevel();
 }
 
-ButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::CanvasWidget* _canva, const FButtonAndLabelData& _data)
+ButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::ACanvasWidget* _canva, const FButtonAndLabelData& _data)
 {
 	ALabelWidget* _label = _hud->SpawnWidget<ALabelWidget>(_data.text, _data.labelName, Screen);
 	_label->SetLocation(_data.location);
@@ -40,7 +40,7 @@ ButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::CanvasWidget*
 }
 
 
-void UUtilityLevel::OpenMenu(UI::CanvasWidget* _canvaToOpen, UI::CanvasWidget* _canvaToClose)
+void UUtilityLevel::OpenMenu(UI::ACanvasWidget* _canvaToOpen, UI::ACanvasWidget* _canvaToClose)
 {
 	if (!_canvaToOpen || !_canvaToClose) return;
 

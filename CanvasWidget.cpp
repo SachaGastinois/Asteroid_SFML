@@ -1,12 +1,17 @@
 #include "CanvasWidget.h"
 
-UI::CanvasWidget::CanvasWidget(Level* _level, const string& _name, const RenderType& _type) : PanelWidget(_level, _name, _type)
+UI::ACanvasWidget::ACanvasWidget(Level* _level, const string& _name, const RenderType& _type) : PanelWidget(_level, _name, _type)
 {
 	size = { 400.0f, 300.0f };
 }
 
+UI::ACanvasWidget::~ACanvasWidget()
+{
 
-void UI::CanvasWidget::Construct()
+}
+
+
+void UI::ACanvasWidget::Construct()
 {
 	Super::Construct();
 
@@ -16,7 +21,7 @@ void UI::CanvasWidget::Construct()
 	}
 }
 
-void UI::CanvasWidget::Render(RenderWindow& _window)
+void UI::ACanvasWidget::Render(RenderWindow& _window)
 {
 	Super::Render(_window);
 }
