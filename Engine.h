@@ -7,6 +7,11 @@ class Engine
 	Input::InputManager inputManager;
 
 public:
+	FORCEINLINE RenderWindow& GetRenderWindow()
+	{
+		return window;
+	}
+public:
 	Engine();
 
 public:

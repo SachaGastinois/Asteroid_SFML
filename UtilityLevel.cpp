@@ -28,7 +28,7 @@ ButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::ACanvasWidget
 	_label->SetOriginAtMiddle();
 	_label->SetZOrder(_data.zOrder);
 
-	ButtonWidget* _button = _hud->SpawnWidget<ButtonWidget>(RectangleShapeData(_data.size), _data.buttonName, Screen);
+	ButtonWidget* _button = _hud->SpawnWidget<ButtonWidget>(RectangleShapeData(_data.size, _data.buttonPath), _data.buttonName, Screen);
 	_button->SetLocation(_data.location - _data.size / 2.0f);
 	_button->SetOriginAtMiddle();
 	_button->SetZOrder(_data.zOrder - 1);

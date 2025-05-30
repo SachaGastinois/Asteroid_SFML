@@ -15,8 +15,6 @@ class UMainMenuLevel : public UUtilityLevel
 	UI::ACanvasWidget* startCanvas;
 	UI::ACanvasWidget* creditCanvas;
 
-	Vector2f windowSize;
-
 public:
 	UMainMenuLevel(const string& _levelName);
 

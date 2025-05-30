@@ -72,7 +72,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	mainMenuCanvas->AddChild(_title);
 
 	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
-	const Vector2f& _size = Vector2f(200.0f, 50.0f);
+	const Vector2f& _size = Vector2f(200.0f, 60.0f);
 
 	//////////////////////////
 	///		Play
@@ -80,7 +80,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 
 	const Vector2f& _playLocation = Vector2f(windowSize.x * 0.3f, windowSize.y * 0.8f);
 
-	const FButtonAndLabelData& _playData = FButtonAndLabelData("PLAY", "PlayLabel", "PlayButton", "", _playLocation,
+	const FButtonAndLabelData& _playData = FButtonAndLabelData("PLAY", "PlayLabel", "PlayButton", "Widgets/Utility/ButtonsFrame", _playLocation,
 		_size, _fontData, 25, 2);
 
 	ButtonWidget* _playButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _playData);
@@ -93,7 +93,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const Vector2f& _leaderBoardLocation = Vector2f(windowSize.x * 0.4f, windowSize.y * 0.9);
 
 	const FButtonAndLabelData& _leaderBoardData = FButtonAndLabelData("LEADERBOARD", "LeaderBoardLabel", "LeaderBoardButton",
-		"", _leaderBoardLocation, { 200.0f, 40.0f }, _fontData, 15, 2);
+		"Widgets/Utility/ButtonsFrame", _leaderBoardLocation, { 200.0f, 60.0f }, _fontData, 15, 2);
 
 	ButtonWidget* _leaderBoardButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _leaderBoardData);
 	_leaderBoardButton->BindOnClickAction([&]() { OpenMenu(leaderBoardCanvas, mainMenuCanvas); });
@@ -105,7 +105,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const Vector2f& _creditLocation = Vector2f(windowSize.x * 0.6f, windowSize.y * 0.9f);
 
 	const FButtonAndLabelData& _creditData = FButtonAndLabelData("CREDIT", "CreditLabel", "CreditButton",
-		"", _creditLocation, { 150.0f, 40.0f }, _fontData, 15, 2);
+		"Widgets/Utility/ButtonsFrame", _creditLocation, { 150.0f, 60.0f }, _fontData, 15, 2);
 
 	ButtonWidget* _creditButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _creditData);
 	_creditButton->BindOnClickAction([&]() { OpenMenu(creditCanvas, mainMenuCanvas); });
@@ -117,7 +117,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const Vector2f& _optionLocation = Vector2f(windowSize.x * 0.5f, windowSize.y * 0.8f);
 
 	const FButtonAndLabelData& _optionData = FButtonAndLabelData("OPTION", "OptionLabel", "OptionButton",
-		"", _optionLocation, _size, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _optionLocation, _size, _fontData, 25, 2);
 
 	ButtonWidget* _optionButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _optionData);
 	_optionButton->BindOnClickAction([&]() { OpenMenu(optionCanvas, mainMenuCanvas); });
@@ -129,7 +129,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const Vector2f& _quitLocation = Vector2f(windowSize.x * 0.7f, windowSize.y * 0.8f);
 
 	const FButtonAndLabelData& _quitData = FButtonAndLabelData("QUIT", "QuitLabel", "QuitButton",
-		"", _quitLocation, _size, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _quitLocation, _size, _fontData, 25, 2);
 
 	ButtonWidget* _quitButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _quitData);
 	_quitButton->BindOnClickAction([&]() { window.close(); });
@@ -164,7 +164,7 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 	const Vector2f& _backLocation = Vector2f(windowSize.x * 0.9f, windowSize.y * 0.9f);
 
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackOptionLabel", "BackOptionButton",
-		"", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, optionCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, optionCanvas); });
@@ -226,7 +226,7 @@ void UMainMenuLevel::InitLeaderBoardMenu(HUD* _hud)
 	const Vector2f& _backLocation = Vector2f(windowSize.x * 0.9f, windowSize.y * 0.9f);
 
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackLeaderBoardLabel", "BackLeaderBoardButton",
-		"", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, leaderBoardCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, leaderBoardCanvas); });
@@ -258,10 +258,10 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	//////////////////////////
 
 	ALabelWidget* _controlsLabel = _hud->SpawnWidget<ALabelWidget>("Controls", "ControlsStartLabel", Screen);
-	_controlsLabel->SetCharacterSize(25);
+	_controlsLabel->SetCharacterSize(30);
 	_controlsLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsLabel->SetOriginAtMiddle();
-	_controlsLabel->SetLocation(Vector2f(windowSize.x * 0.7f, windowSize.y * 0.3f));
+	_controlsLabel->SetLocation(Vector2f(windowSize.x * 0.685f, windowSize.y * 0.3f));
 	_controlsLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsLabel);
@@ -280,10 +280,10 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	startCanvas->AddChild(_controlsEchapImage);
 
 	ALabelWidget* _controlsEchapLabel = _hud->SpawnWidget<ALabelWidget>("Pause", "ControlsEchapLabel", Screen);
-	_controlsEchapLabel->SetCharacterSize(10);
+	_controlsEchapLabel->SetCharacterSize(15);
 	_controlsEchapLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsEchapLabel->SetOriginAtMiddle();
-	_controlsEchapLabel->SetLocation(Vector2f(windowSize.x * 0.6f, windowSize.y * 0.55f));
+	_controlsEchapLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.5f));
 	_controlsEchapLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsEchapLabel);
@@ -296,16 +296,16 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 32, 0 }, { 32, 32 })),
 		"ControlsZImage", Screen);
 	_controlsZImage->SetOriginAtMiddle();
-	_controlsZImage->SetLocation(Vector2f(windowSize.x * 0.8f, windowSize.y * 0.4f));
+	_controlsZImage->SetLocation(Vector2f(windowSize.x * 0.74f, windowSize.y * 0.4f));
 	_controlsZImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsZImage);
 
 	ALabelWidget* _controlsZLabel = _hud->SpawnWidget<ALabelWidget>("Accelerate", "ControlsZLabel", Screen);
-	_controlsZLabel->SetCharacterSize(10);
+	_controlsZLabel->SetCharacterSize(15);
 	_controlsZLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsZLabel->SetOriginAtMiddle();
-	_controlsZLabel->SetLocation(Vector2f(windowSize.x * 0.84f, windowSize.y * 0.55f));
+	_controlsZLabel->SetLocation(Vector2f(windowSize.x * 0.765f, windowSize.y * 0.5f));
 	_controlsZLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsZLabel);
@@ -318,16 +318,16 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 64, 0 }, { 32, 32 })),
 		"ControlsQImage", Screen);
 	_controlsQImage->SetOriginAtMiddle();
-	_controlsQImage->SetLocation(Vector2f(windowSize.x * 0.74f, windowSize.y * 0.6f));
+	_controlsQImage->SetLocation(Vector2f(windowSize.x * 0.68f, windowSize.y * 0.65f));
 	_controlsQImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsQImage);
 
 	ALabelWidget* _controlsQLabel = _hud->SpawnWidget<ALabelWidget>("Rotate Left", "ControlsQLabel", Screen);
-	_controlsQLabel->SetCharacterSize(10);
+	_controlsQLabel->SetCharacterSize(15);
 	_controlsQLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsQLabel->SetOriginAtMiddle();
-	_controlsQLabel->SetLocation(Vector2f(windowSize.x * 0.78f, windowSize.y * 0.75f));
+	_controlsQLabel->SetLocation(Vector2f(windowSize.x * 0.7f, windowSize.y * 0.75f));
 	_controlsQLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsQLabel);
@@ -340,7 +340,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 96, 0 }, { 32, 32 })),
 		"ControlsSImage", Screen);
 	_controlsSImage->SetOriginAtMiddle();
-	_controlsSImage->SetLocation(Vector2f(windowSize.x * 0.6f, windowSize.y * 0.6f));
+	_controlsSImage->SetLocation(Vector2f(windowSize.x * 0.59f, windowSize.y * 0.65f));
 	_controlsSImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSImage);
@@ -349,7 +349,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	_controlsSLabel->SetCharacterSize(15);
 	_controlsSLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsSLabel->SetOriginAtMiddle();
-	_controlsSLabel->SetLocation(Vector2f(windowSize.x * 0.6f, windowSize.y * 0.69f));
+	_controlsSLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.7f));
 	_controlsSLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSLabel);
@@ -362,16 +362,16 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 128, 0 }, { 32, 32 })),
 		"ControlsDImage", Screen);
 	_controlsDImage->SetOriginAtMiddle();
-	_controlsDImage->SetLocation(Vector2f(windowSize.x * 0.86f, windowSize.y * 0.6f));
+	_controlsDImage->SetLocation(Vector2f(windowSize.x * 0.8f, windowSize.y * 0.65f));
 	_controlsDImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsDImage);
 
 	ALabelWidget* _controlsDLabel = _hud->SpawnWidget<ALabelWidget>("Rotate Right", "ControlsDLabel", Screen);
-	_controlsDLabel->SetCharacterSize(10);
+	_controlsDLabel->SetCharacterSize(15);
 	_controlsDLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsDLabel->SetOriginAtMiddle();
-	_controlsDLabel->SetLocation(Vector2f(windowSize.x * 0.9f, windowSize.y * 0.75f));
+	_controlsDLabel->SetLocation(Vector2f(windowSize.x * 0.82f, windowSize.y * 0.75f));
 	_controlsDLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsDLabel);
@@ -384,19 +384,32 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 			"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({160, 0},{32, 32})), 
 			"ControlsSpaceBarImage", Screen);
 	_controlsSpaceBarImage->SetOriginAtMiddle();
-	_controlsSpaceBarImage->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.6f));
+	_controlsSpaceBarImage->SetLocation(Vector2f(windowSize.x * 0.515f, windowSize.y * 0.65f));
 	_controlsSpaceBarImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSpaceBarImage);
 
 	ALabelWidget* _controlsSpaceBarLabel = _hud->SpawnWidget<ALabelWidget>("Shoot", "ControlsSpacebarLabel", Screen);
-	_controlsSpaceBarLabel->SetCharacterSize(10);
+	_controlsSpaceBarLabel->SetCharacterSize(15);
 	_controlsSpaceBarLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsSpaceBarLabel->SetOriginAtMiddle();
-	_controlsSpaceBarLabel->SetLocation(Vector2f(windowSize.x * 0.6f, windowSize.y * 0.75f));
+	_controlsSpaceBarLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.75f));
 	_controlsSpaceBarLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSpaceBarLabel);
+
+	//////////////////////////
+	///		Blur 
+	//////////////////////////
+
+	AImageWidget* _blur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 750.0f, 700.0f },
+		"Widgets/Utility/LightBlur", PNG, false),
+		"PlayBlur", Screen);
+	_blur->SetOriginAtMiddle();
+	_blur->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.2f));
+	_blur->SetZOrder(0);
+
+	startCanvas->AddChild(_blur);
 
 	//////////////////////////
 	///		Back
@@ -405,23 +418,38 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	const Vector2f& _backLocation = Vector2f(windowSize.x * 0.9f, windowSize.y * 0.9f);
 
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackStartLabel", "BackStartButton",
-		"", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, startCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); });
 
 
 	//////////////////////////
-	///		Play
+	///		Classic Mode
 	//////////////////////////
 
-	const Vector2f& _playLocation = Vector2f(windowSize.x * 0.2f, windowSize.y * 0.5f);
+	const Vector2f& _classicModeLocation = Vector2f(windowSize.x * 0.2f, windowSize.y * 0.35f);
 
-	const FButtonAndLabelData& _playData = FButtonAndLabelData("PLAY", "PlayStartLabel", "PlayStartButton",
-		"", _playLocation, { 200.0f, 100.0f }, _fontData, 40, 2);
+	const FButtonAndLabelData& _classicModeData = FButtonAndLabelData("CLASSIC MODE", "ClassicModeStartLabel", "ClassicModeStartButton",
+		"Widgets/Utility/ButtonsFrame", _classicModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
-	ButtonWidget* _playButton = InitButtonAndLabelData(_hud, startCanvas, _playData);
-	_playButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ClassicModeLevel"); });
+	ButtonWidget* _classicModeButton = InitButtonAndLabelData(_hud, startCanvas, _classicModeData);
+	_classicModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ClassicModeLevel"); });
+
+
+	//////////////////////////
+	///		Chrono Mode
+	//////////////////////////
+
+	const Vector2f& _chronoModeLocation = Vector2f(windowSize.x * 0.2f, windowSize.y * 0.65f);
+
+	const FButtonAndLabelData& _chronoModeData = FButtonAndLabelData("CHRONO MODE", "ChronoModeStartLabel", "ChronoModeStartButton",
+		"Widgets/Utility/ButtonsFrame", _chronoModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
+
+	ButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
+	_chronoModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ChronoModeLevel"); });
+
+
 
 	startCanvas->SetVisibility(VisibilityType::Hidden);
 }
@@ -498,6 +526,21 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 
 	creditCanvas->AddChild(_lead);
 
+
+	//////////////////////////
+	///		Blur 
+	//////////////////////////
+
+	AImageWidget* _blur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 500.0f, 850.0f },
+		"Widgets/Utility/LightBlur", PNG, false),
+		"CreditBlur", Screen);
+	_blur->SetOriginAtMiddle();
+	_blur->SetLocation(Vector2f(windowSize.x * 0.37f, windowSize.y * 0.2f));
+	_blur->SetZOrder(0);
+
+	creditCanvas->AddChild(_blur);
+
+
 	//////////////////////////
 	///		Back
 	//////////////////////////
@@ -505,7 +548,7 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 	const Vector2f& _backLocation = Vector2f(windowSize.x * 0.9f, windowSize.y * 0.9f);
 
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackCreditLabel", "BackCreditButton",
-		"", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
 	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, creditCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, creditCanvas); });
@@ -515,7 +558,7 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 
 void UMainMenuLevel::InitBackgroundGIF(HUD* _hud)
 {
-	backgroundGIF = _hud->SpawnWidget<AGIFWidget>(RectangleShapeData(windowSize, "Widgets/MainMenu/caca"));
+	backgroundGIF = _hud->SpawnWidget<AGIFWidget>(RectangleShapeData(windowSize, "Widgets/MainMenu/BackgroundMainMenu"));
 	backgroundGIF->SetZOrder(0);
 
 	vector<SpriteData> _spriteMainMenuLoop;
@@ -534,8 +577,8 @@ void UMainMenuLevel::InitBackgroundGIF(HUD* _hud)
 void UMainMenuLevel::InitMainMenuTheme()
 {
 	MusicSample* _sample = SpawnActor<MusicSample>("MainMenuTheme.mp3");
-	//_sample->SetLoop(true);
-	////GetAudioManager().RegisterSample(_sample);
+	_sample->SetLoop(true);
+	GetAudioManager().RegisterSample(_sample);
 	//GetAudioManager().PlaySample(_sample);
 }
 
