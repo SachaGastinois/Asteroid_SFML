@@ -1,4 +1,7 @@
 #include "LifeComponent.h"
+#include "ClassicModeLevel.h"
+#include "UFO.h"
+#include "Asteroid.h"
 
 ULifeComponent::ULifeComponent(AActor* _owner, const FLifeData& _data) : UComponent(_owner)
 {
@@ -44,7 +47,7 @@ void ULifeComponent::UpdateTime(const float _deltaTime)
 
 void ULifeComponent::AddLife(const int _lifeToAdd)
 {
-	data.currentLife++;
+	data.currentLife += _lifeToAdd;
 
 	if (data.currentLife >= data.maxLife)
 	{
@@ -60,6 +63,13 @@ void ULifeComponent::RemoveLife()
 
 	canBeAttacked = false;
 
+	if(Cast<AUFO>(owner) || Cast<AAsteroid>(owner))
+	{
+		if (UClassicModeLevel* _level = Cast<UClassicModeLevel>(owner->GetLevel()))
+		{
+			_level->DecrementEntityLeft();
+		}
+	}
 	if (data.currentLife <= 0)
 	{
 		data.onDeathCallback();

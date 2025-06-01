@@ -19,11 +19,16 @@ struct FSocketData
 class UShootComponent : public UComponent
 {
 	vector<FSocketData> sockets;
+	int upgradeStage;
 
 public:
 	FORCEINLINE void SetSockets(const vector<FSocketData>& _sockets)
 	{
 		sockets = _sockets;
+	}
+	FORCEINLINE int GetUpgradeStage() const
+	{
+		return upgradeStage;
 	}
 	FORCEINLINE vector<FSocketData>& GetSockets()
 	{
@@ -46,5 +51,7 @@ private:
 
 public:
 	void Shoot();
+	void SetUpgradeStage(const int _upgradeStage);
+	
 };
 

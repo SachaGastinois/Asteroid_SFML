@@ -12,18 +12,6 @@ class SpriteData;
 class ShapeObject;
 class Animation;
 
-struct FUpgradeStageData
-{
-	int shootUpradeStage;
-	int livesUpradeStage;
-
-	FUpgradeStageData()
-	{
-		shootUpradeStage = 2;
-		livesUpradeStage = 0;
-	}
-};
-
 class APlayerPawn : public APawn
 {
 	UStaticMeshComponent* meshComponent;
@@ -34,11 +22,12 @@ class APlayerPawn : public APawn
 	UShootComponent* shootComponent;
 	ULifeComponent* lifeComponent;
 
-	FUpgradeStageData upgradeStageData;
-
 	map<string, Animation*> animations;
 	Vector2i spriteSize;
+
+	bool canShoot;
 public:
+	FORCEINLINE void SetCanShoot(const bool _canShoot) { canShoot = _canShoot; }
 	FORCEINLINE UStaticMeshComponent* GetMesh() const { return meshComponent; }
 	FORCEINLINE UStaticMeshComponent* GetHitBoxMesh() const { return hitBoxMeshComponent; }
 	FORCEINLINE UCollisionComponent* GetCollision() const { return collisionComponent; }
@@ -58,7 +47,6 @@ protected:
 
 	void Init();
 	void SetupSockets();
-	void UpdateShootStage();
 	void SetupAnimations();
 	void SetupCollisions();
 	void OnDeath();
@@ -66,4 +54,6 @@ protected:
 	virtual void CollisionEnter(const CollisionData& _data) override;
 	virtual void CollisionExit(const CollisionData& _data) override;
 	virtual void CollisionUpdate(const CollisionData& _data) override;
+public:
+	void UpdateShootStage();
 };

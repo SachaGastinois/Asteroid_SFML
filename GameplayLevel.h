@@ -4,13 +4,15 @@
 #include "LabelWidget.h"
 #include "GIFWidget.h"
 
+class APlayerPawn;
+
 class UGameplayLevel : public UUtilityLevel
 {
 
-public:
+protected:
 	UI::ACanvasWidget* pauseCanvas;
 	UI::ACanvasWidget* gameplayCanvas;
-	UI::ACanvasWidget* ugradeCanvss;
+	UI::ACanvasWidget* gameOverCanvas;
 
 	UI::AGIFWidget* backgroundGIF;
 
@@ -20,8 +22,11 @@ public:
 
 	bool isPause;
 
+	APlayerPawn* player;
+
 public:
 	FORCEINLINE UI::ACanvasWidget* GetPauseCanvas() { return pauseCanvas; }
+	FORCEINLINE UI::ACanvasWidget* GetGameOverCanvas() { return gameOverCanvas; }
 	FORCEINLINE void SetIsPause(const bool _status) { isPause = _status; }
 	FORCEINLINE bool GetIsPause() { return isPause; }
 	FORCEINLINE void AddPoints(const int _pointToAdd)
@@ -30,10 +35,10 @@ public:
 
 		currentScorePoint += _pointToAdd;
 		scorePointLabel->SetText(to_string(currentScorePoint));
+		scorePointLabel->SetOriginAtMiddle();
 	}
 
 public:
-	UGameplayLevel();
 	UGameplayLevel(const string& _levelName);
 
 protected:
@@ -41,12 +46,14 @@ protected:
 	virtual void Update(const float _deltaTime) override;
 
 	void InitPauseMenu(HUD* _hud);
-	void InitGameplayCanvas(HUD* _hud);
-	void InitUpgradeMenu(HUD* _hud);
+	virtual void InitGameplayCanvas(HUD* _hud);
+	void InitGameOverCanvas(HUD* _hud);
 	void InitBackgroundGIF(HUD* _hud);
-	void InitMainMenuTheme();
+	void InitGameplayTheme();
 
 	void SetLocationIfOutOfBoundes(AActor* _actor);
-
+public:
+	void UpdatePlayerLife();
+	virtual void Reset();
 };
 

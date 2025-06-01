@@ -3,6 +3,7 @@
 #include "MainMenuLevel.h"
 #include "ClassicModeLevel.h"
 #include "TESTLevel.h"
+#include "ChronoModeLevel.h"
 
 void InitConfig()
 {
@@ -20,6 +21,9 @@ int main()
 
 	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
 	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
+
+	UChronoModeLevel* _chronoModeLevel = new UChronoModeLevel("ChronoModeLevel");
+	M_LEVEL.RegisterLevel(_chronoModeLevel->GetName(), _chronoModeLevel);
 
 	M_LEVEL.SetLevel("MainMenuLevel");
 

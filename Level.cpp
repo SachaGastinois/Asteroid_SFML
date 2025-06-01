@@ -6,6 +6,7 @@
 #include "AudioManager.h"
 #include "GameMode.h"
 #include "MainMenuLevel.h"
+#include "GameplayLevel.h"
 
 Level::Level(const string& _name)
 {
@@ -17,9 +18,8 @@ Level::Level(const string& _name)
 	audioManager = AudioManager();
 	gameMode = nullptr;
 
-	window.create(VideoMode({ 1920, 1080 }), _name, State::Fullscreen);
+	window.create(VideoMode({ 1920, 1080 }), GetName(), Style::None, State::Fullscreen);
 	window.setVisible(false);
-
 	M_LEVEL.RegisterLevel(_name, this);
 }
 
@@ -61,6 +61,11 @@ void Level::Load()
 	for (AActor* _actor : _actors)
 	{
 		_actor->SetActive(true);
+	}
+
+	if (UGameplayLevel* _level = Cast<UGameplayLevel>(this))
+	{
+		_level->Reset();
 	}
 
 	window.setVisible(true);

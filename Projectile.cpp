@@ -11,6 +11,7 @@
 #include "PlayerPawn.h"
 #include "Asteroid.h"
 #include "GameplayLevel.h"
+#include "ClassicModeLevel.h"
 
 AProjectile::AProjectile(Level* _level, const string& _spriteSheetPath, const bool _isPlayerProjectile, 
 	const string& _name, const TransformData& _transform) 

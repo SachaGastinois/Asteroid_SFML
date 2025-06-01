@@ -156,6 +156,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="CanvasSlot.cpp" />
     <ClCompile Include="CanvasWidget.cpp" />
     <ClCompile Include="CheckBoxWidget.cpp" />
+    <ClCompile Include="ChronoModeLevel.cpp" />
     <ClCompile Include="CircleActor.cpp" />
     <ClCompile Include="ClassicModeLevel.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
@@ -183,6 +184,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Kismet.cpp" />
     <ClCompile Include="LabelWidget.cpp" />
+    <ClCompile Include="LeaderBoardManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LifeComponent.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -243,6 +245,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="CanvasSlot.h" />
     <ClInclude Include="CanvasWidget.h" />
     <ClInclude Include="CheckBoxWidget.h" />
+    <ClInclude Include="ChronoModeLevel.h" />
     <ClInclude Include="CircleActor.h" />
     <ClInclude Include="ClassicModeLevel.h" />
     <ClInclude Include="CollisionComponent.h" />

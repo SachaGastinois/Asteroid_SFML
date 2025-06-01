@@ -447,6 +447,12 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	{ 
 		OpenMenu(mainMenuCanvas, startCanvas); 
 		M_LEVEL.SetLevel("ClassicModeLevel"); 
+		backgroundTheme->Stop();
+		if (UGameplayLevel* _level = Cast<UGameplayLevel>(M_LEVEL.GetCurrentLevel()))
+		{
+			_level->backgroundTheme->Play();
+		}
+		
 	});
 
 
@@ -460,7 +466,16 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/Utility/ButtonsFrame", _chronoModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
 	AButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
-	_chronoModeButton->BindOnClickAction([&]() { /*OpenMenu(mainMenuCanvas, startCanvas); */M_LEVEL.SetLevel("ClassicModeLevel"); });
+	_chronoModeButton->BindOnClickAction([&]() 
+		{ 
+			OpenMenu(mainMenuCanvas, startCanvas);
+			M_LEVEL.SetLevel("ChronoModeLevel");
+			backgroundTheme->Stop();
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(M_LEVEL.GetCurrentLevel()))
+			{
+				_level->backgroundTheme->Play();
+			}
+		});
 
 
 
@@ -589,10 +604,10 @@ void UMainMenuLevel::InitBackgroundGIF(HUD* _hud)
 
 void UMainMenuLevel::InitMainMenuTheme()
 {
-	MusicSample* _sample = SpawnActor<MusicSample>("MainMenuTheme.mp3");
-	_sample->SetLoop(true);
-	GetAudioManager().RegisterSample(_sample);
-	//GetAudioManager().PlaySample(_sample);
+	backgroundTheme = SpawnActor<MusicSample>("MainMenuTheme.mp3");
+	backgroundTheme->SetLoop(true);
+	GetAudioManager().RegisterSample(backgroundTheme);
+	GetAudioManager().PlaySample(backgroundTheme);
 }
 
 

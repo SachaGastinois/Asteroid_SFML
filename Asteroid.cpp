@@ -9,6 +9,7 @@
 #include "Level.h"
 #include "Projectile.h"
 #include "PlayerPawn.h"
+#include "GameplayLevel.h"
 
 
 AAsteroid::AAsteroid(Level* _level, const EAsteroidSize& _size, const string& _name, const TransformData& _transform)
@@ -65,6 +66,9 @@ void AAsteroid::Init()
 		GetRandomNumberInRange(-1.0f, 1.0f),
 		GetRandomNumberInRange(-1.0f, 1.0f)
 	};
+
+	SetZOrder(1);
+	GetLevel()->GetCameraManager().SetZOrder(meshComponent->GetRenderMeshToken(), zOrder);
 
 	SetupAnimations();
 }

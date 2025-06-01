@@ -4,6 +4,8 @@
 #include "ButtonWidget.h"
 #include "TextObject.h"
 
+class MusicSample;
+
 struct FButtonAndLabelData
 {
 	string text;
@@ -37,6 +39,9 @@ class UUtilityLevel : public Level
 {
 protected:
 	Vector2f windowSize;
+public:
+	MusicSample* backgroundTheme;
+
 public:
 	UUtilityLevel(const string& _levelName);
 protected:

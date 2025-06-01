@@ -477,6 +477,12 @@
     <ClCompile Include="GameplayLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LeaderBoardManager.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="ChronoModeLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreMinimal.h">
@@ -768,6 +774,9 @@
       <Filter>Asteroid</Filter>
     </ClInclude>
     <ClInclude Include="GameplayLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChronoModeLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

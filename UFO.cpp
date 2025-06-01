@@ -11,6 +11,7 @@
 #include "Projectile.h"
 #include "PlayerPawn.h"
 #include "TimerManager.h"
+#include "GameplayLevel.h"
 
 AUFO::AUFO(Level* _level, const string& _meshPath, const string& _name, const TransformData& _transform) 
 	: AEntity(_level, 300, FEntityData(Vector2f(50.0f, 50.0f), 25.0f, _meshPath,

@@ -7,16 +7,18 @@
 
 UShootComponent::UShootComponent(AActor* _owner) : UComponent(_owner)
 {
-
+	upgradeStage = 0;
 }
 
 UShootComponent::UShootComponent(AActor* _owner, const vector<FSocketData>& _sockets) : UComponent(_owner)
 {
+	upgradeStage = 0;
 	sockets = _sockets;
 }
 
 UShootComponent::UShootComponent(AActor* _owner, const UShootComponent& _other) : UComponent(_owner, _other)
 {
+	upgradeStage = 0;
 	sockets = _other.sockets;
 }
 
@@ -87,5 +89,14 @@ void UShootComponent::Shoot()
 		if (!_projectile) return;
 		
 		_projectile->SetLocation(_socket.socket->GetLocation());
+	}
+}
+
+void UShootComponent::SetUpgradeStage(const int _upgradeStage)
+{
+	if (APlayerPawn* _player = Cast<APlayerPawn>(owner))
+	{
+		upgradeStage = _upgradeStage;
+		_player->UpdateShootStage();
 	}
 }

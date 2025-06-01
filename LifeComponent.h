@@ -34,9 +34,17 @@ public:
 	{
 		canBeAttacked = _status;
 	}
+	FORCEINLINE void SetCurrentLife(const int _life)
+	{
+		data.currentLife = _life;
+	}
 	FORCEINLINE bool GetCanBeAttacked() const
 	{
 		return canBeAttacked;
+	}
+	FORCEINLINE FLifeData GetLifeData() const
+	{
+		return data;
 	}
 public:
 	ULifeComponent(AActor* _owner, const FLifeData& _data);

@@ -4,12 +4,16 @@
 #include "Asteroid.h"
 #include "LevelManager.h"
 #include "MusicSample.h"
+#include "LifeComponent.h"
+#include "MainMenuLevel.h"
+#include "LeaderBoardManager.h"
+#include "ClassicModeLevel.h"
+#include "Projectile.h"
 
 UGameplayLevel::UGameplayLevel(const string& _levelName) : UUtilityLevel(_levelName)
 {
 	pauseCanvas = nullptr;
 	gameplayCanvas = nullptr;
-	ugradeCanvss = nullptr;
 	backgroundGIF = nullptr;
 	lifesWidgets = vector<UI::AImageWidget*>();
 	scorePointLabel = nullptr;
@@ -29,24 +33,17 @@ void UGameplayLevel::InitLevel()
 
 	pauseCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("PauseCanvas");
 	gameplayCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("GameplayMenu");
-	ugradeCanvss = _hud->SpawnWidget<UI::ACanvasWidget>("GameplayMenu");
+	gameOverCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("GameOverMenu");
 
 	InitBackgroundGIF(_hud);
 
+	InitGameOverCanvas(_hud);
 	InitPauseMenu(_hud);
 	InitGameplayCanvas(_hud);
-	InitUpgradeMenu(_hud);
 
-	OpenMenu(gameplayCanvas, gameplayCanvas);
+	player = SpawnActor<APlayerPawn>();
 
-	APlayerPawn* _actor = SpawnActor<APlayerPawn>();
-	_actor->SetLocation(GetWindowSize() / 2.0f);
-
-	AAsteroid* _asteroid = SpawnActor<AAsteroid>(EAsteroidSize::AS_MEDIUM);
-	_asteroid->SetLocation(GetWindowSize() * 0.3f);
-
-	AUFO* _ufo = SpawnActor<AUFO>("Entity/UFO/UFOSpriteSheet_1");
-	_ufo->SetLocation(GetWindowSize() * 0.4f);
+	InitGameplayTheme();
 }
 
 void UGameplayLevel::Update(const float _deltaTime)
@@ -61,6 +58,8 @@ void UGameplayLevel::Update(const float _deltaTime)
 	{
 		SetLocationIfOutOfBoundes(_actor);
 	}
+
+	UpdatePlayerLife();
 }
 
 void UGameplayLevel::InitPauseMenu(HUD* _hud)
@@ -72,7 +71,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	_title->SetFont("Daydream", TTF);
 	_title->SetCharacterSize(75);
 	_title->SetOriginAtMiddle();
-	_title->SetZOrder(1);
+	_title->SetZOrder(6);
 
 	pauseCanvas->AddChild(_title);
 
@@ -85,7 +84,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	const Vector2f& _pauseResumeLocation = Vector2f(windowSize.x * 0.5f, windowSize.y * 0.5f);
 
 	const FButtonAndLabelData& _pauseResumeData = FButtonAndLabelData("RESUME", "PauseResumeLabel", "PauseResumeButton", "Widgets/Utility/ButtonsFrame",
-		_pauseResumeLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
+		_pauseResumeLocation, { 400.0f, 60.0f }, _fontData, 25, 7);
 
 	AButtonWidget* _pauseResumeButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseResumeData);
 	_pauseResumeButton->BindOnClickAction([&]() 
@@ -105,7 +104,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	const Vector2f& _pauseMainMenuLocation = Vector2f(windowSize.x * 0.5f, windowSize.y * 0.6);
 
 	const FButtonAndLabelData& _pauseMainMenuData = FButtonAndLabelData("RETURN TO MAIN", "PauseMainMenuLabel", "PauseMainMenuButton",
-		"Widgets/Utility/ButtonsFrame", _pauseMainMenuLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _pauseMainMenuLocation, { 400.0f, 60.0f }, _fontData, 25, 7);
 
 	AButtonWidget* _pauseMainMenuButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseMainMenuData);
 	_pauseMainMenuButton->BindOnClickAction([&]() 
@@ -117,6 +116,11 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 
 		isPause = false;
 		M_LEVEL.SetLevel("MainMenuLevel"); 
+		backgroundTheme->Stop();
+		if (UMainMenuLevel* _level = Cast<UMainMenuLevel>(M_LEVEL.GetCurrentLevel()))
+		{
+			_level->backgroundTheme->Play();
+		}
 	});
 
 	//////////////////////////
@@ -126,7 +130,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	const Vector2f& _pauseQuitLocation = Vector2f(windowSize.x * 0.5f, windowSize.y * 0.7f);
 
 	const FButtonAndLabelData& _pauseQuitData = FButtonAndLabelData("QUIT TO DESKTOP", "PauseQuitLabel", "PauseQuitButton",
-		"Widgets/Utility/ButtonsFrame", _pauseQuitLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
+		"Widgets/Utility/ButtonsFrame", _pauseQuitLocation, { 400.0f, 60.0f }, _fontData, 25, 7);
 
 	AButtonWidget* _pauseQuitButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseQuitData);
 	_pauseQuitButton->BindOnClickAction([&]() { window.close(); });
@@ -140,7 +144,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 		"CreditLightBlur", Screen);
 	_lightBlur->SetOriginAtMiddle();
 	_lightBlur->SetLocation(Vector2f(windowSize.x * 0.37f, windowSize.y * 0.15f));
-	_lightBlur->SetZOrder(0);
+	_lightBlur->SetZOrder(5);
 
 	pauseCanvas->AddChild(_lightBlur);
 
@@ -148,14 +152,15 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	///		Dark Blur 
 	//////////////////////////
 
-	AImageWidget* _darkBlur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 1000.0f, 1000.0f },
+	AImageWidget* _darkBlur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 1920.0f, 1080.0f },
 		"Widgets/Utility/DarkBlur", PNG, false),
 		"CreditDarkBlur", Screen);
 	_darkBlur->SetOriginAtMiddle();
-	_darkBlur->SetZOrder(0);
+	_darkBlur->SetZOrder(4);
 
 	pauseCanvas->AddChild(_darkBlur);
 
+	pauseCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UGameplayLevel::InitGameplayCanvas(HUD* _hud)
@@ -215,12 +220,70 @@ void UGameplayLevel::InitGameplayCanvas(HUD* _hud)
 
 	gameplayCanvas->AddChild(scorePointLabel);
 
-
+	gameplayCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
-void UGameplayLevel::InitUpgradeMenu(HUD* _hud)
+void UGameplayLevel::InitGameOverCanvas(HUD* _hud)
 {
+	const pair<string, FontExtensionType>& _fontData = pair<string, FontExtensionType>("Daydream", TTF);
 
+	//////////////////////////
+	///		Title
+	//////////////////////////
+
+	ALabelWidget* _gameOverLabel = _hud->SpawnWidget<ALabelWidget>("GAME OVER", "GameOverLabel", Screen);
+	_gameOverLabel->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.3f));
+	_gameOverLabel->SetFont(_fontData.first, _fontData.second);
+	_gameOverLabel->SetCharacterSize(75);
+	_gameOverLabel->SetOriginAtMiddle();
+	_gameOverLabel->SetZOrder(6);
+
+	gameOverCanvas->AddChild(_gameOverLabel);
+
+	//////////////////////////
+	///		Return to Main Menu
+	//////////////////////////
+
+	const FButtonAndLabelData& _pauseQuitData = FButtonAndLabelData("RETURN TO MAIN MENU", "MainMenuLabel", "MainMenuButton",
+		"Widgets/Utility/ButtonsFrame", { windowSize.x * 0.5f, windowSize.y * 0.8f }, {600.0f, 60.0f}, _fontData, 25, 7);
+
+	AButtonWidget* _pauseQuitButton = InitButtonAndLabelData(_hud, gameOverCanvas, _pauseQuitData);
+	_pauseQuitButton->BindOnClickAction([&]() 
+	{ 
+		backgroundTheme->Stop();
+
+		GetGameMode()->GetHUD()->RemoveFromViewport(pauseCanvas);
+		pauseCanvas->SetVisibility(VisibilityType::Hidden);
+
+		isPause = false;
+
+		if(Cast<UClassicModeLevel>(M_LEVEL.GetCurrentLevel()))
+		{
+			FPlayerData _playerData = FPlayerData(M_TIMER.GetCurrentRealTime(), currentScorePoint);
+			ULeaderBoardManager::GetInstance().AddPlayerData(_playerData);
+		}
+		
+		M_LEVEL.SetLevel("MainMenuLevel");
+		backgroundTheme->Stop();
+		if (UMainMenuLevel* _level = Cast<UMainMenuLevel>(M_LEVEL.GetCurrentLevel()))
+		{
+			_level->backgroundTheme->Play();
+		}
+	});
+
+	//////////////////////////
+	///		Dark Blur 
+	//////////////////////////
+
+	AImageWidget* _darkBlur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 1920.0f, 1080.0f },
+		"Widgets/Utility/DarkBlur", PNG, false),
+		"UpgradeDarkBlur", Screen);
+	_darkBlur->SetOriginAtMiddle();
+	_darkBlur->SetZOrder(4);
+
+	gameOverCanvas->AddChild(_darkBlur);
+
+	gameOverCanvas->SetVisibility(VisibilityType::Hidden);
 }
 
 void UGameplayLevel::InitBackgroundGIF(HUD* _hud)
@@ -276,12 +339,12 @@ void UGameplayLevel::InitBackgroundGIF(HUD* _hud)
 
 }
 
-void UGameplayLevel::InitMainMenuTheme()
+void UGameplayLevel::InitGameplayTheme()
 {
-	MusicSample* _sample = SpawnActor<MusicSample>("MainMenuTheme.mp3");
-	_sample->SetLoop(true);
-	GetAudioManager().RegisterSample(_sample);
-	//GetAudioManager().PlaySample(_sample);
+	backgroundTheme = SpawnActor<MusicSample>("GameplayTheme.mp3");
+	backgroundTheme->SetLoop(true);
+	GetAudioManager().RegisterSample(backgroundTheme);
+	GetAudioManager().PlaySample(backgroundTheme);
 }
 
 void UGameplayLevel::SetLocationIfOutOfBoundes(AActor* _actor)
@@ -309,3 +372,48 @@ void UGameplayLevel::SetLocationIfOutOfBoundes(AActor* _actor)
 	}
 }
 
+void UGameplayLevel::UpdatePlayerLife()
+{
+	set<AActor*> _actors = GetActorManager().GetAllActors();
+
+	for (AActor* _actor : _actors)
+	{
+		if (APlayerPawn* _player = Cast<APlayerPawn>(_actor))
+		{
+			const int _currentLife = _player->GetLife()->GetLifeData().currentLife;
+			const int _maxLife = _player->GetLife()->GetLifeData().maxLife;
+			const int _lifeWidgetsCount = lifesWidgets.size();
+			for (int _index = 0; _index < _maxLife; _index++)
+			{
+				if (_lifeWidgetsCount <= _index || !lifesWidgets[_index]) return;
+
+				if (_index >= _currentLife)
+				{
+					lifesWidgets[_index]->SetActive(false);
+					continue;
+				}
+				lifesWidgets[_index]->SetActive(true);
+			}
+			return;
+		}
+	}
+}
+
+void UGameplayLevel::Reset()
+{
+	currentScorePoint = 0;
+	scorePointLabel->SetText(to_string(currentScorePoint));
+	scorePointLabel->SetOriginAtMiddle();
+
+	isPause = false;
+
+	set<AActor*> _actors = GetActorManager().GetAllActors();
+
+	for (AActor* _actor : _actors)
+	{
+		if (Cast<AUFO>(_actor) || Cast<AProjectile>(_actor) || Cast<AAsteroid>(_actor))
+		{
+			_actor->SetToDelete();
+		}
+	}
+}

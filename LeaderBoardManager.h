@@ -78,7 +78,7 @@ public:
 public:
 	ULeaderBoardManager() = default;
 
-protected:
+public:
 	void CocktailSort();
 	void Swap(const int _firstIndex, const int _secondIndex);
 	void UpdatePlayersLabel();

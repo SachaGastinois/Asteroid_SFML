@@ -12,6 +12,7 @@
 #include "Level.h"
 #include "Projectile.h"
 #include "ClassicModeLevel.h"
+#include "ChronoModeLevel.h"
 
 using namespace Input;
 using namespace Camera;
@@ -99,10 +100,12 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 
 	_action->AddAction(new Action("SpaceBarShoot", ActionData(ActionType::KeyPressed, Space),
 		[&]() { 
+			if (!canShoot) return;
 			shootComponent->Shoot();
 		}));
 	_action->AddAction(new Action("SKeyShoot", ActionData(ActionType::KeyPressed, S),
 		[&]() { 
+			if (!canShoot) return;
 			shootComponent->Shoot();
 		}));
 
@@ -130,8 +133,6 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 
 void APlayerPawn::Init()
 {
-	upgradeStageData = FUpgradeStageData();
-
 	SetZOrder(2);
 	GetLevel()->GetCameraManager().SetZOrder(meshComponent->GetRenderMeshToken(), zOrder);
 
@@ -175,19 +176,20 @@ void APlayerPawn::SetupSockets()
 void APlayerPawn::UpdateShootStage()
 {
 	vector<FSocketData>& _sockets = shootComponent->GetSockets();
-	if (upgradeStageData.shootUpradeStage == 0)
+	const int upgradeStage = shootComponent->GetUpgradeStage();
+	if (upgradeStage == 0)
 	{
 		_sockets[0].isActive = true;
 		_sockets[1].isActive = false;
 		_sockets[2].isActive = false;
 	}
-	else if (upgradeStageData.shootUpradeStage == 1)
+	else if (upgradeStage == 1)
 	{
 		_sockets[0].isActive = false;
 		_sockets[1].isActive = true;
 		_sockets[2].isActive = true;
 	}
-	else if (upgradeStageData.shootUpradeStage == 2)
+	else if (upgradeStage == 2)
 	{
 		_sockets[0].isActive = true;
 		_sockets[1].isActive = true;
@@ -257,6 +259,24 @@ void APlayerPawn::SetupCollisions()
 void APlayerPawn::OnDeath()
 {
 	LOG(Warning, "Joueur est Mort");
+
+	if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+	{
+		SetActive(false);
+		lifeComponent->SetCanBeAttacked(false);
+
+		_level->SetIsPause(true);
+
+		_level->GetGameMode()->GetHUD()->RemoveFromViewport(_level->GetPauseCanvas());
+		_level->GetPauseCanvas()->SetVisibility(VisibilityType::Hidden);
+
+		_level->GetGameMode()->GetHUD()->AddToViewport(_level->GetGameOverCanvas());
+		_level->GetGameOverCanvas()->SetVisibility(VisibilityType::Visible);
+	}
+	if (UChronoModeLevel* _level = Cast<UChronoModeLevel>(GetLevel()))
+	{
+		_level->SetTimerRunning(false);
+	}
 }
 
 void APlayerPawn::CollisionEnter(const CollisionData& _data)

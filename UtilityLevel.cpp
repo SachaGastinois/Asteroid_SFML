@@ -11,12 +11,13 @@ using namespace UI;
 
 UUtilityLevel::UUtilityLevel(const string& _levelName) : Level(_levelName)
 {
-
+	backgroundTheme = nullptr;
 }
 
 void UUtilityLevel::InitLevel()
 {
 	Super::InitLevel();
+
 }
 
 AButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::ACanvasWidget* _canva, const FButtonAndLabelData& _data)
