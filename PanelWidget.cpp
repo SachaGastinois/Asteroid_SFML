@@ -1,6 +1,6 @@
 #include "PanelWidget.h"
 
-UI::PanelWidget::PanelWidget(Level* _level, const string& _name, const RenderType& _type) : Widget(_level, _name, _type)
+UI::PanelWidget::PanelWidget(Level* _level, const string& _name, const RenderType& _type) : AWidget(_level, _name, _type)
 {
 	maxChild = 32768;
 	size = { 64.0f, 64.0f };

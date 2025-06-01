@@ -46,5 +46,5 @@ void ShapeObject::InitCircle(const CircleShapeData& _data)
 void ShapeObject::InitRectangle(const RectangleShapeData& _data)
 {
 	shape = new RectangleShape(_data.size);
-	M_TEXTURE.Load(this, _data.path, _data.rect, _data.textureType, _data.isRepeated);
+	M_TEXTURE.Load(this, _data.path, _data.rect, _data.textureType, _data.isRepeated, false);
 }

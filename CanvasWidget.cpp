@@ -5,7 +5,15 @@ UI::ACanvasWidget::ACanvasWidget(Level* _level, const string& _name, const Rende
 	size = { 400.0f, 300.0f };
 }
 
+UI::ACanvasWidget::~ACanvasWidget()
+{
 
+<<<<<<< HEAD
+=======
+}
+
+
+>>>>>>> UI
 void UI::ACanvasWidget::Construct()
 {
 	Super::Construct();

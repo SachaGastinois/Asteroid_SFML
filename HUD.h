@@ -6,18 +6,18 @@ namespace UI
 {
 	class HUD : public AActor
 	{
-		set<Widget*> allWidgets;
-		Widget* currentWidget;
+		set<AWidget*> allWidgets;
+		AWidget* currentWidget;
 
 	private:
-		FORCEINLINE void RegisterWidget(Widget* _widget)
+		FORCEINLINE void RegisterWidget(AWidget* _widget)
 		{
 			if (allWidgets.contains(_widget)) return;
 
 			allWidgets.insert(_widget);
 			_widget->Register();
 		}
-		FORCEINLINE void UnregisterWidget(Widget* _widget)
+		FORCEINLINE void UnregisterWidget(AWidget* _widget)
 		{
 			if (!allWidgets.contains(_widget)) return;
 
@@ -28,7 +28,7 @@ namespace UI
 	public:
 		#pragma region SpawnWidget
 
-		template <typename Type, typename ...Args, IS_BASE_OF(Widget, Type)>
+		template <typename Type, typename ...Args, IS_BASE_OF(AWidget, Type)>
 		FORCEINLINE Type* SpawnWidget(Args&&... _args)
 		{
 			Type* _widget = Spawn<Type>(level, forward<Args>(_args)...);
@@ -38,7 +38,7 @@ namespace UI
 			return _widget;
 		}
 
-		template <typename Type, IS_BASE_OF(Widget, Type)>
+		template <typename Type, IS_BASE_OF(AWidget, Type)>
 		FORCEINLINE Type* SpawnWidget(const SubclassOf<Type> _widgetRef)
 		{
 			Type* _widget = Spawn<Type>(_widgetRef);
@@ -55,7 +55,7 @@ namespace UI
 		HUD(const HUD& _other);
 
 	public:
-		void AddToViewport(Widget* _widget);
-		void RemoveFromViewport(Widget* _widget);
+		void AddToViewport(AWidget* _widget);
+		void RemoveFromViewport(AWidget* _widget);
 	};
 }

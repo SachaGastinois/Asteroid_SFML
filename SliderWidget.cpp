@@ -1,7 +1,7 @@
 #include "SliderWidget.h"
 #include "Level.h"
 
-UI::SliderWidget::SliderWidget(Level* _level, const string _name, const RenderType& _renderType) : Widget(_level, _name, _renderType)
+UI::SliderWidget::SliderWidget(Level* _level, const string _name, const RenderType& _renderType) : AWidget(_level, _name, _renderType)
 {
 	value = 0.0f;
 	minValue = 0.0f;

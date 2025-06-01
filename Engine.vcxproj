@@ -156,6 +156,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="CanvasWidget.cpp" />
     <ClCompile Include="CheckBoxWidget.cpp" />
     <ClCompile Include="CircleActor.cpp" />
+    <ClCompile Include="ClassicModeLevel.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -179,6 +180,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Kismet.cpp" />
     <ClCompile Include="LabelWidget.cpp" />
+    <ClCompile Include="LeaderBoardManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -202,12 +204,13 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="Slot.cpp" />
     <ClCompile Include="SoundSample.cpp" />
     <ClCompile Include="SquareActor.cpp" />
-    <ClCompile Include="TESTLevel.cpp" />
+    <ClCompile Include="MainMenuLevel.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TransformableObject.cpp" />
     <ClCompile Include="TriangleActor.cpp" />
     <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="UtilityLevel.cpp" />
     <ClCompile Include="VertexActor.cpp" />
     <ClCompile Include="VertexComponent.cpp" />
     <ClCompile Include="VertexObject.cpp" />
@@ -232,6 +235,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="CanvasWidget.h" />
     <ClInclude Include="CheckBoxWidget.h" />
     <ClInclude Include="CircleActor.h" />
+    <ClInclude Include="ClassicModeLevel.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Color.h" />
@@ -258,6 +262,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="Kismet.h" />
     <ClInclude Include="LabelWidget.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="LeaderBoardManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Logger.h" />
@@ -284,7 +289,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="SoundSample.h" />
     <ClInclude Include="SquareActor.h" />
     <ClInclude Include="SubclassOf.h" />
-    <ClInclude Include="TESTLevel.h" />
+    <ClInclude Include="MainMenuLevel.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TimerManager.h" />
@@ -294,6 +299,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="TransformData.h" />
     <ClInclude Include="TriangleActor.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="UtilityLevel.h" />
     <ClInclude Include="VertexActor.h" />
     <ClInclude Include="VertexComponent.h" />
     <ClInclude Include="VertexObject.h" />

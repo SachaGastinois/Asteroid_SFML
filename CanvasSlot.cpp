@@ -2,7 +2,7 @@
 #include "PanelWidget.h"
 #include "ImageWidget.h"
 
-UI::CanvasSlot::CanvasSlot(PanelWidget* _parent, Widget* _content) : Slot(_parent, _content)
+UI::CanvasSlot::CanvasSlot(PanelWidget* _parent, AWidget* _content) : Slot(_parent, _content)
 {
 	fillToContent = false;
 	zOrder = _parent->GetZOrder();

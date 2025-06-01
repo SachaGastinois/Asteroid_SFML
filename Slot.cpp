@@ -1,7 +1,7 @@
 #include "Slot.h"
 #include "PanelWidget.h"
 
-UI::Slot::Slot(PanelWidget* _parent, Widget* _content)
+UI::Slot::Slot(PanelWidget* _parent, AWidget* _content)
 {
 	parent = _parent;
 	content = _content;

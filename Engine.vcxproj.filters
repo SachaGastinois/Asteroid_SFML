@@ -435,13 +435,22 @@
     <ClCompile Include="Singleton.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="TESTLevel.cpp">
+    <ClCompile Include="MainMenuLevel.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPawn.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicModeLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaderBoardManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -689,7 +698,7 @@
     <ClInclude Include="SizeType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TESTLevel.h">
+    <ClInclude Include="MainMenuLevel.h">
       <Filter>Asteroid</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPawn.h">
@@ -697,6 +706,15 @@
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassicModeLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderBoardManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

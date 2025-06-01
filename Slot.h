@@ -11,7 +11,7 @@ namespace UI
 		Vector2f position;
 		Vector2f size;
 		class PanelWidget* parent;
-		class Widget* content;
+		class AWidget* content;
 
 	public:
 		//Get the Parent of the Slot
@@ -19,8 +19,8 @@ namespace UI
 		{
 			return parent;
 		}
-		//Get the Widget containing in the Slot
-		FORCEINLINE Widget* GetContent() const
+		//Get the AWidget containing in the Slot
+		FORCEINLINE AWidget* GetContent() const
 		{
 			return content;
 		}
@@ -63,7 +63,7 @@ namespace UI
 		}
 
 	public:
-		Slot(PanelWidget* _parent, Widget* _content);
+		Slot(PanelWidget* _parent, AWidget* _content);
 		virtual ~Slot() = default;
 
 	public:

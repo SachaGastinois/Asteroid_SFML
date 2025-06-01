@@ -5,7 +5,7 @@
 
 namespace UI
 {
-	class SliderWidget : public Widget
+	class SliderWidget : public AWidget
 	{
 		float value;
 		float minValue;
