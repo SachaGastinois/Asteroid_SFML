@@ -447,7 +447,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/Utility/ButtonsFrame", _chronoModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
 	AButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
-	_chronoModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ChronoModeLevel"); });
+	_chronoModeButton->BindOnClickAction([&]() { /*OpenMenu(mainMenuCanvas, startCanvas); */M_LEVEL.SetLevel("ClassicModeLevel"); });
 
 
 

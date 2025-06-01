@@ -453,9 +453,6 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
-    <ClCompile Include="LeaderBoardManager.cpp">
-      <Filter>Asteroid</Filter>
-    </ClCompile>
     <ClCompile Include="LifeComponent.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
@@ -476,6 +473,9 @@
     </ClCompile>
     <ClCompile Include="UtilityLevel.cpp">
       <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="GameplayLevel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -766,6 +766,9 @@
     </ClInclude>
     <ClInclude Include="UtilityLevel.h">
       <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayLevel.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
 #include "Bounds.h"
 #include "Level.h"
 #include "Projectile.h"
+#include "ClassicModeLevel.h"
 
 using namespace Input;
 using namespace Camera;
@@ -105,6 +106,23 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 			shootComponent->Shoot();
 		}));
 
+
+	////////////////////////////////////////////////////////////
+	///
+	/// Pause
+	///
+	////////////////////////////////////////////////////////////
+
+	_action->AddAction(new Action("Pause", ActionData(ActionType::KeyPressed, Escape),
+		[&]() { 
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+			{
+				if (_level->GetIsPause()) return;
+				_level->GetGameMode()->GetHUD()->AddToViewport(_level->GetPauseCanvas());
+				_level->GetPauseCanvas()->SetVisibility(VisibilityType::Visible);
+				_level->SetIsPause(true);
+			}
+		}));
 
 	_action->Enable();
 }
@@ -258,7 +276,10 @@ void APlayerPawn::CollisionEnter(const CollisionData& _data)
 		if (AAsteroid* _asteroid = Cast<AAsteroid>(_data.other))
 		{
 			_asteroid->GetLife()->RemoveLife();
-			//GetLevel<>()->AddPoint(_asteroid->GetPoint());
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+			{
+				_level->AddPoints(_asteroid->GetPoint());
+			}
 		}
 	}
 	else if (_data.channelName == "UFO")
@@ -266,7 +287,10 @@ void APlayerPawn::CollisionEnter(const CollisionData& _data)
 		if (AUFO* _ufo = Cast<AUFO>(_data.other))
 		{
 			_ufo->GetLife()->RemoveLife();
-			//GetLevel<>()->AddPoint(_ufo->GetPoint());
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+			{
+				_level->AddPoints(_ufo->GetPoint());
+			}
 		}
 	}
 

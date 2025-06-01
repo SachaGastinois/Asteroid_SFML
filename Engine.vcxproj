@@ -175,6 +175,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameMode.cpp" />
+    <ClCompile Include="GameplayLevel.cpp" />
     <ClCompile Include="GIFWidget.cpp" />
     <ClCompile Include="HorizontalBox.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -182,7 +183,6 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Kismet.cpp" />
     <ClCompile Include="LabelWidget.cpp" />
-    <ClCompile Include="LeaderBoardManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LifeComponent.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -264,6 +264,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameMode.h" />
+    <ClInclude Include="GameplayLevel.h" />
     <ClInclude Include="GIFWidget.h" />
     <ClInclude Include="HorizontalBox.h" />
     <ClInclude Include="HUD.h" />

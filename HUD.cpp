@@ -24,10 +24,10 @@ UI::HUD::HUD(const HUD& _other) : AActor(_other)
 
 void UI::HUD::AddToViewport(AWidget* _widget)
 {
-	for (AWidget* _selectedWidget : allWidgets)
+	/*for (AWidget* _selectedWidget : allWidgets)
 	{
 		RemoveFromViewport(_selectedWidget);
-	}
+	}*/
 	currentWidget = _widget;
 	currentWidget->BindViewport();
 }

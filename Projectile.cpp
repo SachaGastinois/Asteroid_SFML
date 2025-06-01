@@ -10,6 +10,7 @@
 #include "UFO.h"
 #include "PlayerPawn.h"
 #include "Asteroid.h"
+#include "GameplayLevel.h"
 
 AProjectile::AProjectile(Level* _level, const string& _spriteSheetPath, const bool _isPlayerProjectile, 
 	const string& _name, const TransformData& _transform) 
@@ -120,6 +121,10 @@ void AProjectile::CollisionEnter(const CollisionData& _data)
 			if (!isPlayerProjectile) return;
 
 			_asteroid->GetLife()->RemoveLife();
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+			{
+				_level->AddPoints(_asteroid->GetPoint());
+			}
 		}
 	}
 	else if (_data.channelName == "Player")
@@ -138,6 +143,10 @@ void AProjectile::CollisionEnter(const CollisionData& _data)
 			if (!isPlayerProjectile) return;
 
 			_ufo->GetLife()->RemoveLife();
+			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
+			{
+				_level->AddPoints(_ufo->GetPoint());
+			}
 		}
 	}
 

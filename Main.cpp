@@ -21,10 +21,7 @@ int main()
 	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
 	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
 
-	TESTLevel* _aled = new TESTLevel("ALED");
-	M_LEVEL.RegisterLevel(_aled->GetName(), _aled);
-
-	M_LEVEL.SetLevel("ALED");
+	M_LEVEL.SetLevel("MainMenuLevel");
 
 	Engine _engine;
 	_engine.Start();
