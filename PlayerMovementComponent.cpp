@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "PlayerPawn.h"
 #include "TimerManager.h"
+#include "StaticMeshComponent.h"
 
 UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(_owner)
 {
@@ -16,7 +17,7 @@ UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(
 	maxVelocity = Vector2f(0.5f, 0.5f);
 	acceleration = Vector2f();
 	velocity = Vector2f();
-	direction = Vector2f(1.0f, 1.0f);
+	direction = Vector2f(0.0f, 0.0f);
 }
 
 UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner, 
@@ -40,6 +41,8 @@ void UPlayerMovementComponent::BeginPlay()
 	{
 		ApplyFriction();
 	}, seconds(0.25f), true, true);
+
+	owner->SetRotation(Angle(degrees(currentAngle)));
 }
 
 void UPlayerMovementComponent::Tick(const float _deltaTime)
@@ -47,6 +50,8 @@ void UPlayerMovementComponent::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 
 	Move(_deltaTime);
+
+	//LOG(Display, to_string(currentAngle));
 }
 
 void UPlayerMovementComponent::Move(const float _deltaTime)
@@ -67,16 +72,16 @@ void UPlayerMovementComponent::Move(const float _deltaTime)
 void UPlayerMovementComponent::Rotate(const float _degree)
 {
 	currentAngle += _degree;
-	if (currentAngle > 360.0f)
+	if (currentAngle >= 360.0f)
 	{
 		currentAngle -= 360.0f;
 	}
-	else if (currentAngle < 0.0f)
+	else if (currentAngle <= 0.0f)
 	{
 		currentAngle = 360.0f;
 	}
 
-	owner->Rotate(Angle(degrees(_degree)));
+	owner->SetRotation(Angle(degrees(currentAngle)));
 }
 
 void UPlayerMovementComponent::UpdateDirection()

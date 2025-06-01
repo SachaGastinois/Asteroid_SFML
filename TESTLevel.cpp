@@ -6,6 +6,9 @@
 #include "CanvasWidget.h"
 #include "ImageWidget.h"
 #include "Actor.h"
+#include "Projectile.h"
+#include "Asteroid.h"
+#include "UFO.h"
 
 using namespace UI;
 
@@ -31,7 +34,7 @@ void TESTLevel::InitLevel()
 	ImageWidget* _image = _hud->SpawnWidget<ImageWidget>(CircleShapeData(50.0f));
 	canvas->AddChild(_image);*/
 
-	ARectangleActor* _rectangle = SpawnActor<ARectangleActor>(Vector2f(25.0f, 25.0f));
+	/*ARectangleActor* _rectangle = SpawnActor<ARectangleActor>(Vector2f(25.0f, 25.0f));
 	_rectangle->SetLocation(Vector2f(100.0f, 100.0f));
 	UCollisionComponent* _rectCollision = new UCollisionComponent(_rectangle, "UFO", IS_ALL, CT_BLOCK);
 	_rectCollision->SetInformation("UFO", IS_ALL, CT_BLOCK);
@@ -45,8 +48,13 @@ void TESTLevel::InitLevel()
 	_circleCollision->SetInformation("UFO", IS_ALL, CT_BLOCK);
 	_circleCollision->AddResponses({ {"Player", CT_BLOCK} });
 	_circleCollision->GetBounds()->SetBoundsData(new CircleBoundsData(15.0f, _circle->GetLocation()));
-	_circle->AddComponent(_circleCollision);
+	_circle->AddComponent(_circleCollision);*/
 
+	//AAsteroid* _asteroid = SpawnActor<AAsteroid>(EAsteroidSize::AS_MEDIUM);
+	//_asteroid->SetLocation(GetWindowSize() * 0.3f);
+
+	AUFO* _ufo = SpawnActor<AUFO>("Entity/UFO/UFOSpriteSheet_1");
+	_ufo->SetLocation(GetWindowSize() * 0.4f);
 
 	//GetGameMode()->GetHUD()->AddToViewport(canvas);
 }

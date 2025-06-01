@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "RootComponent.h"
 #include "Layer.h"
+#include "TimerManager.h"
 
 class Level;
 struct CollisionData;
@@ -33,6 +34,12 @@ protected:
 	Level* level;
 
 public:
+
+	FORCEINLINE void SetLifeSpan(const float _lifeSpan)
+	{
+		lifeSpan = _lifeSpan;
+	}
+
 	#pragma region Delete
 	FORCEINLINE void SetToDelete()
 	{
@@ -379,7 +386,7 @@ public:
 	void Register();
 	void Unregister();
 	void SetName(const string& _name);
-	void CreateSocket(const string& _name, const TransformData& _transform = TransformData(), const AttachmentType& _type = AT_SNAP_TO_TARGET);
+	AActor* CreateSocket(const string& _name, const TransformData& _transform = TransformData(), const AttachmentType& _type = AT_SNAP_TO_TARGET);
 	void Destroy();
 
 	#pragma region Components

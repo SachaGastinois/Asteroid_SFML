@@ -34,6 +34,19 @@ public:
 	{
 		return currentAngle;
 	}
+	/// <summary>
+	/// Calcule la direction actuelle par rapport à l'angle actuel du transform
+	/// </summary>
+	/// <returns></returns>
+	FORCEINLINE Vector2f GetDirection() const
+	{
+		Vector2f _direction = Vector2f();
+		const float _rad = DegToRad(currentAngle);
+		_direction.x = cos(_rad);
+		_direction.y = sin(_rad);
+
+		return _direction;
+	}
 public:
 	UPlayerMovementComponent(AActor* _owner);
 	UPlayerMovementComponent(AActor* _owner, const UPlayerMovementComponent& _other);
