@@ -26,6 +26,7 @@ void UComponent::Deconstruct()
 
 void UComponent::BeginPlay()
 {
+	//if (IsActive()) return;
 	Construct();
 }
 

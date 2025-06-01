@@ -3,6 +3,8 @@
 
 
 class AActor;
+class UStaticMeshComponent;
+class Level;
 
 struct BoundsData
 {
@@ -45,8 +47,13 @@ struct CircleBoundsData : public BoundsData
 class Bounds
 {
 	BoundsData* data;
+	UStaticMeshComponent* mesh;
 
 public:
+	FORCEINLINE void SetMesh(UStaticMeshComponent* _mesh)
+	{
+		mesh = _mesh;
+	}
 	FORCEINLINE void SetBoundsData(BoundsData* _data)
 	{
 		delete data;
@@ -95,6 +102,7 @@ public:
 public:
 	Bounds() = default;
 	Bounds(BoundsData* _data);
+	Bounds(UStaticMeshComponent* _mesh);
 	Bounds(const Bounds& _bounds);
 
 private:
@@ -102,11 +110,11 @@ private:
 	bool Contains(const Vector2f& _point, CircleBoundsData* _data) const;
 
 	#pragma region Utilities
-
+public:
 	vector<Vector2f> GetPoints() const;
 	vector<Vector2f> GetPoints(RectangleBoundsData* _data) const;
 	vector<Vector2f> GetPoints(CircleBoundsData* _data) const;
-
+private:
 	Vector2f Around(Vector2f _point, RectangleBoundsData* _data) const;
 	Vector2f Around(Vector2f _point, const float _degrees, CircleBoundsData* _data) const;
 

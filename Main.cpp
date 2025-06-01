@@ -2,6 +2,7 @@
 #include "LevelManager.h"
 #include "MainMenuLevel.h"
 #include "ClassicModeLevel.h"
+#include "TESTLevel.h"
 
 void InitConfig()
 {
@@ -20,7 +21,10 @@ int main()
 	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
 	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
 
-	M_LEVEL.SetLevel("MainMenuLevel");
+	TESTLevel* _aled = new TESTLevel("ALED");
+	M_LEVEL.RegisterLevel(_aled->GetName(), _aled);
+
+	M_LEVEL.SetLevel("ALED");
 
 	Engine _engine;
 	_engine.Start();

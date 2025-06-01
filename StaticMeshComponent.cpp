@@ -22,6 +22,7 @@ UStaticMeshComponent::UStaticMeshComponent(AActor* _owner, const UStaticMeshComp
 
 UStaticMeshComponent::~UStaticMeshComponent()
 {
+	SetActive(false);
 	delete shape;
 }
 
@@ -39,6 +40,7 @@ void UStaticMeshComponent::Deconstruct()
 {
 	Super::Deconstruct();
 
+	SetActive(false);
 	if (Cast<AWidget>(owner)) return;
 	owner->GetLevel()->GetCameraManager().UnbindOnRenderWindow(renderMeshToken);
 }
@@ -48,14 +50,19 @@ void UStaticMeshComponent::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 
 	if (!attachmentComponent || !attachmentComponent->GetOwner()) return;
+	
+	/*shape->SetLocation(attachmentComponent->GetOwner()->GetLocation());
+	shape->SetRotation(attachmentComponent->GetOwner()->GetRotation());
+	shape->SetScale(attachmentComponent->GetOwner()->GetScale());*/
 
 	shape->SetTransform(attachmentComponent->GetOwner()->GetTransform());
+	shape->SetLocation(owner->GetLocation() + shape->GetDrawable()->getGeometricCenter() * -1.0f);
 }
 
 
 void UStaticMeshComponent::SetOriginAtMiddle()
 {
-	GetOwner()->SetOrigin(shape->GetDrawable()->getGeometricCenter());
+	owner->SetOrigin(shape->GetDrawable()->getGeometricCenter());
 }
 
 void UStaticMeshComponent::RenderMesh(RenderWindow& _window)

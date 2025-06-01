@@ -64,16 +64,17 @@ void AActor::Construct()
 	displayName = level->GetActorManager().GetAvailableName(name);
 	SetActive(true);
 
-	for (UComponent* _component : components)
+	/*for (UComponent* _component : components)
 	{
 		_component->Construct();
-	}
+	}*/
  }
 
 void AActor::Deconstruct()
 {
 	for (UComponent* _component : components)
 	{
+		_component->SetActive(false);
 		_component->Deconstruct();
 	}
 
@@ -106,6 +107,7 @@ void AActor::BeginDestroy()
 {
 	for (UComponent* _component : components)
 	{
+		_component->SetActive(false);
 		_component->BeginDestroy();
 	}
 }
@@ -129,10 +131,11 @@ void AActor::SetName(const string& _name)
 	displayName = level->GetActorManager().GetDisplayName(this);
 }
 
-void AActor::CreateSocket(const string& _name, const TransformData& _transform, const AttachmentType& _type)
+AActor* AActor::CreateSocket(const string& _name, const TransformData& _transform, const AttachmentType& _type)
 {
 	AActor* _socket = level->SpawnActor<AActor>(_name, _transform);
 	AddChild(_socket, _type);
+	return _socket;
 }
 
 void AActor::Destroy()
@@ -143,7 +146,8 @@ void AActor::Destroy()
 void AActor::AddComponent(UComponent* _component)
 {
 	components.insert(_component);
-	_component->BeginPlay();
+	// TODO Change fait 2 fois BeginPlay
+	/*_component->BeginPlay();*/
 }
 
 void AActor::RemoveComponent(UComponent* _component)

@@ -1,6 +1,8 @@
 #include "Bounds.h"
 #include "StaticMeshComponent.h"
 #include "Actor.h"
+#include "Level.h"
+#include "MeshActor.h"
 
 BoundsData::BoundsData()
 {
@@ -50,11 +52,19 @@ CircleBoundsData::CircleBoundsData(const float _radius, const Vector2f& _positio
 Bounds::Bounds(BoundsData* _data)
 {
 	data = _data;
+	mesh = nullptr;
+}
+
+Bounds::Bounds(UStaticMeshComponent* _mesh)
+{
+	data = nullptr;
+	mesh = _mesh;
 }
 
 Bounds::Bounds(const Bounds& _bounds)
 {
 	data = _bounds.data;
+	mesh = nullptr;
 }
 
 
@@ -137,7 +147,8 @@ vector<Vector2f> Bounds::GetPoints(RectangleBoundsData* _data) const
 		Around(_data->position + _data->size / 2.0f, _data),
 		Around(_data->position - _data->size / 2.0f, _data),
 		Around(Vector2f(_data->position.x + _data->size.x / 2.0f, _data->position.y - _data->size.y / 2.0f), _data),
-		Around(Vector2f(_data->position.x - _data->size.x / 2.0f, _data->position.y + _data->size.y / 2.0f), _data)
+		Around(Vector2f(_data->position.x - _data->size.x / 2.0f, _data->position.y + _data->size.y / 2.0f), _data),
+		_data->GetLocation(),
 	};
 }
 
@@ -152,6 +163,8 @@ vector<Vector2f> Bounds::GetPoints(CircleBoundsData* _data) const
 	{
 		_finalVector.push_back(Around(_firstPoint, 360.0f / _pointsUse * (float)_index, _data));
 	}
+
+	//_finalVector.push_back(_data->GetLocation());
 
 	return _finalVector;
 }
@@ -279,22 +292,32 @@ bool Bounds::CheckIfInAboveTheTopLeftTangent(const Vector2f& _point, const Vecto
 
 void Bounds::UpdateBounds(AActor* _actor)
 {
-	if (UStaticMeshComponent* _meshComponent = _actor->GetComponent<UStaticMeshComponent>())
+	if (!mesh)
 	{
-		const Vector2f& _pos = _meshComponent->GetOwner()->GetLocation();
-		if (_meshComponent->GetShape()->GetData().type == SOT_CIRCLE)
+		LOG(Warning, "Mesh is Nullptr");
+		if (UStaticMeshComponent* _mesh = _actor->GetComponent<UStaticMeshComponent>())
 		{
-			const float _radius = _meshComponent->GetShape()->GetData().data.circleData->radius;
-			const u_int& _pointCount = CAST(u_int, _meshComponent->GetShape()->GetData().data.circleData->pointCount);
-			SetBoundsData(new CircleBoundsData(_radius, _pos, _pointCount));
+			mesh = _mesh;
 		}
-		if (_meshComponent->GetShape()->GetData().type == SOT_RECTANGLE)
+		else
 		{
-
-			const Vector2f& _size = _meshComponent->GetShape()->GetData().data.rectangleData->size;
-			const Angle& _rotation = _meshComponent->GetOwner()->GetRotation();
-			SetBoundsData(new RectangleBoundsData({ _pos, _size }, _rotation));
+			LOG(Warning, "Actor has no Mesh");
+			return;
 		}
+	}
+	
+	const Vector2f& _pos = mesh->GetOwner()->GetLocation();
+	if (mesh->GetShape()->GetData().type == SOT_CIRCLE)
+	{
+		const float _radius = mesh->GetShape()->GetData().data.circleData->radius;
+		const u_int& _pointCount = CAST(u_int, mesh->GetShape()->GetData().data.circleData->pointCount);
+		SetBoundsData(new CircleBoundsData(_radius, _pos, _pointCount));
+	}
+	if (mesh->GetShape()->GetData().type == SOT_RECTANGLE)
+	{
+		const Vector2f& _size = mesh->GetShape()->GetData().data.rectangleData->size;
+		const Angle& _rotation = mesh->GetOwner()->GetRotation();
+		SetBoundsData(new RectangleBoundsData({ _pos, _size }, _rotation));
 	}
 }
 

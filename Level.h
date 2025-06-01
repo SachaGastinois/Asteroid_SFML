@@ -174,7 +174,7 @@ protected:
 	virtual void InitLevel();
 
 public:
-	void Update(const float _deltaTime);
+	virtual void Update(const float _deltaTime);
 	virtual void Load();
 	virtual void Unload();
 };

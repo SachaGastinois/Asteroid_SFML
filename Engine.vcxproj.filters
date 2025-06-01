@@ -435,7 +435,7 @@
     <ClCompile Include="Singleton.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuLevel.cpp">
+    <ClCompile Include="TESTLevel.cpp">
       <Filter>Asteroid</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPawn.cpp">
@@ -444,14 +444,38 @@
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClassicModeLevel.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Asteroid</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityLevel.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ClassicModeLevel.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Asteroid</Filter>
     </ClCompile>
     <ClCompile Include="LeaderBoardManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeComponent.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuLevel.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMovementComponent.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootComponent.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="UFO.cpp">
+      <Filter>Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityLevel.cpp">
+      <Filter>Asteroid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -698,7 +722,7 @@
     <ClInclude Include="SizeType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuLevel.h">
+    <ClInclude Include="TESTLevel.h">
       <Filter>Asteroid</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPawn.h">
@@ -707,17 +731,50 @@
     <ClInclude Include="MovementComponent.h">
       <Filter>Asteroid</Filter>
     </ClInclude>
-    <ClInclude Include="ClassicModeLevel.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Asteroid</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityLevel.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ClassicModeLevel.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Asteroid</Filter>
     </ClInclude>
     <ClInclude Include="LeaderBoardManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeComponent.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuLevel.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovementComponent.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootComponent.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="UFO.h">
+      <Filter>Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityLevel.h">
+      <Filter>Asteroid</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODOList.txt" />
+    <Text Include="Changements.txt">
+      <Filter>Asteroid</Filter>
+    </Text>
+    <Text Include="TODO.txt">
+      <Filter>Asteroid</Filter>
+    </Text>
   </ItemGroup>
 </Project>

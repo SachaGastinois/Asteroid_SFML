@@ -40,6 +40,12 @@ public:
 		if (!current) return;
 		current->Stop();
 	}
+	FORCEINLINE void SwitchCurrentAnimation(Animation* _animation)
+	{
+		StopAnimation();
+		SetCurrentAnimation(_animation);
+		StartAnimation();
+	}
 	FORCEINLINE virtual UComponent* Clone(AActor* _owner) const override
 	{
 		return new UAnimationComponent(_owner, *this);
@@ -51,5 +57,7 @@ public:
 	~UAnimationComponent();
 
 	void AddAnimation(Animation* _animation);
+	Animation* AddAnimation(const vector<SpriteData>& _spriteData, const float _duration,
+		const string& _name, ShapeObject* _shapeObject);
 	void AddAnimations(const vector<Animation*>& _animations);
 };

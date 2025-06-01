@@ -1,20 +1,35 @@
 #include "PlayerPawn.h"
 #include "StaticMeshComponent.h"
-#include "MovementComponent.h"
+#include "PlayerMovementComponent.h"
+#include "CollisionComponent.h"
+#include "AnimationComponent.h"
 #include "CameraComponent.h"
+#include "ShootComponent.h"
+#include "LifeComponent.h"
+#include "Asteroid.h"
+#include "UFO.h"
+#include "Bounds.h"
 #include "Level.h"
+#include "Projectile.h"
 
 using namespace Input;
 using namespace Camera;
 
 APlayerPawn::APlayerPawn(Level* _level, const string& _name) : APawn(_level, _name)
 {
-	mesh = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(Vector2f(50.0f, 50.0f)));
-	movement = CreateDefaultSubobject<UMovementComponent>();
-	camera = CreateDefaultSubobject<Camera::UCameraComponent>();
+	meshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
+			Vector2f(50.0f, 50.0f), "Player/SpaceShipSpriteSheet", PNG));
+	hitBoxMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
+			Vector2f(50.0f, 50.0f), "Utility/Transparent", PNG));
+	animationComponent = CreateDefaultSubobject<UAnimationComponent>();
+	collisionComponent = CreateDefaultSubobject<UCollisionComponent>(hitBoxMeshComponent, "Player", IS_ALL, CT_BLOCK);
+	movementComponent = CreateDefaultSubobject<UPlayerMovementComponent>();
+	shootComponent = CreateDefaultSubobject<UShootComponent>();
+	lifeComponent = CreateDefaultSubobject<ULifeComponent>(FLifeData(5, 3, [&]() { OnDeath(); }));
 
-	mesh->SetupAttachment(root);
-	camera->SetupAttachment(root);
+	meshComponent->SetupAttachment(root);
+	hitBoxMeshComponent->SetupAttachment(root);
+	animationComponent->SetupAttachment(root);
 }
 
 APlayerPawn::APlayerPawn(const APlayerPawn& _other) : APawn(_other)
@@ -26,7 +41,7 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-
+	Init();
 }
 
 void APlayerPawn::Tick(const float _deltaTime)
@@ -38,14 +53,237 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 {
 	ActionMap* _action = _inputManager.CreateActionMap("Movement");
 
-	_action->AddAction(new Action("Forward", ActionData(ActionType::KeyHold, Z), 
-		[&]() { movement->MoveForward(); }));
-	_action->AddAction(new Action("Backward", ActionData(ActionType::KeyHold, S),
-		[&]() { movement->MoveBackward(); }));
+	////////////////////////////////////////////////////////////
+	///
+	/// Forward Inputs
+	///
+	////////////////////////////////////////////////////////////
+
+	_action->AddAction(new Action("ForwardHold", ActionData(ActionType::KeyHold, Z), 
+		[&]() { 
+			movementComponent->ComputeAcceleration();
+		}));
+	_action->AddAction(new Action("ForwardPressed", ActionData(ActionType::KeyPressed, Z),
+		[&]() {
+			animationComponent->SwitchCurrentAnimation(animations["Forward"]);
+		}));
+	_action->AddAction(new Action("ForwardReleased", ActionData(ActionType::KeyReleased, Z), 
+		[&]() { 
+			animationComponent->SwitchCurrentAnimation(animations["Idle"]);
+		}));
+
+
+
+	////////////////////////////////////////////////////////////
+	///
+	/// Left / Right Inputs
+	///
+	////////////////////////////////////////////////////////////
+
 	_action->AddAction(new Action("Left", ActionData(ActionType::KeyHold, Q),
-		[&]() { movement->MoveLeft(); }));
+		[&]() { 
+			movementComponent->Rotate(-10.0f);
+		}));
 	_action->AddAction(new Action("Right", ActionData(ActionType::KeyHold, D),
-		[&]() { movement->MoveRight(); }));
+		[&]() { 
+			movementComponent->Rotate(10.0f);
+		}));
+	
+
+	////////////////////////////////////////////////////////////
+	///
+	/// Shoot
+	///
+	////////////////////////////////////////////////////////////
+
+	_action->AddAction(new Action("SpaceBarShoot", ActionData(ActionType::KeyPressed, Space),
+		[&]() { 
+			shootComponent->Shoot();
+		}));
+	_action->AddAction(new Action("SKeyShoot", ActionData(ActionType::KeyPressed, S),
+		[&]() { 
+			shootComponent->Shoot();
+		}));
+
 
 	_action->Enable();
+}
+
+void APlayerPawn::Init()
+{
+	upgradeStageData = FUpgradeStageData();
+
+	SetZOrder(2);
+	GetLevel()->GetCameraManager().SetZOrder(meshComponent->GetRenderMeshToken(), zOrder);
+
+
+	spriteSize = Vector2i(56, 45);
+
+	meshComponent->SetOriginAtMiddle();
+
+	SetupSockets();
+
+	UpdateShootStage();
+
+	SetupAnimations();
+
+	SetupCollisions();
+
+}
+
+void APlayerPawn::SetupSockets()
+{
+	vector<FSocketData> _sockets;
+
+	const vector<Vector2f>& _relativeLocs =
+	{
+		{ 20.0f, 0.0f },  // canon haut
+		{ 10.0f, -15.0f }, // canon gauche
+		{ 10.0f, 15.0f }  // canon droit
+	};
+
+	const int _size = static_cast<int>(_relativeLocs.size());
+	for (int _index = 0; _index < _size; _index++)
+	{
+		AActor* _socket = GetLevel()->SpawnActor<AActor>("Socket");
+		_sockets.push_back(FSocketData(_socket, _relativeLocs[_index]));
+	}
+
+	shootComponent->SetSockets(_sockets);
+}
+
+
+void APlayerPawn::UpdateShootStage()
+{
+	vector<FSocketData>& _sockets = shootComponent->GetSockets();
+	if (upgradeStageData.shootUpradeStage == 0)
+	{
+		_sockets[0].isActive = true;
+		_sockets[1].isActive = false;
+		_sockets[2].isActive = false;
+	}
+	else if (upgradeStageData.shootUpradeStage == 1)
+	{
+		_sockets[0].isActive = false;
+		_sockets[1].isActive = true;
+		_sockets[2].isActive = true;
+	}
+	else if (upgradeStageData.shootUpradeStage == 2)
+	{
+		_sockets[0].isActive = true;
+		_sockets[1].isActive = true;
+		_sockets[2].isActive = true;
+	}
+}
+
+void APlayerPawn::SetupAnimations()
+{
+	////////////////////////////////////////////////////////////
+	///
+	/// Idle Animation
+	///
+	////////////////////////////////////////////////////////////
+
+	const vector<SpriteData>& _idleAnimationSpritesData =
+	{
+		SpriteData(Vector2i(0, 0), spriteSize),
+	};
+	Animation* _idleAnim = animationComponent->AddAnimation(_idleAnimationSpritesData, 0.0f, "Idle", meshComponent->GetShape());
+	animations.insert(pair<string, Animation*>("Idle", _idleAnim));
+	animationComponent->SetCurrentAnimation(animations["Idle"]);
+
+
+
+	////////////////////////////////////////////////////////////
+	///
+	/// Forward Animation
+	///
+	////////////////////////////////////////////////////////////
+
+	const vector<SpriteData>& _forwardAnimationSpritesData =
+	{
+		SpriteData(Vector2i(0, 45), spriteSize),
+		SpriteData(Vector2i(0, 90), spriteSize),
+		SpriteData(Vector2i(0, 135), spriteSize),
+	};
+	Animation* _forwardAnim = animationComponent->AddAnimation(_forwardAnimationSpritesData, 0.2f, "Forward", meshComponent->GetShape());
+	animations.insert(pair<string, Animation*>("Forward", _forwardAnim));
+
+
+
+	////////////////////////////////////////////////////////////
+	///
+	/// Shoot Animation
+	///
+	////////////////////////////////////////////////////////////
+
+	// TODO Shoot Animation
+
+
+
+	animationComponent->StartAnimation();
+}
+
+void APlayerPawn::SetupCollisions()
+{
+	collisionComponent->SetInformation("Player", IS_ALL, CT_BLOCK);
+	collisionComponent->AddResponses({ {"Player", CT_NONE} });
+	collisionComponent->AddResponses({ {"UFO", CT_BLOCK} });
+	collisionComponent->AddResponses({ {"Asteroid", CT_BLOCK} });
+	collisionComponent->AddResponses({ {"Projectile", CT_BLOCK} });
+
+	collisionComponent->GetBounds()->SetBoundsData(new RectangleBoundsData(GetLocation(), {50.0f,50.0f}, degrees(0.0f)));
+}
+
+void APlayerPawn::OnDeath()
+{
+	LOG(Warning, "Joueur est Mort");
+}
+
+void APlayerPawn::CollisionEnter(const CollisionData& _data)
+{
+	Super::CollisionEnter(_data);
+
+	if (_data.channelName == "Projectile")
+	{
+		if (AProjectile* _projectile = Cast<AProjectile>(_data.other))
+		{
+			if (_projectile->GetIsPlayerProjectile()) return;
+
+			_projectile->GetLife()->RemoveLife();
+		}
+	}
+	else if (_data.channelName == "Asteroid")
+	{
+		if (AAsteroid* _asteroid = Cast<AAsteroid>(_data.other))
+		{
+			_asteroid->GetLife()->RemoveLife();
+			//GetLevel<>()->AddPoint(_asteroid->GetPoint());
+		}
+	}
+	else if (_data.channelName == "UFO")
+	{
+		if (AUFO* _ufo = Cast<AUFO>(_data.other))
+		{
+			_ufo->GetLife()->RemoveLife();
+			//GetLevel<>()->AddPoint(_ufo->GetPoint());
+		}
+	}
+
+
+	//LOG(Warning, "CollisionEnter");
+}
+
+void APlayerPawn::CollisionExit(const CollisionData& _data)
+{
+	Super::CollisionExit(_data);
+
+	//LOG(Error, "CollisionExit");
+}
+
+void APlayerPawn::CollisionUpdate(const CollisionData& _data)
+{
+	Super::CollisionUpdate(_data);
+
+	//LOG(Display, "CollisionUpdate");
 }

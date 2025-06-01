@@ -37,6 +37,17 @@ void UAnimationComponent::AddAnimation(Animation* _animation)
 	}
 }
 
+Animation* UAnimationComponent::AddAnimation(const vector<SpriteData>& _spriteData, const float _duration, const string& _name, ShapeObject* _shapeObject)
+{
+	const AnimationData& _data = AnimationData(_duration, _spriteData);
+
+	Animation* _anim = new Animation(_name, _shapeObject, _data);
+
+	AddAnimation(_anim);
+
+	return _anim;
+}
+
 void UAnimationComponent::AddAnimations(const vector<Animation*>& _animations)
 {
 	const u_int& _animationsCount = CAST(u_int, _animations.size());
