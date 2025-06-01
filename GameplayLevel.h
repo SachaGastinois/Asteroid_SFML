@@ -7,7 +7,7 @@
 class UGameplayLevel : public UUtilityLevel
 {
 
-protected:
+public:
 	UI::ACanvasWidget* pauseCanvas;
 	UI::ACanvasWidget* gameplayCanvas;
 	UI::ACanvasWidget* ugradeCanvss;

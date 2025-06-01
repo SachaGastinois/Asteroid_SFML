@@ -20,6 +20,7 @@ public:
 
 protected:
 	virtual void InitLevel() override;
+	virtual void Update(const float _deltaTime) override;
 
 	void InitMainMenu(HUD* _hud);
 	void InitOptionMenu(HUD* _hud);

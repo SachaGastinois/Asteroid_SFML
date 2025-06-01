@@ -33,6 +33,8 @@ void UMainMenuLevel::InitLevel()
 
 	windowSize = GetWindowSize();
 
+	GetCameraManager().GetCurrent()->SetLocation({ 0.0f, 0.0f });
+
 	HUD* _hud = GetGameMode()->GetHUD();
 	
 	mainMenuCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("MainMenuCanvas");
@@ -52,6 +54,13 @@ void UMainMenuLevel::InitLevel()
 	OpenMenu(mainMenuCanvas, mainMenuCanvas);
 
 	InitMainMenuTheme();
+}
+
+void UMainMenuLevel::Update(const float _deltaTime)
+{
+	Super::Update(_deltaTime);
+
+	GetCameraManager().GetCurrent()->SetActive(true);
 }
 
 void UMainMenuLevel::InitMainMenu(HUD* _hud)
@@ -434,7 +443,11 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/Utility/ButtonsFrame", _classicModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
 	AButtonWidget* _classicModeButton = InitButtonAndLabelData(_hud, startCanvas, _classicModeData);
-	_classicModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ClassicModeLevel"); });
+	_classicModeButton->BindOnClickAction([&]() 
+	{ 
+		OpenMenu(mainMenuCanvas, startCanvas); 
+		M_LEVEL.SetLevel("ClassicModeLevel"); 
+	});
 
 
 	//////////////////////////

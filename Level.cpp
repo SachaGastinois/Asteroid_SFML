@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 #include "GameMode.h"
+#include "MainMenuLevel.h"
 
 Level::Level(const string& _name)
 {
@@ -55,6 +56,13 @@ void Level::Load()
 		isLoaded = true;
 	}
 
+	set<AActor*> _actors = GetActorManager().GetAllActors();
+
+	for (AActor* _actor : _actors)
+	{
+		_actor->SetActive(true);
+	}
+
 	window.setVisible(true);
 	// Changement BeginPlay Individuelle à chaque Création d'Actor
 	//actorManager.BeginPlay();
@@ -62,6 +70,12 @@ void Level::Load()
 
 void Level::Unload()
 {
+	set<AActor*> _actors = GetActorManager().GetAllActors();
+
+	for (AActor* _actor : _actors)
+	{
+		_actor->SetActive(false);
+	}
 	window.setVisible(false);
 	window.clear();
 	actorManager.BeginDestroy();

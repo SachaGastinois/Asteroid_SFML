@@ -118,6 +118,7 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
 			{
 				if (_level->GetIsPause()) return;
+
 				_level->GetGameMode()->GetHUD()->AddToViewport(_level->GetPauseCanvas());
 				_level->GetPauseCanvas()->SetVisibility(VisibilityType::Visible);
 				_level->SetIsPause(true);

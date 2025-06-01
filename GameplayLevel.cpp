@@ -53,6 +53,8 @@ void UGameplayLevel::Update(const float _deltaTime)
 {
 	Super::Update(_deltaTime);
 
+	GetCameraManager().GetCurrent()->SetActive(true);
+
 	set<AActor*> _actors = GetActorManager().GetAllActors();
 
 	for (AActor* _actor : _actors)
@@ -89,6 +91,7 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	_pauseResumeButton->BindOnClickAction([&]() 
 	{
 		if (!isPause) return;
+
 		GetGameMode()->GetHUD()->RemoveFromViewport(pauseCanvas);
 		pauseCanvas->SetVisibility(VisibilityType::Hidden);
 
@@ -105,7 +108,16 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 		"Widgets/Utility/ButtonsFrame", _pauseMainMenuLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
 
 	AButtonWidget* _pauseMainMenuButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseMainMenuData);
-	_pauseMainMenuButton->BindOnClickAction([&]() { M_LEVEL.SetLevel("MainMenuLevel"); });
+	_pauseMainMenuButton->BindOnClickAction([&]() 
+	{ 
+		if (!isPause) return;
+		
+		GetGameMode()->GetHUD()->RemoveFromViewport(pauseCanvas);
+		pauseCanvas->SetVisibility(VisibilityType::Hidden);
+
+		isPause = false;
+		M_LEVEL.SetLevel("MainMenuLevel"); 
+	});
 
 	//////////////////////////
 	///		Quit

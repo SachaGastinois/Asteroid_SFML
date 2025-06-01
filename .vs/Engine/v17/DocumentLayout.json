@@ -3,44 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:MainMenuLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Level.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Level.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\CameraManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:CameraManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:GameplayLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:ClassicModeLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:HUD.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\PlayerPawn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:PlayerPawn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:GameplayLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:UtilityLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:UtilityLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:UtilityLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:MainMenuLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:ClassicModeLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:ClassicModeLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\StaticMeshComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:StaticMeshComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Actor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -51,16 +59,28 @@
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Actor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:MainMenuLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Actor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:GameplayLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:HUD.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:ClassicModeLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|solutionrelative:Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13C3FFD1-73DC-4024-9C2F-A03397E49E1F}|Engine.vcxproj|C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\PlayerPawn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -78,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,15 +106,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HUD.cpp",
-              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp",
-              "RelativeDocumentMoniker": "HUD.cpp",
-              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp",
-              "RelativeToolTip": "HUD.cpp",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAewBoAAAADAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "CameraManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\CameraManager.cpp",
+              "RelativeDocumentMoniker": "CameraManager.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\CameraManager.cpp",
+              "RelativeToolTip": "CameraManager.cpp",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAwwFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-01T11:03:10.936Z",
+              "WhenOpened": "2025-06-01T13:15:12.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Level.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Level.cpp",
+              "RelativeDocumentMoniker": "Level.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Level.cpp*",
+              "RelativeToolTip": "Level.cpp*",
+              "ViewState": "AgIAACQAAAAAAAAAAAAIwDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T13:10:50.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Component.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Component.cpp",
+              "RelativeDocumentMoniker": "Component.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Component.cpp",
+              "RelativeToolTip": "Component.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T13:08:16.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Actor.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.cpp",
+              "RelativeDocumentMoniker": "Actor.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.cpp",
+              "RelativeToolTip": "Actor.cpp",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAwE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T13:07:26.143Z",
               "EditorCaption": ""
             },
             {
@@ -118,9 +177,36 @@
               "RelativeDocumentMoniker": "Actor.h",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Actor.h",
               "RelativeToolTip": "Actor.h",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAvwFYAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAFYBAAAAAAAAAAAwwG0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-01T10:32:01.629Z"
+              "WhenOpened": "2025-06-01T10:32:01.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainMenuLevel.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp",
+              "RelativeDocumentMoniker": "MainMenuLevel.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp",
+              "RelativeToolTip": "MainMenuLevel.cpp",
+              "ViewState": "AgIAAKsBAAAAAAAAAAAAAL8BAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T10:22:12.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StaticMeshComponent.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\StaticMeshComponent.cpp",
+              "RelativeDocumentMoniker": "StaticMeshComponent.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\StaticMeshComponent.cpp",
+              "RelativeToolTip": "StaticMeshComponent.cpp",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T13:06:11.28Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -130,14 +216,27 @@
               "RelativeDocumentMoniker": "PlayerPawn.cpp",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\PlayerPawn.cpp",
               "RelativeToolTip": "PlayerPawn.cpp",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAH4AAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAAAHoAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-01T10:26:17.121Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
+              "Title": "HUD.cpp",
+              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp",
+              "RelativeDocumentMoniker": "HUD.cpp",
+              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\HUD.cpp",
+              "RelativeToolTip": "HUD.cpp",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwCwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T11:03:10.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Projectile.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Projectile.cpp",
               "RelativeDocumentMoniker": "Projectile.cpp",
@@ -150,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TESTLevel.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.cpp",
               "RelativeDocumentMoniker": "TESTLevel.cpp",
@@ -163,39 +262,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainMenuLevel.cpp",
-              "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp",
-              "RelativeDocumentMoniker": "MainMenuLevel.cpp",
-              "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.cpp*",
-              "RelativeToolTip": "MainMenuLevel.cpp*",
-              "ViewState": "AgIAALcBAAAAAAAAAAAAAMEBAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-01T10:22:12.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "ClassicModeLevel.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.cpp",
               "RelativeDocumentMoniker": "ClassicModeLevel.cpp",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.cpp",
               "RelativeToolTip": "ClassicModeLevel.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-01T10:22:11.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GameplayLevel.cpp",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.cpp",
               "RelativeDocumentMoniker": "GameplayLevel.cpp",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.cpp",
               "RelativeToolTip": "GameplayLevel.cpp",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAQwG8AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-01T10:38:48.822Z",
               "EditorCaption": ""
@@ -208,7 +294,7 @@
               "RelativeDocumentMoniker": "UtilityLevel.cpp",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.cpp",
               "RelativeToolTip": "UtilityLevel.cpp",
-              "ViewState": "AgIAABUAAAAAAAAAAAAcwDAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-01T10:22:41.029Z",
               "EditorCaption": ""
@@ -217,24 +303,24 @@
         },
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 16,
               "Title": "GameplayLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.h",
               "RelativeDocumentMoniker": "GameplayLevel.h",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\GameplayLevel.h",
               "RelativeToolTip": "GameplayLevel.h",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAgwCoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-01T10:37:20.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 18,
               "Title": "ClassicModeLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\ClassicModeLevel.h",
               "RelativeDocumentMoniker": "ClassicModeLevel.h",
@@ -242,25 +328,24 @@
               "RelativeToolTip": "ClassicModeLevel.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-01T10:22:11.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T10:22:11.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "UtilityLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.h",
               "RelativeDocumentMoniker": "UtilityLevel.h",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\UtilityLevel.h",
               "RelativeToolTip": "UtilityLevel.h",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAC4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-01T10:22:58.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "TESTLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\TESTLevel.h",
               "RelativeDocumentMoniker": "TESTLevel.h",
@@ -272,20 +357,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "MainMenuLevel.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.h",
               "RelativeDocumentMoniker": "MainMenuLevel.h",
               "ToolTip": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\MainMenuLevel.h",
               "RelativeToolTip": "MainMenuLevel.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-01T10:22:13.144Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "Projectile.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\Projectile.h",
               "RelativeDocumentMoniker": "Projectile.h",
@@ -293,12 +378,11 @@
               "RelativeToolTip": "Projectile.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-01T10:26:12.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T10:26:12.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "PlayerPawn.h",
               "DocumentMoniker": "C:\\Users\\Sacha\\Documents\\GitHub\\Asteroid_SFML_NewEngine\\PlayerPawn.h",
               "RelativeDocumentMoniker": "PlayerPawn.h",
