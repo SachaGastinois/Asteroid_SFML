@@ -5,7 +5,7 @@ UI::CheckBoxWidget::CheckBoxWidget(Level* _level, const float _size, const strin
 								 : ButtonWidget(_level, RectangleShapeData(Vector2f(_size, _size), "White"), _name, _type)
 {
 	isChecked = false;
-	checkImage = hud->SpawnWidget<ImageWidget>(RectangleShapeData(Vector2f(_size, _size), "CheckMark"), "CheckImage", _type);
+	checkImage = hud->SpawnWidget<AImageWidget>(RectangleShapeData(Vector2f(_size, _size), "CheckMark"), "CheckImage", _type);
 	checkImage->SetZOrder(zOrder + 1);
 }
 

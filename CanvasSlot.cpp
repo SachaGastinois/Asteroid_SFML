@@ -10,7 +10,7 @@ UI::CanvasSlot::CanvasSlot(PanelWidget* _parent, Widget* _content) : Slot(_paren
 
 void UI::CanvasSlot::UpdateContent()
 {
-	if (ImageWidget* _image = Cast<ImageWidget>(content))
+	if (AImageWidget* _image = Cast<AImageWidget>(content))
 	{
 		_image->SetSizeToContent(fillToContent);
 	}

@@ -18,10 +18,10 @@ void TESTLevel::InitLevel()
 
 	HUD* _hud = GetGameMode()->GetHUD();
 
-	UI::CanvasWidget* canvas = _hud->SpawnWidget<UI::CanvasWidget>();
+	UI::ACanvasWidget* canvas = _hud->SpawnWidget<UI::ACanvasWidget>();
 	canvas->SetSize(CAST(Vector2f, GetWindowSize()));
 
-	ImageWidget* _image = _hud->SpawnWidget<ImageWidget>(CircleShapeData(50.0f));
+	AImageWidget* _image = _hud->SpawnWidget<AImageWidget>(CircleShapeData(50.0f));
 	canvas->AddChild(_image);
 
 	AActor* _actor = SpawnActor<APlayerPawn>();

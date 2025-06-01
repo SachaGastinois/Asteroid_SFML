@@ -14,13 +14,13 @@ namespace UI
 		PT_COUNT
 	};
 
-	class ProgressBarWidget : public ImageWidget
+	class ProgressBarWidget : public AImageWidget
 	{
 		float currentValue;
 		float maxValue;
 		Vector2f size;
 		ProgressType type;
-		ImageWidget* foreground;
+		AImageWidget* foreground;
 
 	public:
 		FORCEINLINE virtual void SetLocation(const Vector2f& _position) override
@@ -111,7 +111,7 @@ namespace UI
 		{
 			return maxValue;
 		}
-		FORCEINLINE ImageWidget* GetForeground() const
+		FORCEINLINE AImageWidget* GetForeground() const
 		{
 			return foreground;
 		}

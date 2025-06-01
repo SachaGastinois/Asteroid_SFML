@@ -4,7 +4,7 @@
 
 namespace UI
 {
-	class GIFWidget : public ImageWidget
+	class AGIFWidget : public AImageWidget
 	{
 		UAnimationComponent* animation;
 
@@ -19,9 +19,9 @@ namespace UI
 		}
 
 	public:
-		GIFWidget(Level* _level, const RectangleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
-		GIFWidget(Level* _level, const CircleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
-		GIFWidget(const GIFWidget& _other);
+		AGIFWidget(Level* _level, const RectangleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
+		AGIFWidget(Level* _level, const CircleShapeData& _data, const string& _name = "Image", const RenderType& _type = Screen);
+		AGIFWidget(const AGIFWidget& _other);
 
 		virtual void BeginPlay() override;
 	};

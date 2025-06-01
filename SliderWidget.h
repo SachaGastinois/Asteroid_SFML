@@ -11,7 +11,7 @@ namespace UI
 		float minValue;
 		float maxValue;
 		float step;
-		ImageWidget* sliderBar;
+		AImageWidget* sliderBar;
 		ButtonWidget* sliderButton;
 
 	public:
@@ -115,7 +115,7 @@ namespace UI
 		{
 			return sliderButton;
 		}
-		FORCEINLINE ImageWidget* GetSliderBar() const
+		FORCEINLINE AImageWidget* GetSliderBar() const
 		{
 			return sliderBar;
 		}

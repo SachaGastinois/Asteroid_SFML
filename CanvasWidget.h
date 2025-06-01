@@ -4,7 +4,7 @@
 
 namespace UI
 {
-	class CanvasWidget : public PanelWidget
+	class ACanvasWidget : public PanelWidget
 	{
 	public:
 		FORCEINLINE virtual bool AddChild(Widget* _widget) override
@@ -24,7 +24,7 @@ namespace UI
 		}
 
 	public:
-		CanvasWidget(Level* _level, const string& _name = "Canvas", const RenderType& _type = Screen);
+		ACanvasWidget(Level* _level, const string& _name = "Canvas", const RenderType& _type = Screen);
 
 	public:
 		virtual void Construct() override;
@@ -33,7 +33,7 @@ namespace UI
 }
 
 ///////////////////////////////////////
-///			CanvasWidget TUTO		///
+///			ACanvasWidget TUTO		///
 ///////////////////////////////////////
 //
 // Step 1	: Create Widget you want to add to the Canvas (Image, Label, ect...)

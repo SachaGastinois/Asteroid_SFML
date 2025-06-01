@@ -29,11 +29,11 @@ void CUSTOMLevel::InitLevel()
 
 	HUD* _hud = GetGameMode()->GetHUD();
 
-	canvas = _hud->SpawnWidget<CanvasWidget>();
+	canvas = _hud->SpawnWidget<ACanvasWidget>();
 	canvas->SetDebugMode(true);
 	canvas->SetSize(CAST(Vector2f, GetWindowSize()));
 
-	GIFWidget* _gif = _hud->SpawnWidget<GIFWidget>(RectangleShapeData(GetWindowSize(), "SpriteSheet_Main_Menu_Loop"));
+	AGIFWidget* _gif = _hud->SpawnWidget<AGIFWidget>(RectangleShapeData(GetWindowSize(), "SpriteSheet_Main_Menu_Loop"));
 	canvas->AddChild(_gif);
 	_gif->SetZOrder(0);
 
