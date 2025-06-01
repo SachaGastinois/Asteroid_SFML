@@ -2,6 +2,8 @@
 
 #include "Component.h"
 
+class SoundSample;
+
 class UPlayerMovementComponent : public UComponent
 {
 	bool canMove;
@@ -17,10 +19,16 @@ class UPlayerMovementComponent : public UComponent
 	Vector2f velocity;
 	Vector2f direction;
 
+	SoundSample* sample;
+
 public:
 	FORCEINLINE void SetCanMove(const bool _canMove)
 	{
 		canMove = _canMove;
+	}
+	FORCEINLINE SoundSample* GetSample()
+	{
+		return sample;
 	}
 	FORCEINLINE virtual UComponent* Clone(AActor* _owner) const override
 	{

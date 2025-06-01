@@ -21,6 +21,11 @@ AUFO::AUFO(Level* _level, const string& _meshPath, const string& _name, const Tr
 
 	speed = 100.0f;
 	direction = Vector2f();
+
+	shootTimer = 2.5f;
+	currentShootTime = 2.5f;
+	directionTimer = 5.0f;
+	currentDirectionTime = 5.0f;
 }
 
 AUFO::AUFO(const AUFO& _other) : AEntity(_other)
@@ -40,9 +45,6 @@ void AUFO::Construct()
 void AUFO::Deconstruct()
 {
 	Super::Deconstruct();
-
-	shootTimer->Stop();
-	directionTimer->Stop();
 }
 
 void AUFO::BeginPlay()
@@ -57,6 +59,9 @@ void AUFO::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 
 	Move(_deltaTime);
+
+	UpdateShootTime(_deltaTime);
+	UpdateDirectionTime(_deltaTime);
 }
 
 void AUFO::BeginDestroy()
@@ -75,12 +80,6 @@ void AUFO::Init()
 	SetupAnimations();
 
 	SetupSocket();
-
-	shootComponent->Shoot();
-	shootTimer = new Timer([&]() { shootComponent->Shoot(); }, seconds(2.5f), true, true);
-
-	ComputeDirection();
-	directionTimer = new Timer([&]() { ComputeDirection(); }, seconds(5.0f), true, true);
 
 }
 
@@ -173,4 +172,26 @@ void AUFO::CollisionEnter(const CollisionData& _data)
 	}
 
 	//LOG(Warning, "CollisionEnter");
+}
+
+void AUFO::UpdateShootTime(const float _deltaTime)
+{
+	currentShootTime += _deltaTime;
+
+	if (currentShootTime >= shootTimer)
+	{
+		currentShootTime = 0.0f;
+		shootComponent->Shoot();
+	}
+}
+
+void AUFO::UpdateDirectionTime(const float _deltaTime)
+{
+	currentDirectionTime += _deltaTime;
+
+	if (currentDirectionTime >= directionTimer)
+	{
+		currentDirectionTime = 0.0f;
+		ComputeDirection();
+	}
 }

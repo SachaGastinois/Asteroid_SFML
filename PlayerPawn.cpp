@@ -67,10 +67,12 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 		}));
 	_action->AddAction(new Action("ForwardPressed", ActionData(ActionType::KeyPressed, Z),
 		[&]() {
+			movementComponent->GetSample()->Play();
 			animationComponent->SwitchCurrentAnimation(animations["Forward"]);
 		}));
 	_action->AddAction(new Action("ForwardReleased", ActionData(ActionType::KeyReleased, Z), 
 		[&]() { 
+			movementComponent->GetSample()->Stop();
 			animationComponent->SwitchCurrentAnimation(animations["Idle"]);
 		}));
 
@@ -263,6 +265,9 @@ void APlayerPawn::OnDeath()
 	if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
 	{
 		SetActive(false);
+
+		SetCanShoot(false);
+
 		lifeComponent->SetCanBeAttacked(false);
 
 		_level->SetIsPause(true);

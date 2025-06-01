@@ -16,10 +16,14 @@ struct FSocketData
 	}
 };
 
+class SoundSample;
+
 class UShootComponent : public UComponent
 {
 	vector<FSocketData> sockets;
 	int upgradeStage;
+
+	SoundSample* sample;
 
 public:
 	FORCEINLINE void SetSockets(const vector<FSocketData>& _sockets)

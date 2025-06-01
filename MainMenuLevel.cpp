@@ -11,6 +11,8 @@
 #include "GIFWidget.h"
 #include "LeaderBoardManager.h"
 #include "MusicSample.h"
+#include "SliderWidget.h"
+#include "AudioManager.h"
 
 using namespace UI;
 
@@ -54,6 +56,8 @@ void UMainMenuLevel::InitLevel()
 	OpenMenu(mainMenuCanvas, mainMenuCanvas);
 
 	InitMainMenuTheme();
+
+	backgroundTheme->SetVolume(5.0f);
 }
 
 void UMainMenuLevel::Update(const float _deltaTime)
@@ -163,8 +167,21 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 	_title->SetLocation(Vector2f(windowSize.x / 2.0f, windowSize.y * 0.1f));
 	_title->SetZOrder(1);
 
-
 	optionCanvas->AddChild(_title);
+
+
+
+	/*SliderWidget* _slideBar = _hud->SpawnWidget<SliderWidget>("OptionTitleLabel", Screen);
+	_slideBar->SetMinValue(0.0f);
+	_slideBar->SetMaxValue(100.0f);
+	_slideBar->SetOriginAtMiddle();
+	_slideBar->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.5f));
+	_slideBar->SetScale(Vector2f(10.0f, 1.0f));
+	_slideBar->SetZOrder(2);
+	_slideBar->GetButton()->BindOnReleaseAction([&]() { GetAudioManager().SetVolume(_slideBar->GetValue()); });*/
+
+	//optionCanvas->AddChild(_slideBar);
+
 
 	//////////////////////////
 	///		Back

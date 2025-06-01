@@ -2,6 +2,8 @@
 
 #include "Component.h"
 
+class SoundSample;
+
 struct FLifeData
 {
 	int maxLife;
@@ -20,6 +22,8 @@ struct FLifeData
 class ULifeComponent : public UComponent
 {
 	FLifeData data;
+	SoundSample* explosionSample;
+	SoundSample* hitSample;
 
 	bool canBeAttacked;
 	float currentTime;

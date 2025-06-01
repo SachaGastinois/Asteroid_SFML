@@ -44,6 +44,8 @@ void UGameplayLevel::InitLevel()
 	player = SpawnActor<APlayerPawn>();
 
 	InitGameplayTheme();
+
+	backgroundTheme->SetVolume(5.0f);
 }
 
 void UGameplayLevel::Update(const float _deltaTime)
@@ -416,4 +418,7 @@ void UGameplayLevel::Reset()
 			_actor->SetToDelete();
 		}
 	}
+
+	GetGameMode()->GetHUD()->RemoveFromViewport(gameOverCanvas);
+	gameOverCanvas->SetVisibility(VisibilityType::Hidden);
 }

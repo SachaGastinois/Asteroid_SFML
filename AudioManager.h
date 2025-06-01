@@ -19,6 +19,13 @@ public:
 	{
 		allSamples.insert(make_pair(_sample->GetPath(), _sample));
 	}
+	FORCEINLINE void SetVolume(const float _volume)
+	{
+		for (pair<string, Sample*> _samplePair : allSamples)
+		{
+			_samplePair.second->SetVolume(_volume);
+		}
+	}
 	FORCEINLINE Sample* GetAvailable(const string& _finalPath)
 	{
 		using Iterator = multimap<string, Sample*>::iterator;

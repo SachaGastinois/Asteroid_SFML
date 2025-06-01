@@ -25,6 +25,10 @@ UShootComponent::UShootComponent(AActor* _owner, const UShootComponent& _other) 
 void UShootComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	sample = owner->GetLevel()->SpawnActor<SoundSample>("ShootEffect.mp3");
+	owner->GetLevel()->GetAudioManager().RegisterSample(sample);
+	sample->SetVolume(5.0f);
 }
 
 void UShootComponent::Tick(const float _deltaTime)
@@ -89,6 +93,8 @@ void UShootComponent::Shoot()
 		if (!_projectile) return;
 		
 		_projectile->SetLocation(_socket.socket->GetLocation());
+		sample->SetLoop(false);
+		sample->Play();
 	}
 }
 

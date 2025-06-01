@@ -236,4 +236,7 @@ void UChronoModeLevel::Reset()
 	player->SetActive(true);
 
 	player->SetLocation(GetWindowSize() / 2.0f);
+
+	GetGameMode()->GetHUD()->RemoveFromViewport(timesUpCanvas);
+	timesUpCanvas->SetVisibility(VisibilityType::Hidden);
 }

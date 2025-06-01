@@ -3,6 +3,9 @@
 #include "PlayerPawn.h"
 #include "TimerManager.h"
 #include "StaticMeshComponent.h"
+#include "AudioManager.h"
+#include "SoundSample.h"
+#include "Level.h"
 
 UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(_owner)
 {
@@ -43,6 +46,11 @@ void UPlayerMovementComponent::BeginPlay()
 	}, seconds(0.25f), true, true);
 
 	owner->SetRotation(Angle(degrees(currentAngle)));
+
+	sample = owner->GetLevel()->SpawnActor<SoundSample>("SpaceShipMoving.mp3");
+	sample->SetLoop(false);
+	owner->GetLevel()->GetAudioManager().RegisterSample(sample);
+	sample->SetVolume(5.0f);
 }
 
 void UPlayerMovementComponent::Tick(const float _deltaTime)
@@ -52,11 +60,13 @@ void UPlayerMovementComponent::Tick(const float _deltaTime)
 	Move(_deltaTime);
 
 	//LOG(Display, to_string(currentAngle));
+
 }
 
 void UPlayerMovementComponent::Move(const float _deltaTime)
 {
 	if (!owner || !canMove) return;
+
 
 	deltaTime = _deltaTime;
 

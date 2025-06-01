@@ -3,17 +3,19 @@
 #include "Entity.h"
 
 class UShootComponent;
+class SoundSample;
 
 class AUFO : public AEntity
 {
 	float speed;
 	Vector2f direction;
 
-	Timer<Seconds>* shootTimer;
-	Timer<Seconds>* directionTimer;
+	float shootTimer;
+	float currentShootTime;
+	float directionTimer;
+	float currentDirectionTime;
 
 	UShootComponent* shootComponent;
-
 
 public:
 	FORCEINLINE Vector2f GetDirection() const { return direction; }
@@ -42,5 +44,8 @@ protected:
 	virtual void OnDeath() override;
 
 	virtual void CollisionEnter(const CollisionData& _data) override;
+
+	void UpdateShootTime(const float _deltaTime);
+	void UpdateDirectionTime(const float _deltaTime);
 };
 

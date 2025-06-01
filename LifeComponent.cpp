@@ -2,6 +2,7 @@
 #include "ClassicModeLevel.h"
 #include "UFO.h"
 #include "Asteroid.h"
+#include "AudioManager.h"
 
 ULifeComponent::ULifeComponent(AActor* _owner, const FLifeData& _data) : UComponent(_owner)
 {
@@ -22,6 +23,15 @@ ULifeComponent::ULifeComponent(AActor* _owner, const ULifeComponent& _other) : U
 void ULifeComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	explosionSample = owner->GetLevel()->SpawnActor<SoundSample>("Explosion.mp3");
+	owner->GetLevel()->GetAudioManager().RegisterSample(explosionSample);
+	explosionSample->SetVolume(5.0f);
+
+	hitSample = owner->GetLevel()->SpawnActor<SoundSample>("PlayerHurt.mp3");
+	owner->GetLevel()->GetAudioManager().RegisterSample(hitSample);
+	hitSample->SetVolume(5.0f);
+
 
 }
 
@@ -72,6 +82,11 @@ void ULifeComponent::RemoveLife()
 	}
 	if (data.currentLife <= 0)
 	{
+		explosionSample->Play();
 		data.onDeathCallback();
+	}
+	else
+	{
+		hitSample->Play();
 	}
 }
