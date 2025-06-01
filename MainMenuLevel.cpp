@@ -83,7 +83,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const FButtonAndLabelData& _playData = FButtonAndLabelData("PLAY", "PlayLabel", "PlayButton", "Widgets/Utility/ButtonsFrame", _playLocation,
 		_size, _fontData, 25, 2);
 
-	ButtonWidget* _playButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _playData);
+	AButtonWidget* _playButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _playData);
 	_playButton->BindOnClickAction([&]() { OpenMenu(startCanvas, mainMenuCanvas); });
 
 	//////////////////////////
@@ -95,7 +95,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const FButtonAndLabelData& _leaderBoardData = FButtonAndLabelData("LEADERBOARD", "LeaderBoardLabel", "LeaderBoardButton",
 		"Widgets/Utility/ButtonsFrame", _leaderBoardLocation, { 200.0f, 60.0f }, _fontData, 15, 2);
 
-	ButtonWidget* _leaderBoardButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _leaderBoardData);
+	AButtonWidget* _leaderBoardButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _leaderBoardData);
 	_leaderBoardButton->BindOnClickAction([&]() { OpenMenu(leaderBoardCanvas, mainMenuCanvas); });
 
 	//////////////////////////
@@ -107,7 +107,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const FButtonAndLabelData& _creditData = FButtonAndLabelData("CREDIT", "CreditLabel", "CreditButton",
 		"Widgets/Utility/ButtonsFrame", _creditLocation, { 150.0f, 60.0f }, _fontData, 15, 2);
 
-	ButtonWidget* _creditButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _creditData);
+	AButtonWidget* _creditButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _creditData);
 	_creditButton->BindOnClickAction([&]() { OpenMenu(creditCanvas, mainMenuCanvas); });
 
 	//////////////////////////
@@ -119,7 +119,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const FButtonAndLabelData& _optionData = FButtonAndLabelData("OPTION", "OptionLabel", "OptionButton",
 		"Widgets/Utility/ButtonsFrame", _optionLocation, _size, _fontData, 25, 2);
 
-	ButtonWidget* _optionButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _optionData);
+	AButtonWidget* _optionButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _optionData);
 	_optionButton->BindOnClickAction([&]() { OpenMenu(optionCanvas, mainMenuCanvas); });
 
 	//////////////////////////
@@ -131,7 +131,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 	const FButtonAndLabelData& _quitData = FButtonAndLabelData("QUIT", "QuitLabel", "QuitButton",
 		"Widgets/Utility/ButtonsFrame", _quitLocation, _size, _fontData, 25, 2);
 
-	ButtonWidget* _quitButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _quitData);
+	AButtonWidget* _quitButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _quitData);
 	_quitButton->BindOnClickAction([&]() { window.close(); });
 
 	mainMenuCanvas->SetVisibility(VisibilityType::Hidden);
@@ -166,7 +166,7 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackOptionLabel", "BackOptionButton",
 		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, optionCanvas, _backData);
+	AButtonWidget* _backButton = InitButtonAndLabelData(_hud, optionCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, optionCanvas); });
 
 	optionCanvas->SetVisibility(VisibilityType::Hidden);
@@ -228,7 +228,7 @@ void UMainMenuLevel::InitLeaderBoardMenu(HUD* _hud)
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackLeaderBoardLabel", "BackLeaderBoardButton",
 		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, leaderBoardCanvas, _backData);
+	AButtonWidget* _backButton = InitButtonAndLabelData(_hud, leaderBoardCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, leaderBoardCanvas); });
 
 	leaderBoardCanvas->SetVisibility(VisibilityType::Hidden);
@@ -420,7 +420,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackStartLabel", "BackStartButton",
 		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, startCanvas, _backData);
+	AButtonWidget* _backButton = InitButtonAndLabelData(_hud, startCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); });
 
 
@@ -433,7 +433,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	const FButtonAndLabelData& _classicModeData = FButtonAndLabelData("CLASSIC MODE", "ClassicModeStartLabel", "ClassicModeStartButton",
 		"Widgets/Utility/ButtonsFrame", _classicModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
-	ButtonWidget* _classicModeButton = InitButtonAndLabelData(_hud, startCanvas, _classicModeData);
+	AButtonWidget* _classicModeButton = InitButtonAndLabelData(_hud, startCanvas, _classicModeData);
 	_classicModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ClassicModeLevel"); });
 
 
@@ -446,7 +446,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	const FButtonAndLabelData& _chronoModeData = FButtonAndLabelData("CHRONO MODE", "ChronoModeStartLabel", "ChronoModeStartButton",
 		"Widgets/Utility/ButtonsFrame", _chronoModeLocation, { 500.0f, 150.0f }, _fontData, 40, 2);
 
-	ButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
+	AButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
 	_chronoModeButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, startCanvas); M_LEVEL.SetLevel("ChronoModeLevel"); });
 
 
@@ -550,7 +550,7 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 	const FButtonAndLabelData& _backData = FButtonAndLabelData("BACK", "BackCreditLabel", "BackCreditButton",
 		"Widgets/Utility/ButtonsFrame", _backLocation, { 150.0f, 50.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _backButton = InitButtonAndLabelData(_hud, creditCanvas, _backData);
+	AButtonWidget* _backButton = InitButtonAndLabelData(_hud, creditCanvas, _backData);
 	_backButton->BindOnClickAction([&]() { OpenMenu(mainMenuCanvas, creditCanvas); });
 
 	creditCanvas->SetVisibility(VisibilityType::Hidden);

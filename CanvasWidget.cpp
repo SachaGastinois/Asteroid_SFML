@@ -8,12 +8,8 @@ UI::ACanvasWidget::ACanvasWidget(Level* _level, const string& _name, const Rende
 UI::ACanvasWidget::~ACanvasWidget()
 {
 
-<<<<<<< HEAD
-=======
 }
 
-
->>>>>>> UI
 void UI::ACanvasWidget::Construct()
 {
 	Super::Construct();

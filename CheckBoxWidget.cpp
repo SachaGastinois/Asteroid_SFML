@@ -2,7 +2,7 @@
 #include "Level.h"
 
 UI::CheckBoxWidget::CheckBoxWidget(Level* _level, const float _size, const string& _name, const RenderType& _type)
-								 : ButtonWidget(_level, RectangleShapeData(Vector2f(_size, _size), "White"), _name, _type)
+								 : AButtonWidget(_level, RectangleShapeData(Vector2f(_size, _size), "White"), _name, _type)
 {
 	isChecked = false;
 	checkImage = hud->SpawnWidget<AImageWidget>(RectangleShapeData(Vector2f(_size, _size), "CheckMark"), "CheckImage", _type);

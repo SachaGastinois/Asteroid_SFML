@@ -70,7 +70,7 @@ void UClassicModeLevel::InitPauseMenu(HUD* _hud)
 	const FButtonAndLabelData& _pauseResumeData = FButtonAndLabelData("RESUME", "PauseResumeLabel", "PauseResumeButton", "Widgets/Utility/ButtonsFrame",
 		_pauseResumeLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _pauseResumeButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseResumeData);
+	AButtonWidget* _pauseResumeButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseResumeData);
 	_pauseResumeButton->BindOnClickAction([&]() { LOG(Display, "Resume"); });
 
 	//////////////////////////
@@ -82,7 +82,7 @@ void UClassicModeLevel::InitPauseMenu(HUD* _hud)
 	const FButtonAndLabelData& _pauseMainMenuData = FButtonAndLabelData("RETURN TO MAIN", "PauseMainMenuLabel", "PauseMainMenuButton",
 		"Widgets/Utility/ButtonsFrame", _pauseMainMenuLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _pauseMainMenuButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseMainMenuData);
+	AButtonWidget* _pauseMainMenuButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseMainMenuData);
 	_pauseMainMenuButton->BindOnClickAction([&]() { M_LEVEL.SetLevel("MainMenuLevel"); });
 
 	//////////////////////////
@@ -94,7 +94,7 @@ void UClassicModeLevel::InitPauseMenu(HUD* _hud)
 	const FButtonAndLabelData& _pauseQuitData = FButtonAndLabelData("QUIT TO DESKTOP", "PauseQuitLabel", "PauseQuitButton",
 		"Widgets/Utility/ButtonsFrame", _pauseQuitLocation, { 400.0f, 60.0f }, _fontData, 25, 2);
 
-	ButtonWidget* _pauseQuitButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseQuitData);
+	AButtonWidget* _pauseQuitButton = InitButtonAndLabelData(_hud, pauseCanvas, _pauseQuitData);
 	_pauseQuitButton->BindOnClickAction([&]() { window.close(); });
 
 	//////////////////////////

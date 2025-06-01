@@ -14,7 +14,7 @@ namespace UI
 		vector<function<void(const Vector2f&)>> onDragActions;
 	};
 
-	class ButtonWidget : public AImageWidget
+	class AButtonWidget : public AImageWidget
 	{
 		bool isPressed;
 		bool isHovered;
@@ -27,7 +27,7 @@ namespace UI
 			return image->GetShape()->GetDrawable()->getGlobalBounds();
 		}
 
-		#pragma region ButtonWidget
+		#pragma region AButtonWidget
 		FORCEINLINE void SetIsHovered(const bool _isHovered) 
 		{ 
 			isHovered = _isHovered; 
@@ -68,7 +68,7 @@ namespace UI
 		#pragma endregion
 
 	public:
-		ButtonWidget(Level* _level, const RectangleShapeData& _data, const string _name = "Button", const RenderType& _renderType = Screen);
+		AButtonWidget(Level* _level, const RectangleShapeData& _data, const string _name = "Button", const RenderType& _renderType = Screen);
 
 	public:
 		virtual void OnClick();

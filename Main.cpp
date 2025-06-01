@@ -20,7 +20,7 @@ int main()
 	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
 	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
 
-	M_LEVEL.SetLevel("ClassicModeLevel");
+	M_LEVEL.SetLevel("MainMenuLevel");
 
 	Engine _engine;
 	_engine.Start();

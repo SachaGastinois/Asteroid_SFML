@@ -3,7 +3,7 @@
 
 using namespace Input;
 
-UI::ButtonWidget::ButtonWidget(Level* _level, const RectangleShapeData& _data, const string _name, const RenderType& _renderType)
+UI::AButtonWidget::AButtonWidget(Level* _level, const RectangleShapeData& _data, const string _name, const RenderType& _renderType)
 							 : AImageWidget(_level, _data, _name, _renderType)
 {
 	isPressed = false;
@@ -13,7 +13,7 @@ UI::ButtonWidget::ButtonWidget(Level* _level, const RectangleShapeData& _data, c
 }
 
 
-void UI::ButtonWidget::OnClick()
+void UI::AButtonWidget::OnClick()
 {
 	if (visibility == Hidden) return;
 	for (function<void()>& _action : callbackData.get()->onClickActions)
@@ -22,7 +22,7 @@ void UI::ButtonWidget::OnClick()
 	}
 }
 
-void UI::ButtonWidget::OnRelease()
+void UI::AButtonWidget::OnRelease()
 {
 	if (visibility == Hidden) return;
 	for (function<void()>& _action : callbackData.get()->onRealeaseActions)
@@ -31,7 +31,7 @@ void UI::ButtonWidget::OnRelease()
 	}
 }
 
-void UI::ButtonWidget::OnHover()
+void UI::AButtonWidget::OnHover()
 {
 	if (visibility == Hidden) return;
 	if (!isHovered)
@@ -43,7 +43,7 @@ void UI::ButtonWidget::OnHover()
 	}
 }
 
-void UI::ButtonWidget::OnUnhover()
+void UI::AButtonWidget::OnUnhover()
 {
 	if (visibility == Hidden) return;
 	for (function<void()>& _action : callbackData.get()->onUnhoversActions)
@@ -52,7 +52,7 @@ void UI::ButtonWidget::OnUnhover()
 	}
 }
 
-void UI::ButtonWidget::OnDrag(const Vector2f& _mousePosition)
+void UI::AButtonWidget::OnDrag(const Vector2f& _mousePosition)
 {
 	if (!isPressed || visibility == Hidden) return;
 
@@ -62,13 +62,13 @@ void UI::ButtonWidget::OnDrag(const Vector2f& _mousePosition)
 	}
 }
 
-void UI::ButtonWidget::Render(RenderWindow& _window)
+void UI::AButtonWidget::Render(RenderWindow& _window)
 {
 	if (visibility == Hidden) return;
 	Super::Render(_window);
 }
 
-void UI::ButtonWidget::BindActions(Input::InputManager& _inputManager)
+void UI::AButtonWidget::BindActions(Input::InputManager& _inputManager)
 {
 	const string& _name = GetName();
 	LOG(Display, _name);

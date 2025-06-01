@@ -26,10 +26,7 @@ namespace UI
 
 	public:
 		ACanvasWidget(Level* _level, const string& _name = "Canvas", const RenderType& _type = Screen);
-<<<<<<< HEAD
-=======
 		~ACanvasWidget();
->>>>>>> UI
 
 	public:
 		virtual void Construct() override;

@@ -12,7 +12,7 @@ namespace UI
 		float maxValue;
 		float step;
 		AImageWidget* sliderBar;
-		ButtonWidget* sliderButton;
+		AButtonWidget* sliderButton;
 
 	public:
 		#pragma region Modifier
@@ -111,7 +111,7 @@ namespace UI
 		}
 		#pragma endregion
 
-		FORCEINLINE ButtonWidget* GetButton() const
+		FORCEINLINE AButtonWidget* GetButton() const
 		{
 			return sliderButton;
 		}

@@ -3,7 +3,7 @@
 
 namespace UI
 {
-	class CheckBoxWidget : public ButtonWidget
+	class CheckBoxWidget : public AButtonWidget
 	{
 		bool isChecked;
 		AImageWidget* checkImage;

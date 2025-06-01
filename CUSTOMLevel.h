@@ -9,11 +9,8 @@
 class CUSTOMLevel : public Level
 {
 	ACanvasWidget* canvas;
-<<<<<<< HEAD
-	LabelWidget* label;
-=======
+
 	ALabelWidget* label;
->>>>>>> UI
 	AImageWidget* image;
 
 public:
