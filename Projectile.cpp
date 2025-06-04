@@ -18,7 +18,7 @@ AProjectile::AProjectile(Level* _level, const string& _spriteSheetPath, const bo
 	: AEntity(_level, 0, FEntityData({ 30.0f, 28.0f }, 15.0f, _spriteSheetPath,
 	  FLifeData(1, 1, [&]() { OnDeath(); })), _name, _transform)
 {
-	speed = 200.0f;
+	speed = 500.0f;
 	isPlayerProjectile = _isPlayerProjectile;
 }
 

@@ -18,7 +18,7 @@ Level::Level(const string& _name)
 	audioManager = AudioManager();
 	gameMode = nullptr;
 
-	window.create(VideoMode({ 1920, 1080 }), GetName(), Style::None, State::Fullscreen);
+	window.create(VideoMode({ 1920, 1080 }), GetName(), Style::None, State::Windowed);
 	window.setVisible(false);
 	M_LEVEL.RegisterLevel(_name, this);
 }

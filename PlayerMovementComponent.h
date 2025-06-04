@@ -9,11 +9,16 @@ class UPlayerMovementComponent : public UComponent
 	bool canMove;
 
 	float deltaTime;
-	float rotateSpeed;
 
+	float rotateSpeed;
+	int degreesToRotate;
+	bool canRotate;
+	bool rotateLeft;
 	float currentAngle;
+
 	float friction;
 
+	bool canAccelerate;
 	Vector2f maxVelocity;
 	Vector2f acceleration;
 	Vector2f velocity;
@@ -25,6 +30,18 @@ public:
 	FORCEINLINE void SetCanMove(const bool _canMove)
 	{
 		canMove = _canMove;
+	}
+	FORCEINLINE void SetCanRotate(const bool _status)
+	{
+		canRotate = _status;
+	}
+	FORCEINLINE void SetCanAccelerate(const bool _status)
+	{
+		canAccelerate = _status;
+	}
+	FORCEINLINE void SetRotateLeft(const bool _status)
+	{
+		rotateLeft = _status;
 	}
 	FORCEINLINE SoundSample* GetSample()
 	{
@@ -65,7 +82,7 @@ private:
 
 public:
 	void Move(const float _deltaTime);
-	void Rotate(const float _degree);
+	void Rotate();
 	void UpdateDirection();
 	void ComputeAcceleration();
 };

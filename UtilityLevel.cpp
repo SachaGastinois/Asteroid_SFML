@@ -18,6 +18,7 @@ void UUtilityLevel::InitLevel()
 {
 	Super::InitLevel();
 
+	window.setMouseCursorVisible(true);
 }
 
 AButtonWidget* UUtilityLevel::InitButtonAndLabelData(HUD* _hud, UI::ACanvasWidget* _canva, const FButtonAndLabelData& _data)

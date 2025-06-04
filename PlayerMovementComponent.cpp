@@ -12,9 +12,13 @@ UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(
 	canMove = true;
 
 	deltaTime = 0.0f;
-	rotateSpeed = 30.0f;
 
+	rotateSpeed = 30.0f;
+	degreesToRotate = 10.0f;
+	canRotate = false;
+	rotateLeft = false;
 	currentAngle = 270.0f;
+
 	friction = 0.95f;
 
 	maxVelocity = Vector2f(0.5f, 0.5f);
@@ -57,8 +61,9 @@ void UPlayerMovementComponent::Tick(const float _deltaTime)
 {
 	Super::Tick(_deltaTime);
 
+	//ComputeAcceleration();
 	Move(_deltaTime);
-
+	Rotate();
 	//LOG(Display, to_string(currentAngle));
 
 }
@@ -79,9 +84,13 @@ void UPlayerMovementComponent::Move(const float _deltaTime)
 	owner->SetLocation(owner->GetLocation() + velocity);
 }
 
-void UPlayerMovementComponent::Rotate(const float _degree)
+void UPlayerMovementComponent::Rotate()
 {
-	currentAngle += _degree;
+	if (!canRotate) return;
+
+	const float _rotationFactor = rotateLeft ? -1.0f : 1.0f;
+
+	currentAngle += degreesToRotate * _rotationFactor * deltaTime * rotateSpeed;
 	if (currentAngle >= 360.0f)
 	{
 		currentAngle -= 360.0f;
@@ -103,6 +112,8 @@ void UPlayerMovementComponent::UpdateDirection()
 
 void UPlayerMovementComponent::ComputeAcceleration()
 {
+	if (!canAccelerate) return;
+
 	UpdateDirection();
 
 	acceleration.x += 0.5f;

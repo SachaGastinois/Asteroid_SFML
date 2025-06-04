@@ -84,13 +84,26 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 	///
 	////////////////////////////////////////////////////////////
 
-	_action->AddAction(new Action("Left", ActionData(ActionType::KeyHold, Q),
+
+	_action->AddAction(new Action("BeginLeft", ActionData(ActionType::KeyPressed, Q),
 		[&]() { 
-			movementComponent->Rotate(-10.0f);
+			movementComponent->SetCanRotate(true);
+			movementComponent->SetRotateLeft(true);
+			movementComponent->Rotate();
 		}));
-	_action->AddAction(new Action("Right", ActionData(ActionType::KeyHold, D),
+	_action->AddAction(new Action("EndLeft", ActionData(ActionType::KeyReleased, Q),
 		[&]() { 
-			movementComponent->Rotate(10.0f);
+			movementComponent->SetCanRotate(false);
+		}));
+	_action->AddAction(new Action("BeginRight", ActionData(ActionType::KeyPressed, D),
+		[&]() { 
+			movementComponent->SetCanRotate(true);
+			movementComponent->SetRotateLeft(false);
+			movementComponent->Rotate();
+		}));
+	_action->AddAction(new Action("EndRight", ActionData(ActionType::KeyReleased, D),
+		[&]() { 
+			movementComponent->SetCanRotate(false);
 		}));
 	
 
