@@ -24,15 +24,11 @@ void ULifeComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	explosionSample = owner->GetLevel()->SpawnActor<SoundSample>("Explosion.mp3");
-	owner->GetLevel()->GetAudioManager().RegisterSample(explosionSample);
+	explosionSample = owner->GetLevel()->SpawnSample<SoundSample>("Explosion");
 	explosionSample->SetVolume(5.0f);
 
-	hitSample = owner->GetLevel()->SpawnActor<SoundSample>("PlayerHurt.mp3");
-	owner->GetLevel()->GetAudioManager().RegisterSample(hitSample);
+	hitSample = owner->GetLevel()->SpawnSample<SoundSample>("PlayerHurt");
 	hitSample->SetVolume(5.0f);
-
-
 }
 
 void ULifeComponent::Tick(const float _deltaTime)

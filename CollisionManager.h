@@ -32,7 +32,7 @@ public:
 	}
 	FORCEINLINE bool ContainsPair(AActor* _owner, AActor* _other)
 	{
-		if (/*hasCollision.contains({ _owner, _other }) ||*/ hasCollision.contains({ _other ,_owner }))
+		if (/*hasCollision.find({ _owner, _other }) ||*/ hasCollision.find({ _other ,_owner }) != hasCollision.end())
 		{
 			return true;
 		}

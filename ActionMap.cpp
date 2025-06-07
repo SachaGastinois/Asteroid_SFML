@@ -19,7 +19,7 @@ Input::ActionMap::~ActionMap()
 void Input::ActionMap::AddAction(Action* _action)
 {
 	const string& _name = _action->GetName();
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action has same name (" + _name + ") than another in this ActionMap (" + name + ") !");
 		return;
@@ -33,7 +33,7 @@ void Input::ActionMap::AddAction(const string& _name, const ActionData& _data, c
 	assert(_data.value == Digital &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap ("+ name + ") !");
 		return;
@@ -47,7 +47,7 @@ void Input::ActionMap::AddAction(const string& _name, const ActionData& _data, c
 	assert(_data.value == Axis2 &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap (" + name + ") !");
 		return;
@@ -62,7 +62,7 @@ void Input::ActionMap::AddAction(const string& _name, const ActionData& _data, c
 	assert(_data.value == Axis &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap (" + name + ") !");
 		return;
@@ -78,7 +78,7 @@ void Input::ActionMap::AddAction(const string& _name, const vector<ActionData>& 
 	assert(_allData[0].value == Digital &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap (" + name + ") !");
 		return;
@@ -94,7 +94,7 @@ void Input::ActionMap::AddAction(const string& _name, const vector<ActionData>& 
 	assert(_allData[0].value == Axis2 &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap (" + name + ") !");
 		return;
@@ -111,7 +111,7 @@ void Input::ActionMap::AddAction(const string& _name, const vector<ActionData>& 
 	assert(_allData[0].value == Axis &&
 		"The callback must be a function with compatible parameter like ValueType return !");
 
-	if (actions.contains(_name))
+	if (actions.find(_name) != actions.end())
 	{
 		LOG(Error, "This Action's name (" + _name + ") already used in this ActionMap (" + name + ") !");
 		return;

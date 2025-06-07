@@ -20,8 +20,8 @@ UChronoModeLevel::UChronoModeLevel(const string& _levelName) : UGameplayLevel(_l
 {
 	currentTime = 0.0f;
 	baseTime = 150.0f;
-	currentSpawnTime = 15.0f;
-	spawnTime = 15.0f;
+	currentSpawnTime = 45.0f;
+	spawnTime = 45.0f;
 	isTimerRunning = true;
 }
 

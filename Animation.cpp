@@ -54,7 +54,7 @@ void Animation::Update()
 	++currentIndex;
 
 	map<u_int, function<void()>> _notifies = data.notifies;
-	if (_notifies.contains(currentIndex))
+	if (_notifies.find(currentIndex) != _notifies.end())
 	{
 		_notifies[currentIndex]();
 	}

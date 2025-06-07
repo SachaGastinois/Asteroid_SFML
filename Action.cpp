@@ -112,7 +112,7 @@ void Input::Action::TryToExecute(const EventInfo& _event)
 		{
 			const type_index& _elementType = TYPE_ID(_element);
 
-			if (allData.contains(_elementType))
+			if (allData.find(_elementType) != allData.end())
 			{
 #pragma region Keyboard
 

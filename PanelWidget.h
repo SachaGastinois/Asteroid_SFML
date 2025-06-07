@@ -115,10 +115,14 @@ namespace UI
 			return GetChildrenCount() > 0;
 		}
 
-		//Returns true if panel contains this widget
+		//Returns true if panel find this widget
 		FORCEINLINE bool HasChild(AWidget* _widget)
 		{
-			return GetChildren().contains(_widget);
+			if (GetChildren().find(_widget) != GetChildren().end())
+			{
+				return true;
+			}
+			return false;
 		}
 
 		//Removes a specific widget from the container.

@@ -54,7 +54,7 @@ vector<HitInfo> RaycastAll(const Vector2f& _origin, const Vector2f& _direction, 
 			Shape* _shape = _actor->();
 			if (Contains(_shape, _ignoredShapes)) continue;
 
-			if (_shape->getGlobalBounds().contains(_currentPosition))
+			if (_shape->getGlobalBounds().find(_currentPosition))
 			{
 				HitInfo _hitInfo;
 				_hitInfo.position = _currentPosition;

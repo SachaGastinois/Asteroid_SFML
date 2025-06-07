@@ -128,12 +128,12 @@ public:
 	//TODO move into AudioManager
 	#pragma region SpawnSample
 
-	template <typename Type = Sample, typename ...Args, IS_BASE_OF(Sample, Type)>
+	template <typename Type, typename ...Args, IS_BASE_OF(Sample, Type)>
 	FORCEINLINE Type* SpawnSample(const string& _path, const AudioExtensionType& _type = MP3,
 		const Time& _time = Time(), const Time& _duration = Time())
 	{
 		const string& _finalPath = _path + audioManager.GetExtension(_type);
-		Type* _sample = audioManager.GetAvailable(_finalPath);
+		Type* _sample = Cast<Type>(audioManager.GetAvailable(_finalPath));
 
 		if (_sample)
 		{
@@ -144,7 +144,7 @@ public:
 		_sample = SpawnActor<Type>(_finalPath);
 		audioManager.RegisterSample(_sample);
 		_sample->Stop();
-		audioManager.PlaySample(_sample, _time, _duration);
+		//audioManager.PlaySample(_sample, _time, _duration);
 		return _sample;
 	}
 

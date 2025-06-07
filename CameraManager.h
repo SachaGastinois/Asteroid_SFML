@@ -40,7 +40,7 @@ namespace Camera
 		}
 		FORCEINLINE void Unregister(const string& _displayName)
 		{
-			if (!allCameras.contains(_displayName)) return;
+			if (allCameras.find(_displayName) == allCameras.end()) return;
 
 			allCameras.erase(_displayName);
 			SetPreviousCurrent();
@@ -54,7 +54,7 @@ namespace Camera
 		}
 		FORCEINLINE void SetZOrder(const u_int& _uniqueId, const int _zOrder)
 		{
-			if (!allRendersData.contains(_uniqueId)) return;
+			if (allRendersData.find(_uniqueId) == allRendersData.end()) return;
 			const pair<Iterator, Iterator>& _results = allElements.equal_range(allRendersData.at(_uniqueId).zOrder);
 			for (Iterator _it = _results.first; _it != _results.second; ++_it)
 			{
@@ -99,7 +99,7 @@ namespace Camera
 		}
 		FORCEINLINE UCameraComponent* GetCameraByName(const string& _name) const
 		{
-			if (!allCameras.contains(_name)) return nullptr;
+			if (allCameras.find(_name) == allCameras.end()) return nullptr;
 			return allCameras.at(_name);
 		}
 

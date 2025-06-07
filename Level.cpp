@@ -18,8 +18,9 @@ Level::Level(const string& _name)
 	audioManager = AudioManager();
 	gameMode = nullptr;
 
-	window.create(VideoMode({ 1920, 1080 }), GetName(), Style::None, State::Windowed);
+	window.create(VideoMode({ 1920, 1080 }), GetName(), Style::None, State::Fullscreen);
 	window.setVisible(false);
+	window.setIcon(Image("Assets/Textures/Logo.png"));
 	M_LEVEL.RegisterLevel(_name, this);
 }
 
@@ -29,6 +30,7 @@ void Level::UpdateWindow()
 	window.clear();
 	cameraManager.Render(window, GetGameMode()->IsSplitScreen());
 	window.display();
+	window.setMouseCursorVisible(true);
 }
 
 void Level::InitLevel()

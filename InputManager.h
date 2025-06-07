@@ -18,7 +18,7 @@ namespace Input
 		}
 		FORCEINLINE void RemoveActionMap(const string& _name)
 		{
-			if (!actionsMaps.contains(_name)) return;
+			if (actionsMaps.find(_name) == actionsMaps.end()) return;
 
 			delete actionsMaps[_name];
 			actionsMaps.erase(_name);
@@ -26,15 +26,27 @@ namespace Input
 	public:
 		FORCEINLINE bool GetIsKeyHolding(const Key& _key) const
 		{
-			return keysIsHolding.contains(_key);
+			if(keysIsHolding.find(_key) != keysIsHolding.end())
+			{
+				return true;
+			}
+			return false;
 		}
 		FORCEINLINE bool GetIsMouseButtonHolding(const Button& _mouseButton) const
 		{
-			return mouseButtonsIsHolding.contains(_mouseButton);
+			if (mouseButtonsIsHolding.find(_mouseButton) != mouseButtonsIsHolding.end())
+			{
+				return true;
+			}
+			return false;
 		}
 		FORCEINLINE bool GetIsJoystickButtonHolding(const int _joystickId, const int _joystickButton) const
 		{
-			return joysticksButtonsIsHolding[_joystickId].contains(_joystickButton);
+			if (joysticksButtonsIsHolding[_joystickId].find(_joystickButton) != joysticksButtonsIsHolding[_joystickId].end())
+			{
+				return true;
+			}
+			return false;
 		}
 		FORCEINLINE map<string, ActionMap*>& GetActionMaps()
 		{
@@ -42,18 +54,18 @@ namespace Input
 		}
 		FORCEINLINE ActionMap* GetActionMapByName(const string& _name)
 		{
-			if (!actionsMaps.contains(_name)) return nullptr;
+			if (actionsMaps.find(_name) == actionsMaps.end()) return nullptr;
 			return actionsMaps.at(_name);
 		}
 		FORCEINLINE void DeleteActionMap(const string& _name)
 		{
-			if (!actionsMaps.contains(_name)) return;
+			if (actionsMaps.find(_name) == actionsMaps.end()) return;
 
 			actionsMaps[_name]->SetToDelete();
 		}
 		FORCEINLINE ActionMap* CreateActionMap(const string& _name)
 		{
-			if (actionsMaps.contains(_name))
+			if (actionsMaps.find(_name) != actionsMaps.end())
 			{
 				LOG(Error, "This ActionMap's name (" + _name + ") already used !");
 				return GetActionMapByName(_name);

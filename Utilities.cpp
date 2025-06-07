@@ -135,13 +135,13 @@ Vector2f SmoothDamp(const Vector2f& _current, Vector2f _target, Vector2f& _curre
     return { _outputX, _outputY };
 }
 
-vector<string> SplitString(const string& _string, const char _delimiter)
+std::vector<std::string> SplitString(const std::string& _string, const char _delimiter)
 {
-    vector<string> _result;
-    stringstream _ss = stringstream(_string);
-    string _item;
+    std::vector<std::string> _result;
+    std::stringstream _ss = std::stringstream(_string); // Pas besoin de `= stringstream(...)`
+    std::string _item;
 
-    while (getline(_ss, _item, _delimiter))
+    while (std::getline(_ss, _item, _delimiter))
     {
         _result.push_back(_item);
     }

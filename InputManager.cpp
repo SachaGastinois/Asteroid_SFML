@@ -55,7 +55,7 @@ void Input::InputManager::Update(RenderWindow& _window)
             for (int _keyIndex = 0; _keyIndex < Keyboard::KeyCount; _keyIndex++)
             {
                 const Key& _key = CAST(Key, _keyIndex);
-                if (Keyboard::isKeyPressed(_key) && !keysIsHolding.contains(_key))
+                if (Keyboard::isKeyPressed(_key) && keysIsHolding.find(_key) == keysIsHolding.end())
                 {
                     keysIsHolding.insert(_key);
                 }
@@ -66,7 +66,7 @@ void Input::InputManager::Update(RenderWindow& _window)
             for (int _keyIndex = 0; _keyIndex < Keyboard::KeyCount; _keyIndex++)
             {
                 const Key& _key = CAST(Key, _keyIndex);
-                if (!Keyboard::isKeyPressed(_key) && keysIsHolding.contains(_key))
+                if (!Keyboard::isKeyPressed(_key) && keysIsHolding.find(_key) != keysIsHolding.end())
                 {
                     keysIsHolding.erase(_key);
                 }
@@ -77,7 +77,7 @@ void Input::InputManager::Update(RenderWindow& _window)
             for (int _keyIndex = 0; _keyIndex < Mouse::ButtonCount; _keyIndex++)
             {
                 const Button& _mouseButton = CAST(Button, _keyIndex);
-                if (Mouse::isButtonPressed(_mouseButton) && !mouseButtonsIsHolding.contains(_mouseButton))
+                if (Mouse::isButtonPressed(_mouseButton) && mouseButtonsIsHolding.find(_mouseButton) == mouseButtonsIsHolding.end())
                 {
                     mouseButtonsIsHolding.insert(_mouseButton);
                 }
@@ -88,7 +88,7 @@ void Input::InputManager::Update(RenderWindow& _window)
             for (int _keyIndex = 0; _keyIndex < Mouse::ButtonCount; _keyIndex++)
             {
                 const Button& _mouseButton = CAST(Button, _keyIndex);
-                if (!Mouse::isButtonPressed(_mouseButton) && mouseButtonsIsHolding.contains(_mouseButton))
+                if (!Mouse::isButtonPressed(_mouseButton) && mouseButtonsIsHolding.find(_mouseButton) != mouseButtonsIsHolding.end())
                 {
                     mouseButtonsIsHolding.erase(_mouseButton);
                 }
@@ -102,7 +102,7 @@ void Input::InputManager::Update(RenderWindow& _window)
                 for (int _keyIndex = 0; _keyIndex < Joystick::ButtonCount; _keyIndex++)
                 {
                     if (Joystick::isButtonPressed(_joystickId, _keyIndex) &&
-                        !joysticksButtonsIsHolding[_joystickId].contains(_keyIndex))
+                        joysticksButtonsIsHolding[_joystickId].find(_keyIndex) == joysticksButtonsIsHolding[_joystickId].end())
                     {
                         joysticksButtonsIsHolding[_joystickId].insert(_keyIndex);
                     }
@@ -117,7 +117,7 @@ void Input::InputManager::Update(RenderWindow& _window)
                 for (int _keyIndex = 0; _keyIndex < Joystick::ButtonCount; _keyIndex++)
                 {
                     if (!Joystick::isButtonPressed(_joystickId, _keyIndex) &&
-                        joysticksButtonsIsHolding[_joystickId].contains(_keyIndex))
+                        joysticksButtonsIsHolding[_joystickId].find(_keyIndex) != joysticksButtonsIsHolding[_joystickId].end())
                     {
                         joysticksButtonsIsHolding[_joystickId].erase(_keyIndex);
                     }

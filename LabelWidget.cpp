@@ -12,10 +12,10 @@ UI::ALabelWidget::~ALabelWidget()
 }
 
 
-string UI::ALabelWidget::ComputeScoreText()
+std::string UI::ALabelWidget::ComputeScoreText()
 {
-	stringstream _ss;
-	_ss << setw(scoreMaxDigit) << setfill('0') << score;
+	std::stringstream _ss;
+	_ss << std::setw(scoreMaxDigit) << std::setfill('0') << score;
 
 	return _ss.str();
 }

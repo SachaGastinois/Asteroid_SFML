@@ -78,7 +78,7 @@ public:
 	}
 	FORCEINLINE void RemoveTimer(T* _timer)
 	{
-		if (!allTimers.contains(_timer)) return;
+		if (allTimers.find(_timer) == allTimers.end()) return;
 
 		_timer->Stop();
 		allTimers.erase(_timer);
@@ -139,21 +139,37 @@ public:
 			framesCount = 0;
 		}
 		
-		using Iterator = set<T*>::iterator;
-		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end(); )
+		for (T* _timer : allTimers)
 		{
-			T* _timer = *_iterator;
 			_timer->Update(deltaTime);
 
 			if (_timer->IsToDelete())
 			{
-				--_iterator;
 				RemoveTimer(_timer);
 				continue;
 			}
-
-			++_iterator;
 		}
+
+
+		//using Iterator = typename set<T*>::iterator;
+		//for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end(); )
+		//{
+		//	T* _timer = *_iterator;
+		//	_timer->Update(deltaTime);
+
+		//	if (_timer->IsToDelete())
+		//	{
+		//		if(_iterator != allTimers.begin())
+		//		{
+		//			--_iterator;
+		//		}
+
+		//		RemoveTimer(_timer);
+		//		continue;
+		//	}
+
+		//	++_iterator;
+		//}
 
 		return GetDeltaTime().asSeconds();
 	}

@@ -87,7 +87,7 @@ void Camera::UCameraManager::RenderAllWidgets(RenderWindow& _window, const vecto
 
 void Camera::UCameraManager::UnbindOnRenderWindow(const u_int& _uniqueId)
 {
-	if (!allRendersData.contains(_uniqueId)) return;
+	if (allRendersData.find(_uniqueId) == allRendersData.end()) return;
 
 	const int _zOrder = allRendersData.at(_uniqueId).zOrder;
 	const pair<Iterator, Iterator>& _results = allElements.equal_range(_zOrder);

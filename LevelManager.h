@@ -20,7 +20,7 @@ public:
 	}
 	FORCEINLINE bool SetLevel(const string& _name)
 	{
-		if (!allLevels.contains(_name))
+		if (allLevels.find(_name) == allLevels.end())
 		{
 			LOG(Fatal, "Level \"" + _name + "\" not found !");
 			return false;

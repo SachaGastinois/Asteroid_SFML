@@ -117,7 +117,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 
 	const Vector2f& _creditLocation = Vector2f(windowSize.x * 0.6f, windowSize.y * 0.9f);
 
-	const FButtonAndLabelData& _creditData = FButtonAndLabelData("CREDIT", "CreditLabel", "CreditButton",
+	const FButtonAndLabelData& _creditData = FButtonAndLabelData("CREDITS", "CreditLabel", "CreditButton",
 		"Widgets/Utility/ButtonsFrame", _creditLocation, { 150.0f, 60.0f }, _fontData, 15, 2);
 
 	AButtonWidget* _creditButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _creditData);
@@ -129,7 +129,7 @@ void UMainMenuLevel::InitMainMenu(HUD* _hud)
 
 	const Vector2f& _optionLocation = Vector2f(windowSize.x * 0.5f, windowSize.y * 0.8f);
 
-	const FButtonAndLabelData& _optionData = FButtonAndLabelData("OPTION", "OptionLabel", "OptionButton",
+	const FButtonAndLabelData& _optionData = FButtonAndLabelData("OPTIONS", "OptionLabel", "OptionButton",
 		"Widgets/Utility/ButtonsFrame", _optionLocation, _size, _fontData, 25, 2);
 
 	AButtonWidget* _optionButton = InitButtonAndLabelData(_hud, mainMenuCanvas, _optionData);
@@ -160,7 +160,7 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 
 	optionCanvas->SetSize(windowSize);
 
-	ALabelWidget* _title = _hud->SpawnWidget<ALabelWidget>("OPTION", "OptionTitleLabel", Screen);
+	ALabelWidget* _title = _hud->SpawnWidget<ALabelWidget>("OPTIONS", "OptionTitleLabel", Screen);
 	_title->SetCharacterSize(50);
 	_title->SetFont(_fontData.first, _fontData.second);
 	_title->SetOriginAtMiddle();
@@ -509,7 +509,7 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 
 	creditCanvas->SetSize(windowSize);
 
-	ALabelWidget* _title = _hud->SpawnWidget<ALabelWidget>("CREDIT", "CreditTitleLabel", Screen);
+	ALabelWidget* _title = _hud->SpawnWidget<ALabelWidget>("CREDITS", "CreditTitleLabel", Screen);
 	_title->SetCharacterSize(50);
 	_title->SetFont(_fontData.first, _fontData.second);
 	_title->SetOriginAtMiddle();
@@ -621,10 +621,9 @@ void UMainMenuLevel::InitBackgroundGIF(HUD* _hud)
 
 void UMainMenuLevel::InitMainMenuTheme()
 {
-	backgroundTheme = SpawnActor<MusicSample>("MainMenuTheme.mp3");
+	backgroundTheme = SpawnSample<MusicSample>("MainMenuTheme");
 	backgroundTheme->SetLoop(true);
-	GetAudioManager().RegisterSample(backgroundTheme);
-	GetAudioManager().PlaySample(backgroundTheme);
+	backgroundTheme->Play();
 }
 
 

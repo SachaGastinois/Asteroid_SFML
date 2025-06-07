@@ -188,7 +188,7 @@ public:
 	}
 	FORCEINLINE void RemoveChild(AActor* _child)
 	{
-		if (!_child || !children.contains(_child)) return;
+		if (!_child || children.find(_child) == children.end()) return;
 
 		_child->SetParent(nullptr);
 		children.erase(_child);

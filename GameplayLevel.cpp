@@ -45,7 +45,7 @@ void UGameplayLevel::InitLevel()
 
 	InitGameplayTheme();
 
-	backgroundTheme->SetVolume(5.0f);
+	backgroundTheme->SetVolume(1.0f);
 }
 
 void UGameplayLevel::Update(const float _deltaTime)
@@ -112,13 +112,13 @@ void UGameplayLevel::InitPauseMenu(HUD* _hud)
 	_pauseMainMenuButton->BindOnClickAction([&]() 
 	{ 
 		if (!isPause) return;
+		backgroundTheme->Stop();
 		
 		GetGameMode()->GetHUD()->RemoveFromViewport(pauseCanvas);
 		pauseCanvas->SetVisibility(VisibilityType::Hidden);
 
 		isPause = false;
 		M_LEVEL.SetLevel("MainMenuLevel"); 
-		backgroundTheme->Stop();
 		if (UMainMenuLevel* _level = Cast<UMainMenuLevel>(M_LEVEL.GetCurrentLevel()))
 		{
 			_level->backgroundTheme->Play();
@@ -266,7 +266,6 @@ void UGameplayLevel::InitGameOverCanvas(HUD* _hud)
 		}
 		
 		M_LEVEL.SetLevel("MainMenuLevel");
-		backgroundTheme->Stop();
 		if (UMainMenuLevel* _level = Cast<UMainMenuLevel>(M_LEVEL.GetCurrentLevel()))
 		{
 			_level->backgroundTheme->Play();
@@ -343,10 +342,9 @@ void UGameplayLevel::InitBackgroundGIF(HUD* _hud)
 
 void UGameplayLevel::InitGameplayTheme()
 {
-	backgroundTheme = SpawnActor<MusicSample>("GameplayTheme.mp3");
+	backgroundTheme = SpawnSample<MusicSample>("GameplayTheme");
 	backgroundTheme->SetLoop(true);
-	GetAudioManager().RegisterSample(backgroundTheme);
-	GetAudioManager().PlaySample(backgroundTheme);
+	backgroundTheme->Play();
 }
 
 void UGameplayLevel::SetLocationIfOutOfBoundes(AActor* _actor)

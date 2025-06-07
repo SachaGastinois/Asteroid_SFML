@@ -13,7 +13,7 @@ class UAnimationComponent : public UComponent
 public:
 	FORCEINLINE void SetCurrentAnimation(const string& _name)
 	{
-		if (!allAnimations.contains(_name)) return;
+		if (allAnimations.find(_name) == allAnimations.end()) return;
 		current = allAnimations[_name];
 	}
 	FORCEINLINE void SetCurrentAnimation(Animation* _animation)

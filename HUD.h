@@ -12,14 +12,14 @@ namespace UI
 	private:
 		FORCEINLINE void RegisterWidget(AWidget* _widget)
 		{
-			if (allWidgets.contains(_widget)) return;
+			if (allWidgets.find(_widget) != allWidgets.end()) return;
 
 			allWidgets.insert(_widget);
 			_widget->Register();
 		}
 		FORCEINLINE void UnregisterWidget(AWidget* _widget)
 		{
-			if (!allWidgets.contains(_widget)) return;
+			if (allWidgets.find(_widget) == allWidgets.end()) return;
 
 			allWidgets.erase(_widget);
 			_widget->Unregister();

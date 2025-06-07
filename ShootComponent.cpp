@@ -26,8 +26,7 @@ void UShootComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	sample = owner->GetLevel()->SpawnActor<SoundSample>("ShootEffect.mp3");
-	owner->GetLevel()->GetAudioManager().RegisterSample(sample);
+	sample = owner->GetLevel()->SpawnSample<SoundSample>("ShootEffect");
 	sample->SetVolume(5.0f);
 }
 

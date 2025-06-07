@@ -199,7 +199,7 @@ void UClassicModeLevel::OnWaveOver()
 	GetGameMode()->GetHUD()->AddToViewport(upgradeCanvas);
 	upgradeCanvas->SetVisibility(VisibilityType::Visible);
 
-	difficulty += 0.5f;
+	difficulty += 1.0f;
 }
 
 void UClassicModeLevel::SpawnAsteroid()

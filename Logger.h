@@ -49,7 +49,13 @@ public:
 private:
     void ComputeUseDebug(const VerbosityType& _type)
     {
-        useDebug = set<VerbosityType>({ Warning, Error }).contains(_type);
+        ;
+        if (set<VerbosityType>({ Warning, Error }).find(_type) != set<VerbosityType>({ Warning, Error }).end())
+        {
+            useDebug = true;
+            return;
+        }
+        useDebug = false;
     }
     void ComputeColor(const VerbosityType& _type)
     {

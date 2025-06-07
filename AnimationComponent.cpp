@@ -27,7 +27,7 @@ UAnimationComponent::~UAnimationComponent()
 void UAnimationComponent::AddAnimation(Animation* _animation)
 {
 	const string& _animationName = _animation->GetName();
-	if (allAnimations.contains(_animationName)) return;
+	if (allAnimations.find(_animationName) != allAnimations.end()) return;
 
 	allAnimations[_animationName] = _animation;
 

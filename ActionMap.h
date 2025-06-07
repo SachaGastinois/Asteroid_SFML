@@ -15,7 +15,7 @@ namespace Input
 	private:
 		FORCEINLINE void RemoveAction(const string& _name)
 		{
-			if (!actions.contains(_name)) return;
+			if (actions.find(_name) == actions.end()) return;
 
 			delete actions.at(_name);
 			actions.erase(_name);
@@ -34,7 +34,7 @@ namespace Input
 #pragma endregion
 		FORCEINLINE void DeleteAction(const string& _name)
 		{
-			if (!actions.contains(_name)) return;
+			if (actions.find(_name) == actions.end()) return;
 
 			actions[_name]->SetToDelete();
 		}

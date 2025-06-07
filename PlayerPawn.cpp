@@ -63,15 +63,17 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 
 	_action->AddAction(new Action("ForwardHold", ActionData(ActionType::KeyHold, Z), 
 		[&]() { 
-			movementComponent->ComputeAcceleration();
+			//movementComponent->ComputeAcceleration();
 		}));
 	_action->AddAction(new Action("ForwardPressed", ActionData(ActionType::KeyPressed, Z),
 		[&]() {
+			movementComponent->SetCanAccelerate(true);
 			movementComponent->GetSample()->Play();
 			animationComponent->SwitchCurrentAnimation(animations["Forward"]);
 		}));
 	_action->AddAction(new Action("ForwardReleased", ActionData(ActionType::KeyReleased, Z), 
 		[&]() { 
+			movementComponent->SetCanAccelerate(false);
 			movementComponent->GetSample()->Stop();
 			animationComponent->SwitchCurrentAnimation(animations["Idle"]);
 		}));
@@ -89,7 +91,6 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 		[&]() { 
 			movementComponent->SetCanRotate(true);
 			movementComponent->SetRotateLeft(true);
-			movementComponent->Rotate();
 		}));
 	_action->AddAction(new Action("EndLeft", ActionData(ActionType::KeyReleased, Q),
 		[&]() { 
@@ -99,7 +100,6 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 		[&]() { 
 			movementComponent->SetCanRotate(true);
 			movementComponent->SetRotateLeft(false);
-			movementComponent->Rotate();
 		}));
 	_action->AddAction(new Action("EndRight", ActionData(ActionType::KeyReleased, D),
 		[&]() { 
@@ -131,7 +131,7 @@ void APlayerPawn::SetupInputController(Input::InputManager& _inputManager)
 	///
 	////////////////////////////////////////////////////////////
 
-	_action->AddAction(new Action("Pause", ActionData(ActionType::KeyPressed, Escape),
+	_action->AddAction(new Action("Pause", ActionData(ActionType::KeyPressed, KeyType::Escape),
 		[&]() { 
 			if (UGameplayLevel* _level = Cast<UGameplayLevel>(GetLevel()))
 			{
@@ -244,18 +244,6 @@ void APlayerPawn::SetupAnimations()
 	};
 	Animation* _forwardAnim = animationComponent->AddAnimation(_forwardAnimationSpritesData, 0.2f, "Forward", meshComponent->GetShape());
 	animations.insert(pair<string, Animation*>("Forward", _forwardAnim));
-
-
-
-	////////////////////////////////////////////////////////////
-	///
-	/// Shoot Animation
-	///
-	////////////////////////////////////////////////////////////
-
-	// TODO Shoot Animation
-
-
 
 	animationComponent->StartAnimation();
 }

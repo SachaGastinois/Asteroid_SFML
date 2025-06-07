@@ -11,17 +11,16 @@ UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(
 {
 	canMove = true;
 
-	deltaTime = 0.0f;
-
 	rotateSpeed = 30.0f;
 	degreesToRotate = 10.0f;
 	canRotate = false;
 	rotateLeft = false;
 	currentAngle = 270.0f;
 
+	canAccelerate = false;
 	friction = 0.95f;
-
-	maxVelocity = Vector2f(0.5f, 0.5f);
+	accelerationFactor = 0.1f;
+	maxVelocity = Vector2f(1.0f, 1.0f);
 	acceleration = Vector2f();
 	velocity = Vector2f();
 	direction = Vector2f(0.0f, 0.0f);
@@ -32,7 +31,6 @@ UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner,
 {
 	canMove = _other.canMove;
 	velocity = _other.velocity;
-	deltaTime = _other.deltaTime;
 	friction = _other.friction;
 	currentAngle = _other.currentAngle;
 	maxVelocity = _other.maxVelocity;
@@ -51,29 +49,25 @@ void UPlayerMovementComponent::BeginPlay()
 
 	owner->SetRotation(Angle(degrees(currentAngle)));
 
-	sample = owner->GetLevel()->SpawnActor<SoundSample>("SpaceShipMoving.mp3");
-	sample->SetLoop(false);
-	owner->GetLevel()->GetAudioManager().RegisterSample(sample);
+	sample = owner->GetLevel()->SpawnSample<SoundSample>("SpaceShipMoving");
+	sample->SetLoop(true);
 	sample->SetVolume(5.0f);
+
+	UpdateDirection();
 }
 
 void UPlayerMovementComponent::Tick(const float _deltaTime)
 {
 	Super::Tick(_deltaTime);
 
-	//ComputeAcceleration();
+	ComputeAcceleration(_deltaTime);
 	Move(_deltaTime);
-	Rotate();
-	//LOG(Display, to_string(currentAngle));
-
+	Rotate(_deltaTime);
 }
 
 void UPlayerMovementComponent::Move(const float _deltaTime)
 {
 	if (!owner || !canMove) return;
-
-
-	deltaTime = _deltaTime;
 
 	if (velocity.x > maxVelocity.x) velocity.x = maxVelocity.x;
 	else if (velocity.x < -maxVelocity.x) velocity.x = -maxVelocity.x;
@@ -84,13 +78,13 @@ void UPlayerMovementComponent::Move(const float _deltaTime)
 	owner->SetLocation(owner->GetLocation() + velocity);
 }
 
-void UPlayerMovementComponent::Rotate()
+void UPlayerMovementComponent::Rotate(const float _deltaTime)
 {
 	if (!canRotate) return;
 
 	const float _rotationFactor = rotateLeft ? -1.0f : 1.0f;
 
-	currentAngle += degreesToRotate * _rotationFactor * deltaTime * rotateSpeed;
+	currentAngle += degreesToRotate * _rotationFactor * _deltaTime * rotateSpeed;
 	if (currentAngle >= 360.0f)
 	{
 		currentAngle -= 360.0f;
@@ -99,6 +93,8 @@ void UPlayerMovementComponent::Rotate()
 	{
 		currentAngle = 360.0f;
 	}
+
+	UpdateDirection();
 
 	owner->SetRotation(Angle(degrees(currentAngle)));
 }
@@ -110,16 +106,14 @@ void UPlayerMovementComponent::UpdateDirection()
 	direction.y = sin(_rad);
 }
 
-void UPlayerMovementComponent::ComputeAcceleration()
+void UPlayerMovementComponent::ComputeAcceleration(const float _deltaTime)
 {
 	if (!canAccelerate) return;
 
-	UpdateDirection();
-
-	acceleration.x += 0.5f;
-	acceleration.y += 0.5f;
+	acceleration.x += _deltaTime * accelerationFactor;
+	acceleration.y += _deltaTime * accelerationFactor;
 
 	// Calcul l'offset et le cap pour ne pas aller au dela de la vitesse max
-	velocity.x += direction.x * acceleration.x * deltaTime;
-	velocity.y += direction.y * acceleration.y * deltaTime;
+	velocity.x += direction.x * acceleration.x * _deltaTime;
+	velocity.y += direction.y * acceleration.y * _deltaTime;
 }

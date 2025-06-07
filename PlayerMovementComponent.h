@@ -8,17 +8,15 @@ class UPlayerMovementComponent : public UComponent
 {
 	bool canMove;
 
-	float deltaTime;
-
 	float rotateSpeed;
 	int degreesToRotate;
 	bool canRotate;
 	bool rotateLeft;
 	float currentAngle;
 
-	float friction;
-
 	bool canAccelerate;
+	float friction;
+	float accelerationFactor;
 	Vector2f maxVelocity;
 	Vector2f acceleration;
 	Vector2f velocity;
@@ -82,8 +80,8 @@ private:
 
 public:
 	void Move(const float _deltaTime);
-	void Rotate();
+	void Rotate(const float _deltaTime);
 	void UpdateDirection();
-	void ComputeAcceleration();
+	void ComputeAcceleration(const float _deltaTime);
 };
 

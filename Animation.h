@@ -34,6 +34,12 @@ struct LinkedAnimation
     {
         return !transition || transition();
     }
+
+    LinkedAnimation(const  function<bool()>& _transition, Animation* _animation)
+    {
+        transition = _transition;
+        animation = _animation;
+    }
 };
 
 struct AnimationData

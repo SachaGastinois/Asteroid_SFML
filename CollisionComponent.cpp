@@ -95,13 +95,13 @@ void UCollisionComponent::ComputeCollisions()
 		}
 
 		const string& _otherName = _otherComponent->GetChannelName();
-		if (!responses.contains(_otherName)) continue;
+		if (responses.find(_otherName) == responses.end()) continue;
 
 		const CollisionType& _otherResponse = responses.at(_otherName);
 		if (_otherResponse == CT_NONE) continue;
 
 		CollisionType _ownerResponse;
-		if (_otherComponent->responses.contains(channelName))
+		if (_otherComponent->responses.find(channelName) != _otherComponent->responses.end())
 		{
 			_ownerResponse = _otherComponent->responses.at(channelName);
 		}
@@ -120,7 +120,7 @@ void UCollisionComponent::ComputeCollisions()
 			_collisionManager->Collide(_ownerData, _otherData);
 		}
 
-		else if (othersStep.contains(_other) && othersStep[_other] == CS_UPDATE)
+		else if (othersStep.find(_other) != othersStep.end() && othersStep[_other] == CS_UPDATE)
 		{
 			const CollisionStep& _step = ComputeStep(_other, CS_EXIT);
 			const CollisionData& _ownerData = { owner, _ownerResponse, Bounds(), _step, channelName };
@@ -133,7 +133,7 @@ void UCollisionComponent::ComputeCollisions()
 
 CollisionStep UCollisionComponent::ComputeStep(AActor* _other, const CollisionStep& _step)
 {
-	if (othersStep.contains(_other) && othersStep[_other] != CS_EXIT && _step == CS_ENTER)
+	if (othersStep.find(_other) != othersStep.end() && othersStep[_other] != CS_EXIT && _step == CS_ENTER)
 	{
 		othersStep[_other] = CS_UPDATE;
 	}

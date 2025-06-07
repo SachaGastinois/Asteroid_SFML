@@ -2,6 +2,8 @@
 #pragma warning (disable : 4275)
 #pragma warning( disable : 4244)
 
+#include <Windows.h>
+
 // STL
 #include <iostream>
 #include <fstream>
@@ -32,6 +34,8 @@
 #include "SFML/System.hpp"
 #include "SFML/Audio.hpp"
 #include "SFML/Network.hpp"
+
+#include <sstream>
 
 #define DEBUG_PATH
 #ifdef DEBUG_PATH
