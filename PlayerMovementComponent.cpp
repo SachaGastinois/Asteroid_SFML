@@ -20,7 +20,7 @@ UPlayerMovementComponent::UPlayerMovementComponent(AActor* _owner) : UComponent(
 	canAccelerate = false;
 	friction = 0.95f;
 	accelerationFactor = 0.1f;
-	maxVelocity = Vector2f(1.0f, 1.0f);
+	maxVelocity = Vector2f(0.1f, 0.1f);
 	acceleration = Vector2f();
 	velocity = Vector2f();
 	direction = Vector2f(0.0f, 0.0f);
@@ -50,6 +50,7 @@ void UPlayerMovementComponent::BeginPlay()
 	owner->SetRotation(Angle(degrees(currentAngle)));
 
 	sample = owner->GetLevel()->SpawnSample<SoundSample>("SpaceShipMoving");
+	sample->Stop();
 	sample->SetLoop(true);
 	sample->SetVolume(5.0f);
 

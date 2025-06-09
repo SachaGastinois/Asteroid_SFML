@@ -16,6 +16,7 @@ class APlayerPawn : public APawn
 {
 	UStaticMeshComponent* meshComponent;
 	UStaticMeshComponent* hitBoxMeshComponent;
+	//UStaticMeshComponent* explosionMeshComponent;
 	UCollisionComponent* collisionComponent;
 	UPlayerMovementComponent* movementComponent;
 	UAnimationComponent* animationComponent;

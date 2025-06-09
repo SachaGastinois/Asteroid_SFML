@@ -23,6 +23,8 @@ APlayerPawn::APlayerPawn(Level* _level, const string& _name) : APawn(_level, _na
 			Vector2f(50.0f, 50.0f), "Player/SpaceShipSpriteSheet", PNG));
 	hitBoxMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
 			Vector2f(50.0f, 50.0f), "Utility/Transparent", PNG));
+	/*explosionMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
+			Vector2f(50.0f, 50.0f), "Explosion", PNG));*/
 	animationComponent = CreateDefaultSubobject<UAnimationComponent>();
 	collisionComponent = CreateDefaultSubobject<UCollisionComponent>(hitBoxMeshComponent, "Player", IS_ALL, CT_BLOCK);
 	movementComponent = CreateDefaultSubobject<UPlayerMovementComponent>();
@@ -31,6 +33,7 @@ APlayerPawn::APlayerPawn(Level* _level, const string& _name) : APawn(_level, _na
 
 	meshComponent->SetupAttachment(root);
 	hitBoxMeshComponent->SetupAttachment(root);
+	//explosionMeshComponent->SetupAttachment(root);
 	animationComponent->SetupAttachment(root);
 }
 
@@ -151,6 +154,8 @@ void APlayerPawn::Init()
 	SetZOrder(2);
 	GetLevel()->GetCameraManager().SetZOrder(meshComponent->GetRenderMeshToken(), zOrder);
 
+	//GetLevel()->GetCameraManager().SetZOrder(explosionMeshComponent->GetRenderMeshToken(), 5);
+
 
 	spriteSize = Vector2i(56, 45);
 
@@ -228,6 +233,23 @@ void APlayerPawn::SetupAnimations()
 	animations.insert(pair<string, Animation*>("Idle", _idleAnim));
 	animationComponent->SetCurrentAnimation(animations["Idle"]);
 
+	//////////////////////////////////////////////////////////////
+	/////
+	///// Death Animation
+	/////
+	//////////////////////////////////////////////////////////////
+
+	//const vector<SpriteData>& _deathAnimationSpritesData =
+	//{
+	//	SpriteData(Vector2i(0, 0), { 32, 32 }),
+	//	SpriteData(Vector2i(0, 32), { 32, 32 }),
+	//	SpriteData(Vector2i(0, 64), { 32, 32 }),
+	//	SpriteData(Vector2i(0, 128), { 32, 32 }),
+	//};
+	//Animation* _deathAnim = animationComponent->AddAnimation(_deathAnimationSpritesData, 0.0f, "Death", explosionMeshComponent->GetShape());
+	//animations.insert(pair<string, Animation*>("Death", _deathAnim));
+	//animationComponent->SetCurrentAnimation(animations["Death"]);
+
 
 
 	////////////////////////////////////////////////////////////
@@ -268,6 +290,9 @@ void APlayerPawn::OnDeath()
 		SetActive(false);
 
 		SetCanShoot(false);
+
+		//animationComponent->SetActive(true);
+		//animationComponent->SwitchCurrentAnimation(animations["Death"]);
 
 		lifeComponent->SetCanBeAttacked(false);
 

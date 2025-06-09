@@ -12,6 +12,27 @@ void InitConfig()
 	system("cls");
 }
 
+int main()
+{
+	InitConfig();
+
+	UMainMenuLevel* _mainMenuLevel = new UMainMenuLevel("MainMenuLevel");
+	M_LEVEL.RegisterLevel(_mainMenuLevel->GetName(), _mainMenuLevel);
+
+	UClassicModeLevel* _classicModeLevel = new UClassicModeLevel("ClassicModeLevel");
+	M_LEVEL.RegisterLevel(_classicModeLevel->GetName(), _classicModeLevel);
+
+	UChronoModeLevel* _chronoModeLevel = new UChronoModeLevel("ChronoModeLevel");
+	M_LEVEL.RegisterLevel(_chronoModeLevel->GetName(), _chronoModeLevel);
+
+	M_LEVEL.SetLevel("MainMenuLevel");
+
+	Engine _engine;
+	_engine.Start();
+
+	return EXIT_SUCCESS;
+}
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	InitConfig();

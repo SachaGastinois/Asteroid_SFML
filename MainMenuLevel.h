@@ -4,6 +4,7 @@
 #include "ButtonWidget.h"
 #include "TextObject.h"
 #include "GIFWidget.h"
+#include "SliderWidget.h"
 
 class UMainMenuLevel : public UUtilityLevel
 {
@@ -14,6 +15,8 @@ class UMainMenuLevel : public UUtilityLevel
 	UI::ACanvasWidget* leaderBoardCanvas;
 	UI::ACanvasWidget* startCanvas;
 	UI::ACanvasWidget* creditCanvas;
+
+	UI::SliderWidget* sliderBar;
 
 public:
 	UMainMenuLevel(const string& _levelName);

@@ -139,14 +139,13 @@ public:
 			framesCount = 0;
 		}
 		
-		for (T* _timer : allTimers)
+		for (Timer<float>* _timer : allTimers)
 		{
 			_timer->Update(deltaTime);
 
 			if (_timer->IsToDelete())
 			{
 				RemoveTimer(_timer);
-				continue;
 			}
 		}
 

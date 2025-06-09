@@ -8,6 +8,8 @@ struct FSocketData
 	Vector2f relativeLoc;
 	bool isActive;
 
+	FSocketData() = default;
+
 	FSocketData(AActor* _socket, const Vector2f& _relativeLoc)
 	{
 		socket = _socket;

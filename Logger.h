@@ -49,8 +49,8 @@ public:
 private:
     void ComputeUseDebug(const VerbosityType& _type)
     {
-        ;
-        if (set<VerbosityType>({ Warning, Error }).find(_type) != set<VerbosityType>({ Warning, Error }).end())
+        set<VerbosityType> _verobisties = set<VerbosityType>({ Warning, Error });
+        if (_verobisties.find(_type) != _verobisties.end())
         {
             useDebug = true;
             return;

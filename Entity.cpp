@@ -22,6 +22,7 @@ AEntity::AEntity(Level* _level, const int _point, const FEntityData& _data, cons
 		hitBoxMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(RectangleShapeData(
 			_data.hitBoxSize, "Utility/Transparent", PNG));
 	}
+
 	animationComponent = CreateDefaultSubobject<UAnimationComponent>();
 	collisionComponent = CreateDefaultSubobject<UCollisionComponent>(hitBoxMeshComponent, "Asteroid", IS_ALL, CT_BLOCK);
 	lifeComponent = CreateDefaultSubobject<ULifeComponent>(_data.lifeData);

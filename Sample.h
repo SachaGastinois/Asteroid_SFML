@@ -23,7 +23,8 @@ public:
 	}
 	FORCEINLINE void SetVolume(const float _volume)
 	{
-		UpdateVolume(volume = _volume);
+		volume = _volume;
+		UpdateVolume(_volume);
 	}
 	FORCEINLINE float GetVolume() const
 	{

@@ -8,6 +8,7 @@
 UShootComponent::UShootComponent(AActor* _owner) : UComponent(_owner)
 {
 	upgradeStage = 0;
+	sockets = vector<FSocketData>();
 }
 
 UShootComponent::UShootComponent(AActor* _owner, const vector<FSocketData>& _sockets) : UComponent(_owner)
@@ -19,7 +20,7 @@ UShootComponent::UShootComponent(AActor* _owner, const vector<FSocketData>& _soc
 UShootComponent::UShootComponent(AActor* _owner, const UShootComponent& _other) : UComponent(_owner, _other)
 {
 	upgradeStage = 0;
-	sockets = _other.sockets;
+	sockets = vector<FSocketData>();
 }
 
 void UShootComponent::BeginPlay()
@@ -27,6 +28,7 @@ void UShootComponent::BeginPlay()
 	Super::BeginPlay();
 
 	sample = owner->GetLevel()->SpawnSample<SoundSample>("ShootEffect");
+	sample->Stop();
 	sample->SetVolume(5.0f);
 }
 
@@ -93,7 +95,7 @@ void UShootComponent::Shoot()
 		
 		_projectile->SetLocation(_socket.socket->GetLocation());
 		sample->SetLoop(false);
-		sample->Play();
+ 		sample->Play();
 	}
 }
 

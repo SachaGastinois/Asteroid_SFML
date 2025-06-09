@@ -25,9 +25,11 @@ void ULifeComponent::BeginPlay()
 	Super::BeginPlay();
 
 	explosionSample = owner->GetLevel()->SpawnSample<SoundSample>("Explosion");
+	explosionSample->Stop();
 	explosionSample->SetVolume(5.0f);
 
 	hitSample = owner->GetLevel()->SpawnSample<SoundSample>("PlayerHurt");
+	hitSample->Stop();
 	hitSample->SetVolume(5.0f);
 }
 

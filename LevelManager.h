@@ -14,7 +14,10 @@ public:
 	}
 	FORCEINLINE void SetLevel(Level* _level)
 	{
-		if (currentLevel) currentLevel->Unload();
+		if (currentLevel) 
+		{
+			currentLevel->Unload();
+		}
 		currentLevel = _level;
 		if (currentLevel) currentLevel->Load();
 	}

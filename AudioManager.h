@@ -21,10 +21,16 @@ public:
 	}
 	FORCEINLINE void SetVolume(const float _volume)
 	{
+		volume = _volume;
+
 		for (pair<string, Sample*> _samplePair : allSamples)
 		{
 			_samplePair.second->SetVolume(_volume);
 		}
+	}
+	FORCEINLINE float GetVolume() const
+	{
+		return volume;
 	}
 	FORCEINLINE Sample* GetAvailable(const string& _finalPath)
 	{

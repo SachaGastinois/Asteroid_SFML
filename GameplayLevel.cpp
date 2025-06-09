@@ -29,6 +29,8 @@ void UGameplayLevel::InitLevel()
 
 	GetCameraManager().GetCurrent()->SetLocation(windowSize / 2.0f);
 
+	GetAudioManager().SetVolume(GetAudioManager().GetVolume());
+
 	HUD* _hud = GetGameMode()->GetHUD();
 
 	pauseCanvas = _hud->SpawnWidget<UI::ACanvasWidget>("PauseCanvas");
@@ -401,6 +403,8 @@ void UGameplayLevel::UpdatePlayerLife()
 
 void UGameplayLevel::Reset()
 {
+	GetAudioManager().SetVolume(GetAudioManager().GetVolume());
+
 	currentScorePoint = 0;
 	scorePointLabel->SetText(to_string(currentScorePoint));
 	scorePointLabel->SetOriginAtMiddle();

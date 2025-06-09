@@ -35,6 +35,8 @@ void UMainMenuLevel::InitLevel()
 
 	windowSize = GetWindowSize();
 
+	GetAudioManager().SetVolume(1.0f);
+
 	GetCameraManager().GetCurrent()->SetLocation({ 0.0f, 0.0f });
 
 	HUD* _hud = GetGameMode()->GetHUD();
@@ -170,17 +172,26 @@ void UMainMenuLevel::InitOptionMenu(HUD* _hud)
 	optionCanvas->AddChild(_title);
 
 
+	ALabelWidget* _volumeLabel = _hud->SpawnWidget<ALabelWidget>("Main Volume", "OptionVolumeLabel", Screen);
+	_volumeLabel->SetCharacterSize(25);
+	_volumeLabel->SetFont(_fontData.first, _fontData.second);
+	_volumeLabel->SetOriginAtMiddle();
+	_volumeLabel->SetLocation(Vector2f(windowSize.x * 0.15f, windowSize.y * 0.3f));
+	_volumeLabel->SetZOrder(1);
 
-	/*SliderWidget* _slideBar = _hud->SpawnWidget<SliderWidget>("OptionTitleLabel", Screen);
-	_slideBar->SetMinValue(0.0f);
-	_slideBar->SetMaxValue(100.0f);
-	_slideBar->SetOriginAtMiddle();
-	_slideBar->SetLocation(Vector2f(windowSize.x * 0.5f, windowSize.y * 0.5f));
-	_slideBar->SetScale(Vector2f(10.0f, 1.0f));
-	_slideBar->SetZOrder(2);
-	_slideBar->GetButton()->BindOnReleaseAction([&]() { GetAudioManager().SetVolume(_slideBar->GetValue()); });*/
+	optionCanvas->AddChild(_volumeLabel);
 
-	//optionCanvas->AddChild(_slideBar);
+	sliderBar = _hud->SpawnWidget<SliderWidget>("OptionSliderLabel", Screen);
+	sliderBar->SetMinValue(0.0f);
+	sliderBar->SetMaxValue(10.0f);
+	sliderBar->SetOriginAtMiddle();
+	sliderBar->SetLocation(Vector2f(windowSize.x * 0.3f, windowSize.y * 0.3f));
+	sliderBar->SetScale(Vector2f(100.0f, 1.0f));
+	sliderBar->SetZOrder(2);
+	sliderBar->GetButton()->BindOnReleaseAction([&]() { GetAudioManager().SetVolume(sliderBar->GetValue()); });
+	sliderBar->SetValue(GetAudioManager().GetVolume());
+
+	optionCanvas->AddChild(sliderBar);
 
 
 	//////////////////////////
@@ -344,7 +355,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 64, 0 }, { 32, 32 })),
 		"ControlsQImage", Screen);
 	_controlsQImage->SetOriginAtMiddle();
-	_controlsQImage->SetLocation(Vector2f(windowSize.x * 0.68f, windowSize.y * 0.65f));
+	_controlsQImage->SetLocation(Vector2f(windowSize.x * 0.68f, windowSize.y * 0.55f));
 	_controlsQImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsQImage);
@@ -353,7 +364,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	_controlsQLabel->SetCharacterSize(15);
 	_controlsQLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsQLabel->SetOriginAtMiddle();
-	_controlsQLabel->SetLocation(Vector2f(windowSize.x * 0.7f, windowSize.y * 0.75f));
+	_controlsQLabel->SetLocation(Vector2f(windowSize.x * 0.7f, windowSize.y * 0.65f));
 	_controlsQLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsQLabel);
@@ -366,7 +377,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 96, 0 }, { 32, 32 })),
 		"ControlsSImage", Screen);
 	_controlsSImage->SetOriginAtMiddle();
-	_controlsSImage->SetLocation(Vector2f(windowSize.x * 0.59f, windowSize.y * 0.65f));
+	_controlsSImage->SetLocation(Vector2f(windowSize.x * 0.59f, windowSize.y * 0.55f));
 	_controlsSImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSImage);
@@ -375,7 +386,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	_controlsSLabel->SetCharacterSize(15);
 	_controlsSLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsSLabel->SetOriginAtMiddle();
-	_controlsSLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.7f));
+	_controlsSLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.6f));
 	_controlsSLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSLabel);
@@ -388,7 +399,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 		"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({ 128, 0 }, { 32, 32 })),
 		"ControlsDImage", Screen);
 	_controlsDImage->SetOriginAtMiddle();
-	_controlsDImage->SetLocation(Vector2f(windowSize.x * 0.8f, windowSize.y * 0.65f));
+	_controlsDImage->SetLocation(Vector2f(windowSize.x * 0.8f, windowSize.y * 0.55f));
 	_controlsDImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsDImage);
@@ -397,7 +408,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	_controlsDLabel->SetCharacterSize(15);
 	_controlsDLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsDLabel->SetOriginAtMiddle();
-	_controlsDLabel->SetLocation(Vector2f(windowSize.x * 0.82f, windowSize.y * 0.75f));
+	_controlsDLabel->SetLocation(Vector2f(windowSize.x * 0.82f, windowSize.y * 0.65f));
 	_controlsDLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsDLabel);
@@ -410,7 +421,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 			"Widgets/MainMenu/Start/Keyboard_SpriteSheet", PNG, false, IntRect({160, 0},{32, 32})), 
 			"ControlsSpaceBarImage", Screen);
 	_controlsSpaceBarImage->SetOriginAtMiddle();
-	_controlsSpaceBarImage->SetLocation(Vector2f(windowSize.x * 0.515f, windowSize.y * 0.65f));
+	_controlsSpaceBarImage->SetLocation(Vector2f(windowSize.x * 0.515f, windowSize.y * 0.55f));
 	_controlsSpaceBarImage->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSpaceBarImage);
@@ -419,7 +430,7 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	_controlsSpaceBarLabel->SetCharacterSize(15);
 	_controlsSpaceBarLabel->SetFont(_fontData.first, _fontData.second);
 	_controlsSpaceBarLabel->SetOriginAtMiddle();
-	_controlsSpaceBarLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.75f));
+	_controlsSpaceBarLabel->SetLocation(Vector2f(windowSize.x * 0.585f, windowSize.y * 0.65f));
 	_controlsSpaceBarLabel->SetZOrder(1);
 
 	startCanvas->AddChild(_controlsSpaceBarLabel);
@@ -462,14 +473,16 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	AButtonWidget* _classicModeButton = InitButtonAndLabelData(_hud, startCanvas, _classicModeData);
 	_classicModeButton->BindOnClickAction([&]() 
 	{ 
+		float _tempVolume = GetAudioManager().GetVolume();
 		OpenMenu(mainMenuCanvas, startCanvas); 
 		M_LEVEL.SetLevel("ClassicModeLevel"); 
 		backgroundTheme->Stop();
 		if (UGameplayLevel* _level = Cast<UGameplayLevel>(M_LEVEL.GetCurrentLevel()))
 		{
 			_level->backgroundTheme->Play();
+			_level->GetAudioManager().SetVolume(_tempVolume);
 		}
-		
+
 	});
 
 
@@ -485,12 +498,14 @@ void UMainMenuLevel::InitStartMenu(HUD* _hud)
 	AButtonWidget* _chronoModeButton = InitButtonAndLabelData(_hud, startCanvas, _chronoModeData);
 	_chronoModeButton->BindOnClickAction([&]() 
 		{ 
+			float _tempVolume = GetAudioManager().GetVolume();
 			OpenMenu(mainMenuCanvas, startCanvas);
 			M_LEVEL.SetLevel("ChronoModeLevel");
 			backgroundTheme->Stop();
 			if (UGameplayLevel* _level = Cast<UGameplayLevel>(M_LEVEL.GetCurrentLevel()))
 			{
 				_level->backgroundTheme->Play();
+				_level->GetAudioManager().SetVolume(_tempVolume);
 			}
 		});
 
