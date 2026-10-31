@@ -537,68 +537,14 @@ void UMainMenuLevel::InitCreditMenu(HUD* _hud)
 	///		Labels
 	//////////////////////////
 
-	ALabelWidget* _oldEngineLabel = _hud->SpawnWidget<ALabelWidget>("Old Engine", "CreditTitleLabel", Screen);
-	_oldEngineLabel->SetCharacterSize(30);
-	_oldEngineLabel->SetFont(_fontData.first, _fontData.second);
-	_oldEngineLabel->SetOriginAtMiddle();
-	_oldEngineLabel->SetLocation(Vector2f(windowSize.x / 2.0f, windowSize.y * 0.3f));
-	_oldEngineLabel->SetZOrder(1);
-
-	creditCanvas->AddChild(_oldEngineLabel);
-
-	vector<string> _labelsString =
-	{
-		"Sacha - Lead",
-		"Alexandre - Pre Prod",
-		"Yoan - Shape & Convex",
-		"Sev - Asteroids & Animations",
-		"Romain - UFO",
-		"Quentin - Menus"
-	};
-	const int _labelsStringCount = static_cast<int>(_labelsString.size());
-	for (int _index = 0; _index < _labelsStringCount; _index++)
-	{
-		ALabelWidget* _label = _hud->SpawnWidget<ALabelWidget>(_labelsString[_index], "CreditTitleLabel", Screen);
-		_label->SetCharacterSize(15);
-		_label->SetFont(_fontData.first, _fontData.second);
-		_label->SetOriginAtMiddle();
-		_label->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.4f + windowSize.y * _index / 20 });
-		_label->SetZOrder(1);
-
-		creditCanvas->AddChild(_label);
-	}
-
-	ALabelWidget* _newEngineLabel = _hud->SpawnWidget<ALabelWidget>("New Engine", "CreditTitleLabel", Screen);
-	_newEngineLabel->SetCharacterSize(30);
-	_newEngineLabel->SetFont(_fontData.first, _fontData.second);
-	_newEngineLabel->SetOriginAtMiddle();
-	_newEngineLabel->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.8f });
-	_newEngineLabel->SetZOrder(1);
-
-	creditCanvas->AddChild(_newEngineLabel);
-
-	ALabelWidget* _lead = _hud->SpawnWidget<ALabelWidget>("Sacha - Lead", "CreditTitleLabel", Screen);
+	ALabelWidget* _lead = _hud->SpawnWidget<ALabelWidget>("Sacha Gastinois", "CreditTitleLabel", Screen);
 	_lead->SetCharacterSize(15);
 	_lead->SetFont(_fontData.first, _fontData.second);
 	_lead->SetOriginAtMiddle();
-	_lead->SetLocation({ windowSize.x / 2.0f, windowSize.y * 0.9f });
+	_lead->SetLocation({ windowSize.x / 2.0f, windowSize.y / 2.0f});
 	_lead->SetZOrder(1);
 
 	creditCanvas->AddChild(_lead);
-
-
-	//////////////////////////
-	///		Blur 
-	//////////////////////////
-
-	AImageWidget* _blur = _hud->SpawnWidget<AImageWidget>(RectangleShapeData({ 500.0f, 850.0f },
-		"Widgets/Utility/LightBlur", PNG, false),
-		"CreditBlur", Screen);
-	_blur->SetOriginAtMiddle();
-	_blur->SetLocation(Vector2f(windowSize.x * 0.37f, windowSize.y * 0.2f));
-	_blur->SetZOrder(0);
-
-	creditCanvas->AddChild(_blur);
 
 
 	//////////////////////////
